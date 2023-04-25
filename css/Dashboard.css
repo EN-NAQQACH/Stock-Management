@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  list-style: none;
+}
+.side-bar {
+  position: fixed;
+  height: 100%;
+  width: 240px;
+  background-color: #394867;
+  transition: all 0.3s ease;
+}
+.side-bar .logo {
+  height: 60px;
+  width: 100%;
+  padding: 15px 10px 10px 18px;
+  font-size: 1.6rem;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: 0.5s all;
+}
+.side-bar .logo span h4 {
+  font-weight: 500;
+  color: rgb(255, 255, 255);
+}
+nav > .navs-links li {
+  height: 65px;
+  width: 100%;
+  margin-top: 6px;
+}
+nav > .navs-links li a {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  color: white;
+  transition: all 0.4s ease;
+  letter-spacing: 0.7px;
+}
+nav > .navs-links li a .name {
+  white-space: nowrap;
+}
+nav > .navs-links li a i {
+  font-size: 20px;
+  min-width: 70px;
+  text-align: center;
+}
+nav > .navs-links li a span {
+  color: white;
+}
+nav > .navs-links li a {
+  color: #9ba4b5;
+}
+nav > .navs-links li a:hover {
+  /* #2d3d5d */
+  background-color: #212a3e;
+  color: white;
+}
+
+/* button log out*/
+
+nav .logout {
+  color: #9ba4b5;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.7px;
+  margin-top: 102px;
+  height: 65px;
+  transition: all 0.4s;
+}
+nav .logout:hover {
+  background-color: #212a3e;
+  color: white;
+}
+nav .logout span {
+  color: white;
+}
+nav .logout i {
+  font-size: 20px;
+  min-width: 70px;
+  text-align: center;
+}
+
+/* home section */
+
+.home-section {
+  background-color: #f7f7f7;
+  position: relative;
+  height: 100%;
+  width: calc(100% - 240px);
+  left: 240px;
+  min-height: 100vh;
+  transition: all 0.4s ease;
+}
+.home-section main nav {
+  height: 60px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.home-section main nav > .side-bar-button {
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+.home-section main nav > .side-bar-button .dashboard {
+  margin-left: 5px;
+  letter-spacing: 0.7px;
+}
+
+.home-section main nav .bx.bx-menu {
+  font-size: 24px;
+  margin-top: 1px;
+}
+.home-section main nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.home-section main nav .profile-info img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: 6px;
+  box-shadow: 1.3px 1.3px 1.2px rgba(0, 0, 0, 0.2);
+}
+
+.side-bar.active {
+  width: 70px;
+}
+.side-bar.active ~ .home-section {
+  width: calc(100% - 70px);
+  left: 70px;
+}
