@@ -7,6 +7,7 @@
   text-decoration: none;
   font-family: "Poppins", sans-serif;
   list-style: none;
+  
 }
 .side-bar {
   position: fixed;
@@ -28,14 +29,14 @@
   font-weight: 500;
   color: rgb(255, 255, 255);
 }
-nav > .navs-links li {
+nav > .navs-links div {
   height: 65px;
   width: 100%;
   margin-top: 6px;
+  cursor: pointer;
 }
-nav > .navs-links li a {
-  height: 100%;
-  width: 100%;
+nav > .navs-links div  {
+
   display: flex;
   align-items: center;
   color: white;
@@ -45,18 +46,18 @@ nav > .navs-links li a {
 nav > .navs-links li a .name {
   white-space: nowrap;
 }
-nav > .navs-links li a i {
+nav > .navs-links div  i {
   font-size: 20px;
   min-width: 70px;
   text-align: center;
 }
-nav > .navs-links li a span {
+nav > .navs-links div  span {
   color: white;
 }
-nav > .navs-links li a {
+nav > .navs-links div  {
   color: #9ba4b5;
 }
-nav > .navs-links li a:hover {
+nav > .navs-links div:hover {
   /* #2d3d5d */
   background-color: #212a3e;
   color: white;
@@ -91,13 +92,15 @@ nav .logout i {
 /* home section */
 
 .home-section {
-  background-color: #f7f7f7;
+  background-color: #f9f7f7;
   position: relative;
   height: 100%;
   width: calc(100% - 240px);
   left: 240px;
   min-height: 100vh;
   transition: all 0.4s ease;
+  overflow-y: auto;
+  overflow-x: visible;
 }
 .home-section main nav {
   height: 60px;
@@ -105,6 +108,12 @@ nav .logout i {
   display: flex;
   align-items: center;
   padding: 0 20px;
+  justify-content: space-between;
+  position: fixed;
+  width: calc(100% - 240px);
+  left: 240px;
+  transition: all 0.4s ease;
+  z-index: 5000;
 }
 
 .home-section main nav > .side-bar-button {
@@ -122,11 +131,6 @@ nav .logout i {
   font-size: 24px;
   margin-top: 1px;
 }
-.home-section main nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
 
 .home-section main nav .profile-info img {
   height: 40px;
@@ -139,8 +143,59 @@ nav .logout i {
 
 .side-bar.active {
   width: 70px;
+  
 }
-.side-bar.active ~ .home-section {
+.side-bar.active ~ .home-section main nav{
   width: calc(100% - 70px);
   left: 70px;
+}
+.side-bar.active ~ .home-section{
+  width: calc(100% - 70px);
+  left: 70px;
+}
+
+.home-section .content{
+ top: 70px;
+ position: relative;
+ padding: 0 20px;
+}
+.content .boxes-container{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-gap: 2rem;
+  margin-bottom: 20px;
+}
+.content .boxes-container .box{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 1.2rem;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px rgba(114, 113, 113, 0.2);
+
+}
+.content .boxes-container .box .icons{
+  color: #5972a4;
+  border-radius: 5px;
+  height: 52px;
+  width: 52px;
+  font-size: 30px;
+  background-color:#5972a4 ;
+}
+.content .boxes-container .box .icons i {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  color: white;
+}
+.tables{
+  max-height: 400px;
+  overflow-y: scroll;
+  box-shadow: 3px 3px 5px rgba(114, 113, 113, 0.2);
+  background-color: #ffffff;
+}
+.content h4{
+  margin-bottom: 10px;
+  font-size: 19px;
 }
