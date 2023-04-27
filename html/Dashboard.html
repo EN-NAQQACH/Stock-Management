@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/Dashboard.css">
     <!--boxixons-->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!--bootstrap-->
@@ -12,26 +12,25 @@
     <title>Dashboard</title>
 </head>
 <body>
-    
+
     <section class="side-bar">
         <div class="logo">
             <span><h4>Easly</h4></span>
         </div>
         <nav>
             <div class="navs-links">
-                <div><i class='bx bxs-dashboard'></i> <span class="name">Dashboard</span></div>
-                <div><i class='bx bx-package'></i> <span class="name">Product</span></div>
-                <div><i class='bx bx-user'></i> <span class="name">Clients</span></div>
-                <div><i class='bx bx-receipt'></i> <span class="name">Orders</span></div>
-                <div><i class='bx bx-cart-add' ></i> <span class="name">Vente</span></div>
-                <div><i class='bx bxs-store' ></i> <span class="name">Fornisseur</span></div>
-                <div><i class='bx bx-log-out' ></i><span>Log out</span></div>
+                <div data-page="dashboard"><i class='bx bxs-dashboard'></i> <span class="name">Dashboard</span></div>
+                <div data-page="Product"><i class='bx bx-package'></i> <span class="name">Product</span></div>
+                <div data-page="Clients"><i class='bx bx-user'></i> <span class="name">Clients</span></div>
+                <div data-page="Orders"><i class='bx bx-receipt'></i> <span class="name">Orders</span></div>
+                <div data-page="Vente"><i class='bx bx-cart-add' ></i> <span class="name">Vente</span></div>
+                <div data-page="Fornisseur"><i class='bx bxs-store' ></i> <span class="name">Fornisseur</span></div>
+                <div data-page=""><i class='bx bx-log-out' ></i><span>Log out</span></div>
             </div>
-            
         </nav>
     </section>
 
-    <section class="home-section">
+    <section class="home-section" id="home-sectionall">
         <main>
             <nav>
                 <div class="side-bar-button">
@@ -43,7 +42,7 @@
                 </div>
             </nav>
         </main>
-        <div class="content">
+        <div class="content" id="contentall">
             <div class="boxes-container">
                 <div class="box">
                         <div>
@@ -206,10 +205,9 @@
                       </tr>
                     </tbody>
                   </table>
-            </div><!--->
+            </div>
         </div>
     </section>
-
     <script src="../js/Script.js" ></script>
 </body>
 </html>

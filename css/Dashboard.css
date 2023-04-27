@@ -199,3 +199,22 @@ nav .logout i {
   margin-bottom: 10px;
   font-size: 19px;
 }
+
+
+
+
+#contentall {
+  animation: page-transition 0.5s ease-out;
+}
+
+@keyframes page-transition {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+

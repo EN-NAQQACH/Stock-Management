@@ -16,6 +16,82 @@ if (sidebar.classList.contains("active")) {
   }
 }
 
+const navLinks = document.querySelectorAll('nav .navs-links div');
+navLinks.forEach(link => {
+  link.addEventListener('click', event => {
+    event.preventDefault();
+    const page = link.dataset.page;
+    loadPage(page);
+  });
+});
+
+function loadPage(page) {
+  const content = document.getElementById('contentall');
+  content.classList.add('page-active');
+  if (page === 'dashboard') {
+    fetch('../html/Acceuil.html')
+    .then(response => response.text())
+    .then(data => {
+      const productContent = document.getElementById('contentall');
+      productContent.innerHTML = data;
+
+        // Remove the page-active class after the content is updated
+        setTimeout(() => {
+          content.classList.remove('page-active');
+        }, 500);
+
+    });
+  } else if (page === 'Product') {
+    fetch('../html/product.html')
+      .then(response => response.text())
+      .then(data => {
+        const productContent = document.getElementById('contentall');
+        productContent.innerHTML = data;
+
+          // Remove the page-active class after the content is updated
+          setTimeout(() => {
+            content.classList.remove('page-active');
+          }, 500);
+      });
+  } else if (page === 'about') {
+    // Insert code to load about page here
+    console.log('Loading about page');
+      // Remove the page-active class after the content is updated
+      setTimeout(() => {
+        content.classList.remove('page-active');
+      }, 500);
+  } else if (page === 'contact') {
+    // Insert code to load contact page here
+    console.log('Loading contact page');
+      // Remove the page-active class after the content is updated
+      setTimeout(() => {
+        content.classList.remove('page-active');
+      }, 500);
+  } else {
+    console.log(`Invalid page: ${page}`);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*navLinks.forEach(function(navLink) {
   navLink.addEventListener("click", function(event) {
     sidebar.classList.remove("active");
