@@ -16,6 +16,8 @@ if (sidebar.classList.contains("active")) {
   }
 }
 
+/* load html page into another one */
+
 const navLinks = document.querySelectorAll('nav .navs-links div');
 navLinks.forEach(link => {
   link.addEventListener('click', event => {
@@ -72,6 +74,16 @@ function loadPage(page) {
   }
 }
 
+/* change color when i click on any div link */
+
+const navLinkk = document.querySelectorAll('.nav-link');
+
+navLinkk.forEach(navLink => {
+  navLink.addEventListener('click', function() {
+    navLinkk.forEach(navLink => navLink.classList.remove('active')); // Remove active class from all links
+    this.classList.add('active'); // Add active class to clicked link
+  });
+});
 
 
 

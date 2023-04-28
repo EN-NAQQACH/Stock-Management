@@ -99,8 +99,8 @@ nav .logout i {
   left: 240px;
   min-height: 100vh;
   transition: all 0.4s ease;
-  overflow-y: auto;
-  overflow-x: visible;
+  overflow-y: hidden;
+  overflow-x: auto;
 }
 .home-section main nav {
   height: 60px;
@@ -218,3 +218,8 @@ nav .logout i {
   }
 }
 
+
+.nav-link.active {
+  color: #fff; /* active color */
+  background-color: #212a3e;
+}
