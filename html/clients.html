@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+              <!-- Modal -->
+  <div class="modal fade" id="fullcontent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Clients</h5>
+          <div class="close" data-dismiss="modal" id="btnedit" aria-label="Close">
+            <span aria-hidden="true" style="font-size: 20px;cursor: pointer;">&times;</span>
+          </div>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="formGroupExampleInput">Nom</label>
+              <input type="text" class="form-control" id="formGroupExampleInput" placeholder="nom_article">
+            </div>
+            <div class="form-group">
+              <label for="formGroupExampleInput2">Prénom</label>
+              <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Catégorie">
+            </div>
+            <div class="form-group">
+              <label for="formGroupExampleInput2">Téléphone</label>
+              <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Quantité">
+            </div>
+            <div class="form-group">
+              <label for="formGroupExampleInput2">Adresse</label>
+              <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Prix_unitaire">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <style>
+    .form-group{
+      margin:8px;
+    }
+    .form-group label{
+      padding-bottom: 4px;
+    }
+    .modal-footer .btn.btn-primary{
+      background-color:#536486;
+      border: #536486;
+    }
+    .modal-footer .btn.btn-primary:hover{
+      background-color:#394867;
+      border: #394867;
+    }
+
+
+  </style>
+<!-- Button trigger modal -->
+    <h4 style="margin-top: 10px;">Liste de clients</h4>
+    <button type="button" class="btn btn-primary" style="background-color:#394867;border: #394867;" data-toggle="modal" id="btnedit" data-target="#fullcontent">Ajouter</button>
+            <div class="tables" style="margin-top: 10px;">
+                <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Prénom</th>
+                        <th scope="col">Téléphone</th>
+                        <th scope="col">Adresse</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>0645039258</td>
+                        <td>agadir</td>
+                        <td>
+                          <button type="button" class="btn btn-primary" style="background-color: #697ea9;border: #697ea9;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><i class='bx bx-pencil' ></i></button>
+                          <button type="button" class="btn btn-primary" style="background-color: #ff6060;border: #ED2B2A;"><i class='bx bx-x-circle'></i></i></button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>0645039258t</td>
+                        <td>salé</td>
+                        <td>
+                          <button type="button" class="btn btn-primary" style="background-color: #697ea9;border: #697ea9;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><i class='bx bx-pencil' ></i></button>
+                          <button type="button" class="btn btn-primary" style="background-color: #ff6060;border: #ED2B2A;"><i class='bx bx-x-circle'></i></i></button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td >Larry the Bird</td>
+                        <td>Thornton</td>
+                        <td>0645039258r</td>
+                        <td >Lnador</td>
+                        <td >
+                          <button type="button" class="btn btn-primary" style="background-color: #697ea9;border: #697ea9;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><i class='bx bx-pencil' ></i></button>
+                          <button type="button" class="btn btn-primary" style="background-color: #ff6060;border: #ED2B2A;"><i class='bx bx-x-circle'></i></i></button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">4</th>
+                        <td >Larry the Bird</td>
+                        <td>Thornton</td>
+                        <td>0645039258</td>
+                        <td >marrakech</td>
+                        <td >
+                          <button type="button" class="btn btn-primary" style="background-color: #697ea9;border: #697ea9;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><i class='bx bx-pencil' ></i></button>
+                          <button type="button" class="btn btn-primary" style="background-color: #ff6060;border: #ED2B2A;"><i class='bx bx-x-circle'></i></i></button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">5</th>
+                        <td >Larry the Bird</td>
+                        <td>Thornton</td>
+                        <td>0645039258</td>
+                        <td>safi</td>
+                        <td>
+                          <button type="button" class="btn btn-primary" style="background-color: #697ea9;border: #697ea9;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><i class='bx bx-pencil' ></i></button>
+                          <button type="button" class="btn btn-primary" style="background-color: #ff6060;border: #ED2B2A;"><i class='bx bx-x-circle'></i></i></button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">6</th>
+                        <td >Larry the Bird</td>
+                        <td>Thornton</td>
+                        <td>0645039258</td>
+                        <td >beni mellal</td>
+                        <td>
+                          <button type="button" class="btn btn-primary" style="background-color: #697ea9;border: #697ea9;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><i class='bx bx-pencil' ></i></button>
+                          <button type="button" class="btn btn-primary" style="background-color: #ff6060;border: #ED2B2A;"><i class='bx bx-x-circle'></i></i></button>
+                        </td>
+                      </tr>    
+                    </tbody>
+                  </table>
+            </div>
+</body>
+</html>

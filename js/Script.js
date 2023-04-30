@@ -1,6 +1,7 @@
 let sidebar =document.querySelector(".side-bar");
 let sidebarbtn =document.querySelector(".sidebarbtn");
 let easly = document.querySelector(".side-bar .logo ");
+let icon = document.querySelectorAll('#icons')
 //let navLinks = document.querySelectorAll(".navs-links li a");
 
 sidebarbtn.onclick = function() {
@@ -9,10 +10,18 @@ if (sidebar.classList.contains("active")) {
     easly.style.padding = "15px 10px 10px 4px";
     easly.style.fontSize = "1.3rem";
     sidebar.style.transition = "all 0.5s ease-in-out";
+    icon.forEach(icoon => {
+      icoon.style.paddingRight = '15px';
+      icoon.style.transition = 'all 0.5s';
+    });
   } else {
     easly.style.padding = "15px 10px 10px 18px";
     easly.style.fontSize = "1.6rem";
     sidebar.style.transition = "none";
+    icon.forEach(icoon => {
+      icoon.style.paddingRight = '0';
+      icoon.style.transition = 'all 0.5s';
+    });
   }
 }
 
@@ -55,13 +64,19 @@ function loadPage(page) {
             content.classList.remove('page-active');
           }, 500);
       });
-  } else if (page === 'about') {
-    // Insert code to load about page here
-    console.log('Loading about page');
-      // Remove the page-active class after the content is updated
-      setTimeout(() => {
-        content.classList.remove('page-active');
-      }, 500);
+  } else if (page === 'Clients') {
+    // Insert code to load Clients page here
+    fetch('../html/clients.html')
+      .then(response => response.text())
+      .then(data => {
+        const productContent = document.getElementById('contentall');
+        productContent.innerHTML = data;
+
+          // Remove the page-active class after the content is updated
+          setTimeout(() => {
+            content.classList.remove('page-active');
+          }, 500);
+      });
   } else if (page === 'contact') {
     // Insert code to load contact page here
     console.log('Loading contact page');
@@ -84,13 +99,6 @@ navLinkk.forEach(navLink => {
     this.classList.add('active'); // Add active class to clicked link
   });
 });
-
-
-
-
-
-
-
 
 
 
