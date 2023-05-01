@@ -1,230 +1,129 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
+/* Googlefont Poppins CDN Link */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  text-decoration: none;
   font-family: "Poppins", sans-serif;
-  list-style: none;
+
 }
-:root{
-  --bg-color:#12192c;
-  --color:#12192c;
-  --btn-hover-color:#0c5df4;
-}
+
 .side-bar {
   position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 240px;
-  padding: .5rem 1rem 0 0;
-  background-color: var(--bg-color);
-  transition: all 0.3s ease;
+  height: 100%;
+  width: 246px;
+  background: #12192c;
+  transition: all 0.5s ease;
 }
+.side-bar.active {
+  width: 80px;
+}
+
 .side-bar .logo {
   height: 60px;
   width: 100%;
-  padding: 15px 10px 10px 18px;
+  padding: 17px 10px 10px 12px;
   font-size: 1.6rem;
   cursor: pointer;
   box-sizing: border-box;
   transition: 0.5s all;
+  color: white;
+  min-width: 60px;
 }
-.side-bar .logo span h4 {
-  font-weight: 500;
-  color: rgb(255, 255, 255);
+.nav-links {
+  width: 100%;
 }
-/*nav > .navs-links div {
+.nav-links a {
   height: 65px;
   width: 100%;
   margin-top: 6px;
   cursor: pointer;
-}
-nav > .navs-links div {
   display: flex;
   align-items: center;
   color: white;
   transition: all 0.4s ease;
   letter-spacing: 0.7px;
 }
-nav > .navs-links li a .name {
-  white-space: nowrap;
-}
-nav > .navs-links div  i {
+.nav-links a i {
   font-size: 20px;
-  min-width: 70px;
-  text-align: center;
+  min-width: 50px;
+  margin-left: 15px;
 }
-nav > .navs-links div  span {
-  color: white;
+.side-bar.active ~ .home-section {
+  width: calc(100% - 80px);
+  left: 80px;
 }
-nav > .navs-links div  {
-  color: #9ba4b5;
-}*/
-/*nav > .navs-links div:hover {
-   #2d3d5d 
-  background-color: #212a3e;
-  color: white;
-}*/
-
-.nav{
-  height: 100vh;
-  display: flex;
-  width: 240px;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
-}
-.nav-list .nav-link{
-  display: grid;
-  grid-template-columns: max-content max-content;
-  align-items: center;
-  height: 65px;
-  column-gap: 1rem;
-  padding: .5rem 0 .5rem 1.5rem;
-  align-items: center;
-  color: white;
-}
-.nav .nav-link{
-  position: relative;
-  transition: .3s;
-
-}
-.icon-link{
-font-size: 1.25rem;
-}
-.nav-list .nav-link:hover{
-  color: white;
-}
-
-/* button log out*/
-
-nav .logout {
-  color: #9ba4b5;
-  width: 100%;
-  letter-spacing: 0.7px;
-  margin-top: 102px;
-  height: 65px;
-  transition: all 0.4s;
-}
-nav .logout:hover {
-  background-color: #212a3e;
-  color: white;
-}
-nav .logout span {
-  color: white;
-}
-nav .logout i {
-  font-size: 20px;
-  min-width: 70px;
-  text-align: center;
-}
-
-/* home section */
-
 .home-section {
-  background-color: #f9f7f7;
   position: relative;
-  height: 100%;
-  width: calc(100% - 240px);
-  left: 240px;
+  background: #f5f5f5;
   min-height: 100vh;
-  transition: all 0.4s ease;
-  overflow-y: hidden;
-  overflow-x: auto;
+  width: calc(100% - 246px);
+  left: 246px;
+  transition: all 0.5s ease;
+  overflow-y: scroll;
 }
-.home-section main nav {
+
+.home-section nav {
+  display: flex;
+  justify-content: space-between;
   height: 60px;
-  background-color: #ffffff;
+  background: #fff;
   display: flex;
   align-items: center;
-  padding: 0 20px;
-  justify-content: space-between;
   position: fixed;
-  width: calc(100% - 240px);
-  left: 240px;
-  transition: all 0.4s ease;
-  z-index: auto;
+  width: calc(100% - 246px);
+  left: 246px;
+  z-index: 100;
+  padding: 0 20px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s ease;
 }
-.home-section main nav > .side-bar-button {
-  font-size: 16px;
+.side-bar.active ~ .home-section nav {
+  left: 80px;
+  width: calc(100% - 80px);
+}
+.home-section nav .sidebar-button {
+  display: flex;
+  align-items: center;
+  font-size: 22px;
   font-weight: 500;
-  display: flex;
-  align-items: center;
 }
-.home-section main nav > .side-bar-button .dashboard {
-  margin-left: 5px;
-  letter-spacing: 0.7px;
-}
-.home-section main nav .bx.bx-menu {
-  font-size: 24px;
-  margin-top: 1px;
-}
-.home-section main nav .profile-info img {
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  cursor: pointer;
-  margin-top: 6px;
-  box-shadow: 1.3px 1.3px 1.2px rgba(0, 0, 0, 0.2);
-}
-.side-bar.active {
-  width: 70px;
-}
-.side-bar.active ~ .home-section main nav{
-  width: calc(100% - 70px);
-  left: 70px;
-}
-.side-bar.active ~ .home-section{
-  width: calc(100% - 70px);
-  left: 70px;
-}
-.home-section .content{
- top: 70px;
- position: relative;
- padding: 0 20px;
-}
-.content .boxes-container{
-  display: grid;
-  grid-template-columns: repeat(4,1fr);
-  grid-gap: 2rem;
-  margin-bottom: 20px;
-}
-.content .boxes-container .box{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #ffffff;
-  padding: 1.2rem;
-  border-radius: 5px;
-  box-shadow: 3px 3px 5px rgba(114, 113, 113, 0.2);
-}
-.content .boxes-container .box .icons{
-  color: #5972a4;
-  border-radius: 5px;
-  height: 52px;
-  width: 52px;
-  font-size: 30px;
-  background-color:var(--color) ;
-}
-.content .boxes-container .box .icons i {
-  display: flex;
-  justify-content: center;
-  padding: 10px 0;
+.nav .nav-links .nav-link.active {
+  background-color: #212a3e;
   color: white;
 }
-.tables{
-  max-height: 400px;
-  overflow-y: scroll;
-  box-shadow: 3px 3px 5px rgba(114, 113, 113, 0.2);
-  background-color: #ffffff;
+.home-section .home-content {
+  position: relative;
+  padding-top: 90px;
+  padding-left: 20px;
 }
-.content h4{
-  margin-bottom: 10px;
-  font-size: 19px;
+.home-content .overview-boxes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 5px 0 0;
+  margin-bottom: 26px;
 }
+.overview-boxes .box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(100% / 4 - 15px);
+  background: #fff;
+  padding: 25px 14px;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.overview-boxes .box i{
+    font-size: 30px;
+    border-radius: 4px;
+    background-color: #12192c;
+    padding: 8px;
+    color: white;
+}
+
 
 #contentall {
   animation: page-transition 0.5s ease-out;
