@@ -168,28 +168,29 @@
           </div>
         </div>
         <div class="modal-body">
-          <form>
+          <form method="post" action="../client/Add.php">
             <div class="form-group">
               <label for="formGroupExampleInput">Nom</label>
-              <input type="text" class="form-control" id="formGroupExampleInput" placeholder="nom_article">
+              <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nom Client" name="Nom" autocomplete="off">
             </div>
             <div class="form-group">
               <label for="formGroupExampleInput2">Prénom</label>
-              <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Catégorie">
+              <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Prénom" name="Prenom" autocomplete="off">
             </div>
             <div class="form-group">
               <label for="formGroupExampleInput2">Téléphone</label>
-              <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Quantité">
+              <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Téléphone" name="Telephone" autocomplete="off">
             </div>
             <div class="form-group">
               <label for="formGroupExampleInput2">Adresse</label>
-              <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Prix_unitaire">
+              <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Adresse" name="Adress" autocomplete="off">
             </div>
+            <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
           </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+
       </div>
     </div>
   </div>
@@ -205,7 +206,7 @@
       border: #536486;
     }
     .modal-footer .btn.btn-primary:hover{
-      background-color:#394867;
+      background-color:#12192c;
       border: #394867;
     }
 
