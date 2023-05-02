@@ -1,3 +1,5 @@
+<?php ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,11 +31,11 @@
           <i class="bx bxs-dashboard icon-link" id="icons"></i>
           <span class="name">Tableau de bord</span>
         </a>
-        <a href="produits.html" class="nav-link">
+        <a href="produits.php" class="nav-link">
           <i class="bx bx-package icon-link" id="icons"></i>
           <span class="name">Produit</span>
         </a>
-        <a href="clients.html" class="nav-link">
+        <a href="clients.php" class="nav-link">
           <i class="bx bx-user icon-link" id="icons"></i>
           <span class="name">Clients</span>
         </a>
@@ -63,7 +65,7 @@
         <span class="dashboard">Dashboard</span>
       </div>
     </nav>
-    <div class="home-content">
+    <div class="home-content" id="contentall">
     <h4 style="margin-top: 10px;">Liste de clients</h4>
     <button type="button" class="btn btn-primary" style="background-color:#394867;border: #394867;" data-toggle="modal" id="btnedit" data-target="#fullcontent">Ajouter</button>
             <div class="tables" style="margin-top: 10px;">
