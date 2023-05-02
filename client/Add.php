@@ -3,12 +3,12 @@ include '../php/connexion.php';
 
 var_dump($_POST);
 
-//Check if the textfileds are not empty
+// Check if the textfields are not empty
 if (empty($_POST['Nom']) || empty($_POST['Prenom']) || empty($_POST['Telephone']) || empty($_POST['Adress'])) {
     echo "les informations sont vide";
 } else {
 
-    //Get data from textfield
+    // Get data from textfield
     $nom = trim($_POST['Nom']);
     $prenom = trim($_POST['Prenom']);
     $telephone = trim($_POST['Telephone']);
@@ -35,6 +35,7 @@ if (empty($_POST['Nom']) || empty($_POST['Prenom']) || empty($_POST['Telephone']
 
         if ($req->rowCount() != 0) {
             echo "writed";
+            $_POST = array(); // Clear the form fields
         } else {
             echo "didn't write";
         }
