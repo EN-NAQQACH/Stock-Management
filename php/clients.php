@@ -27,15 +27,15 @@
     </div>
     <nav class="nav">
       <div class="nav-links">
-        <a href="Dashboard.html" class="nav-link" data-page="dashboard">
+        <a href="../html/Dashboard.html" class="nav-link" data-page="dashboard">
           <i class="bx bxs-dashboard icon-link" id="icons"></i>
           <span class="name">Tableau de bord</span>
         </a>
-        <a href="produits.php" class="nav-link">
+        <a href="../php/produits.php" class="nav-link">
           <i class="bx bx-package icon-link" id="icons"></i>
           <span class="name">Produit</span>
         </a>
-        <a href="clients.php" class="nav-link">
+        <a href="../php/clients.php" class="nav-link">
           <i class="bx bx-user icon-link" id="icons"></i>
           <span class="name">Clients</span>
         </a>
