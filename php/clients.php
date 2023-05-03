@@ -1,4 +1,9 @@
+<?php
+session_start();
+include '../php/connexion.php';
+include '../client/Function.php'
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +27,7 @@
     </div>
     <nav class="nav">
       <div class="nav-links">
-        <a href="../html/Dashboard.html" class="nav-link" data-page="dashboard">
+        <a href="../php/Dashboard.php" class="nav-link" data-page="dashboard">
           <i class="bx bxs-dashboard icon-link" id="icons"></i>
           <span class="name">Tableau de bord</span>
         </a>
@@ -34,15 +39,15 @@
           <i class="bx bx-user icon-link" id="icons"></i>
           <span class="name">Clients</span>
         </a>
-        <a href="order.html" class="nav-link">
+        <a href="../php/Commandes.php" class="nav-link">
           <i class="bx bx-receipt icon-link" id="icons"></i>
           <span class="name">Commandes</span>
         </a>
-        <a href="vente.html" class="nav-link">
+        <a href="../php/vente.php" class="nav-link">
           <i class="bx bx-cart-add icon-link" id="icons"></i>
           <span class="name">Vente</span>
         </a>
-        <a href="fornisseur.html" class="nav-link">
+        <a href="../php/fornisseur.php" class="nav-link">
           <i class="bx bxs-store icon-link" id="icons"></i>
           <span class="name">Fornisseur</span>
         </a>
@@ -62,7 +67,7 @@
     </nav>
     <div class="home-content" id="contentall">
       <h4 style="margin-top: 10px;">Liste de clients</h4>
-      <button type="button" class="btn btn-primary" style="background-color:#394867;border: #394867;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><a href="../client/FormClientOper.php" style="text-decoration: none;color: white;">Ajouter</a></button>
+      <button type="button" class="btn btn-primary" style="background-color:#394867;border: #394867;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><a href="../client/FormClient.php" style="text-decoration: none;color: white;">Ajouter</a></button>
       <div class="tables" style="margin-top: 10px;">
         <table class="table table-hover">
           <thead>
@@ -76,18 +81,29 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>0645039258</td>
-              <td>agadir</td>
-              <td>
-                <button type="button" class="btn btn-primary" style="background-color: #697ea9;border: #697ea9;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><i class='bx bx-pencil'></i></button>
-                <button type="button" class="btn btn-primary" style="background-color: #ff6060;border: #ED2B2A;"><i class='bx bx-x-circle'></i></i></button>
-              </td>
-            </tr>
-            <tr>
+            <!-- gat data from database-->
+            <?php
+            $produits = gatProduct();
+            if (!empty($produits) && is_array($produits)) {
+              foreach ($produits as $key => $value) {
+            ?>
+                <tr>
+                  <th scope="row"><?= $value['ID'] ?></th>
+                  <td><?= $value['Nom'] ?></td> <!-- value from database-->
+                  <td><?= $value['Prenom'] ?></td> <!-- value from database-->
+                  <td><?= $value['Telephone'] ?></td> <!-- value from database-->
+                  <td><?= $value['Address'] ?></td> <!-- value from database-->
+                  <td>
+                    <button type="button" class="btn btn-primary" style="background-color: #697ea9;border: #697ea9;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><a href="../client/FormClient.php" style="text-decoration: none;color: white;"><i class='bx bx-pencil'></i></a></button>
+                    <button type="button" class="btn btn-primary" style="background-color: #ff6060;border: #ED2B2A;"><a href="" style="text-decoration: none;color: white;"><i class='bx bx-x-circle'></i></a></button>
+                  </td>
+                </tr>
+            <?php
+              }
+            }
+            ?>
+
+            <!--<tr>
               <th scope="row">2</th>
               <td>Jacob</td>
               <td>Thornton</td>
@@ -138,10 +154,11 @@
               <td>0645039258</td>
               <td>beni mellal</td>
               <td>
-                <button type="button" class="btn btn-primary" style="background-color: #697ea9;border: #697ea9;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><i class='bx bx-pencil'></i></button>
-                <button type="button" class="btn btn-primary" style="background-color: #ff6060;border: #ED2B2A;"><i class='bx bx-x-circle'></i></i></button>
+                <button type="button" class="btn btn-primary" style="background-color: #697ea9;border: #697ea9;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><a href="../client/FormClient.php" style="text-decoration: none;color: white;"><i class='bx bx-pencil'></i></a></button>
+                <button type="button" class="btn btn-primary" style="background-color: #ff6060;border: #ED2B2A;"><a href="" style="text-decoration: none;color: white;"><i class='bx bx-x-circle'></i></a></button>
               </td>
             </tr>
+            -->
           </tbody>
         </table>
       </div>
@@ -212,11 +229,11 @@
      -->
     <!-- Button trigger modal -->
 
-    
+
 </body>
 
 </html>
 
-<?php 
-include '../php/script.php'
+<?php
+include '../php/script.php';
 ?>

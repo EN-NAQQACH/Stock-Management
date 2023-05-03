@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 //Information about database
 $servername = "localhost";
 $database = "gestion_stock";

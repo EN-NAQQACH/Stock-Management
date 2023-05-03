@@ -1,12 +1,13 @@
 <?php
 include '../php/connexion.php';
+session_start();
 
 var_dump($_POST);
 
 // Check if the textfields are not empty
 if (empty($_POST['Nom']) || empty($_POST['Prenom']) || empty($_POST['Telephone']) || empty($_POST['Adress'])) {
-    $_SESSION['status'] = "les information vide";
-    $_SESSION['status_code'] = "error";
+    $_SESSION['status'] = " Veuillez saisir les données";
+    $_SESSION['status_code'] = "info";
 
 } elseif(isset($_POST['BTNAJOUTER'])) {
 
@@ -22,8 +23,8 @@ if (empty($_POST['Nom']) || empty($_POST['Prenom']) || empty($_POST['Telephone']
     $req->execute(array($nom, $prenom, $telephone, $adresse));
 
     if ($req->rowCount() > 0) {
-        $_SESSION['status'] = "daja";
-        $_SESSION['status_code'] = "error";
+        $_SESSION['status'] = "Les données existent déjà dans la base de données";
+        $_SESSION['status_code'] = "warning";
     
     } else {
 
@@ -38,12 +39,12 @@ if (empty($_POST['Nom']) || empty($_POST['Prenom']) || empty($_POST['Telephone']
         ));
 
         if ($req->rowCount() != 0) {
-            $_SESSION['status'] = "Writed";
+            $_SESSION['status'] = "Les données ont été insérées avec succès";
             $_SESSION['status_code'] = "success";
             $_POST = array(); // Clear the form fields
         
         } else {
-            $_SESSION['status'] = "didn't write";
+            $_SESSION['status'] = "Echec d'insertion des données";
             $_SESSION['status_code'] = "error";
         
         }

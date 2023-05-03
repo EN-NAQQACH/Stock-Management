@@ -127,7 +127,7 @@ margin-left: 10px;
 }
 
 #contentall {
-  animation: page-transition 0.8s ease;
+  animation: page-transition 0.7s ease;
 }
 
 @keyframes page-transition {

@@ -1,3 +1,9 @@
+<?php
+session_start();
+include '../php/connexion.php';
+include '../client/Function.php'
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +15,7 @@
   <link rel="stylesheet" href="../css/Dashboard.css" />
   <!--bootstrap-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
-  <title>Fornisseur</title>
+  <title>Tableau de bord</title>
 </head>
 
 <body>
@@ -57,13 +63,42 @@
     <nav>
       <div class="sidebar-button">
         <i class="bx bx-menu sidebarBtn"></i>
-        <span class="dashboard">Fornisseur</span>
+        <span class="dashboard">Dashboard</span>
       </div>
     </nav>
 
-    <div class="home-content">
+    <div class="home-content" id="contentall">
+      <div class="overview-boxes">
+        <div class="box">
+          <div class="details">
+            <div class="number">40,876</div>
+            <div class="box-topic">Total Order</div>
+          </div>
+          <i class="bx bx-cart-alt cart"></i>
+        </div>
+        <div class="box">
+          <div class="details">
+            <div class="number">38,876</div>
+            <div class="box-topic">Total Sales</div>
+          </div>
+          <i class="bx bxs-cart-add cart two"></i>
+        </div>
+        <div class="box">
+          <div class="details">
+            <div class="number">$12,876</div>
+            <div class="box-topic">Total Profit</div>
 
-
+          </div>
+          <i class="bx bx-cart cart three"></i>
+        </div>
+        <div class="box">
+          <div class="details">
+            <div class="number">11,086</div>
+            <div class="box-topic">Total Return</div>
+          </div>
+          <i class="bx bxs-cart-download cart four"></i>
+        </div>
+      </div>
 
       <h4>Liste de clients</h4>
       <div class="tables">
@@ -78,62 +113,23 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>0645039258</td>
-              <td>agadir</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>0645039258t</td>
-              <td>salé</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Larry the Bird</td>
-              <td>Thornton</td>
-              <td>0645039258r</td>
-              <td>Lnador</td>
-            </tr>
-            <tr>
-              <th scope="row">4</th>
-              <td>Larry the Bird</td>
-              <td>Thornton</td>
-              <td>0645039258</td>
-              <td>marrakech</td>
-            </tr>
-            <tr>
-              <th scope="row">5</th>
-              <td>Larry the Bird</td>
-              <td>Thornton</td>
-              <td>0645039258</td>
-              <td>safi</td>
-            </tr>
-            <tr>
-              <th scope="row">6</th>
-              <td>Larry the Bird</td>
-              <td>Thornton</td>
-              <td>0645039258</td>
-              <td>beni mellal</td>
-            </tr>
-            <tr>
-              <th scope="row">6</th>
-              <td>Larry the Bird</td>
-              <td>Thornton</td>
-              <td>0645039258</td>
-              <td>beni mellal</td>
-            </tr>
-            <tr>
-              <th scope="row">6</th>
-              <td>Larry the Bird</td>
-              <td>Thornton</td>
-              <td>0645039258</td>
-              <td>beni mellal</td>
-            </tr>
+            <!-- gat data from database-->
+            <?php
+            $produits = gatProduct();
+            if (!empty($produits) && is_array($produits)) {
+              foreach ($produits as $key => $value) {
+            ?>
+                <tr>
+                  <th scope="row"><?= $value['ID'] ?></th>
+                  <td><?= $value['Nom'] ?></td> <!-- value from database-->
+                  <td><?= $value['Prenom'] ?></td> <!-- value from database-->
+                  <td><?= $value['Telephone'] ?></td> <!-- value from database-->
+                  <td><?= $value['Address'] ?></td> <!-- value from database-->
+                </tr>
+            <?php
+              }
+            }
+            ?>
           </tbody>
         </table>
       </div>
