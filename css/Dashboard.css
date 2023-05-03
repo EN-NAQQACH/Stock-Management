@@ -5,7 +5,6 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-
 }
 
 .side-bar {
@@ -88,6 +87,9 @@
   font-size: 22px;
   font-weight: 500;
 }
+.home-section nav .sidebar-button span{
+margin-left: 10px;
+}
 .nav .nav-links .nav-link.active {
   background-color: #212a3e;
   color: white;
@@ -116,23 +118,23 @@
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
-.overview-boxes .box i{
-    font-size: 30px;
-    border-radius: 4px;
-    background-color: #12192c;
-    padding: 8px;
-    color: white;
+.overview-boxes .box i {
+  font-size: 30px;
+  border-radius: 4px;
+  background-color: #12192c;
+  padding: 8px;
+  color: white;
 }
 
-
 #contentall {
-  animation: page-transition 0.5s ease-out;
+  animation: page-transition 0.8s ease;
 }
 
 @keyframes page-transition {
   from {
     opacity: 0;
-    transform: translateX(-50px);
+    transform: translateX(-5px);
+ 
   }
   to {
     opacity: 1;
@@ -144,8 +146,12 @@
   background-color: #212a3e;
   color: white;
 }
+.nav-list .nav-links .nav-link:hover{
+  background-color: #212a3e;
+  color: white;
+}
 
-.nav-no-z-index{
+.nav-no-z-index {
   height: 60px;
   background-color: #ffffff;
   display: flex;
@@ -157,4 +163,9 @@
   left: 240px;
   transition: all 0.4s ease;
   z-index: auto;
+}
+
+/* formClientOper.php */
+
+@media (min-width: 767px) {
 }

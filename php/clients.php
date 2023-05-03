@@ -55,14 +55,14 @@
   </section>
   <section class="home-section">
     <nav>
-      <div class="sidebar-button">
+      <d iv class="sidebar-button">
         <i class="bx bx-menu sidebarBtn"></i>
-        <span class="dashboard">Dashboard</span>
-      </div>
+        <span class="dashboard">Clients</span>
+      </d>
     </nav>
     <div class="home-content" id="contentall">
       <h4 style="margin-top: 10px;">Liste de clients</h4>
-      <button type="button" class="btn btn-primary" style="background-color:#394867;border: #394867;" data-toggle="modal" id="btnedit" data-target="#fullcontent">Ajouter</button>
+      <button type="button" class="btn btn-primary" style="background-color:#394867;border: #394867;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><a href="../client/FormClientOper.php" style="text-decoration: none;color: white;">Ajouter</a></button>
       <div class="tables" style="margin-top: 10px;">
         <table class="table table-hover">
           <thead>
@@ -152,7 +152,7 @@
 
 
 
-    <!-- Modal -->
+    <!-- Modal
     <div class="modal fade" id="fullcontent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -189,6 +189,7 @@
         </div>
       </div>
     </div>
+    
     <style>
       .form-group {
         margin: 8px;
@@ -208,10 +209,14 @@
         border: #394867;
       }
     </style>
+     -->
     <!-- Button trigger modal -->
+
+    
 </body>
 
 </html>
- <?php
+
+<?php 
 include '../php/script.php'
- ?>
+?>

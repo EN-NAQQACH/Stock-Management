@@ -5,8 +5,10 @@ var_dump($_POST);
 
 // Check if the textfields are not empty
 if (empty($_POST['Nom']) || empty($_POST['Prenom']) || empty($_POST['Telephone']) || empty($_POST['Adress'])) {
-    echo "les informations sont vide";
-} else {
+    $_SESSION['status'] = "les information vide";
+    $_SESSION['status_code'] = "error";
+
+} elseif(isset($_POST['BTNAJOUTER'])) {
 
     // Get data from textfield
     $nom = trim($_POST['Nom']);
@@ -20,7 +22,9 @@ if (empty($_POST['Nom']) || empty($_POST['Prenom']) || empty($_POST['Telephone']
     $req->execute(array($nom, $prenom, $telephone, $adresse));
 
     if ($req->rowCount() > 0) {
-        echo "Les données existent déjà dans la base de données.";
+        $_SESSION['status'] = "daja";
+        $_SESSION['status_code'] = "error";
+    
     } else {
 
         // Insert data to table Client
@@ -34,10 +38,16 @@ if (empty($_POST['Nom']) || empty($_POST['Prenom']) || empty($_POST['Telephone']
         ));
 
         if ($req->rowCount() != 0) {
-            echo "writed";
+            $_SESSION['status'] = "Writed";
+            $_SESSION['status_code'] = "success";
             $_POST = array(); // Clear the form fields
+        
         } else {
-            echo "didn't write";
+            $_SESSION['status'] = "didn't write";
+            $_SESSION['status_code'] = "error";
+        
         }
     }
 }
+
+header('Location: ../php/clients.php');
