@@ -1,11 +1,11 @@
 <?php
 include '../php/connexion.php';
 
-//vfunction to get data from table CLIENT
+//function to get data from table article
 
-function gatClient()
+function gatProduct()
 {
-    $SQL = "SELECT * FROM client";
+    $SQL = "SELECT * FROM article";
     $REQUEST = $GLOBALS['connexion']->prepare($SQL);
     $REQUEST->execute();
     return $REQUEST->fetchAll();

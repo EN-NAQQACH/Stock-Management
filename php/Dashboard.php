@@ -59,7 +59,7 @@ include '../client/Function.php'
     </nav>
   </section>
 
-  <section class="home-section">
+  <section class="home-section" >
     <nav>
       <div class="sidebar-button">
         <i class="bx bx-menu sidebarBtn"></i>
@@ -67,7 +67,7 @@ include '../client/Function.php'
       </div>
     </nav>
 
-    <div class="home-content" id="contentall">
+    <div class="home-content" id="contentall" >
       <div class="overview-boxes">
         <div class="box">
           <div class="details">
@@ -115,9 +115,9 @@ include '../client/Function.php'
           <tbody>
             <!-- gat data from database-->
             <?php
-            $produits = gatProduct();
-            if (!empty($produits) && is_array($produits)) {
-              foreach ($produits as $key => $value) {
+            $clients = gatClient();
+            if (!empty($clients) && is_array($clients)) {
+              foreach ($clients as $key => $value) {
             ?>
                 <tr>
                   <th scope="row"><?= $value['ID'] ?></th>
@@ -125,6 +125,7 @@ include '../client/Function.php'
                   <td><?= $value['Prenom'] ?></td> <!-- value from database-->
                   <td><?= $value['Telephone'] ?></td> <!-- value from database-->
                   <td><?= $value['Address'] ?></td> <!-- value from database-->
+                 
                 </tr>
             <?php
               }

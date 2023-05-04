@@ -1,20 +1,23 @@
-<?php ?>
+<?php
+session_start();
+include '../php/connexion.php';
+include '../produits/Function.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/Dashboard.css">
-    <link
-    href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-    rel="stylesheet"
-  />
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/Dashboard.css">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <title>Document</title>
 </head>
+
 <body>
-          <!-- Modal 
+  <!-- Modal 
   <div class="modal fade" id="fullcontent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -72,19 +75,21 @@
 
 
   </style>-->
-<!-- Button trigger modal -->
+  <!-- Button trigger modal -->
 
-<section class="side-bar" id="navbar">
-  <div class="logo">
-    <span><h4>Easly</h4></span>
-  </div>
-  <nav class="nav">
-    <div class="nav-links">
-      <a href="../php/Dashboard.php" class="nav-link" data-page="dashboard">
-        <i class="bx bxs-dashboard icon-link" id="icons"></i>
-        <span class="name">Tableau de bord</span>
-      </a>
-      <a href="../php/produits.php" class="nav-link">
+  <section class="side-bar" id="navbar">
+    <div class="logo">
+      <span>
+        <h4>Easly</h4>
+      </span>
+    </div>
+    <nav class="nav">
+      <div class="nav-links">
+        <a href="../php/Dashboard.php" class="nav-link" data-page="dashboard">
+          <i class="bx bxs-dashboard icon-link" id="icons"></i>
+          <span class="name">Tableau de bord</span>
+        </a>
+        <a href="../php/produits.php" class="nav-link">
           <i class="bx bx-package icon-link" id="icons"></i>
           <span class="name">Produit</span>
         </a>
@@ -104,115 +109,66 @@
           <i class="bx bxs-store icon-link" id="icons"></i>
           <span class="name">Fornisseur</span>
         </a>
-      <a href="#" class="nav-link">
-        <i class="bx bx-log-out icon-link" id="icons"></i>
-        <span>Déconnexion</span>
-      </a>
+        <a href="#" class="nav-link">
+          <i class="bx bx-log-out icon-link" id="icons"></i>
+          <span>Déconnexion</span>
+        </a>
+      </div>
+    </nav>
+  </section>
+  <section class="home-section">
+    <nav>
+      <div class="sidebar-button">
+        <i class="bx bx-menu sidebarBtn"></i>
+        <span class="dashboard">Produits</span>
+      </div>
+    </nav>
+    <div class="home-content" id="contentall">
+      <h4 style="margin-top: 10px;">Liste de produits</h4>
+      <a href="../produits/FormProduit.php" style="text-decoration: none;color: white;"><button type="button" class="btn btn-primary" style="background-color:#394867;border: #394867;" data-toggle="modal" data-target="#fullcontent">Ajouter</button></a>
+      <div class="tables" style="margin-top: 10px;">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">nom_article</th>
+              <th scope="col">Catégorie</th>
+              <th scope="col">Quantité</th>
+              <th scope="col">Prix_unitaire (DH)</th>
+              <th scope="col">Date_fabrication</th>
+              <th scope="col">action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+            $produits = gatProduct();
+            if (!empty($produits) && is_array($produits)) {
+              foreach ($produits as $key => $value) {
+            ?>
+                <tr>
+                  <th scope="row"><?= $value['ID'] ?></th>
+                  <td><?= $value['Nom_Article'] ?></td> <!-- value from database-->
+                  <td><?= $value['Categorie'] ?></td> <!-- value from database-->
+                  <td><?= $value['Quantite'] ?></td> <!-- value from database-->
+                  <td><?= $value['PrixUnitaire'] ?></td> <!-- value from database-->
+                  <td><?= $value['DateFabrication'] ?></td> <!-- value from database-->
+                  <td>
+                    <button type="button" class="btn btn-primary" style="background-color: #697ea9;border: #697ea9;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><a href="../produits/FormProduit.php" style="text-decoration: none;color: white;"><i class='bx bx-pencil'></i></a></button>
+                    <button type="button" class="btn btn-primary" style="background-color: #ff6060;border: #ED2B2A;"><a href="" style="text-decoration: none;color: white;"><i class='bx bx-x-circle'></i></a></button>
+                  </td>
+                </tr>
+            <?php
+              }
+            }
+            ?>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </nav>
-</section>
-<section class="home-section">
-  <nav>
-    <div class="sidebar-button">
-      <i class="bx bx-menu sidebarBtn"></i>
-      <span class="dashboard">Produits</span>
-    </div>
-  </nav>
-  <div class="home-content" id="contentall">
-<h4 style="margin-top: 10px;">Liste de produits</h4>
-    <button type="button" class="btn btn-primary" style="background-color:#394867;border: #394867;" data-toggle="modal" data-target="#fullcontent"><a href="../produits/FormProduit.php" style="text-decoration: none;color: white;">Ajouter</a></button>
-            <div class="tables" style="margin-top: 10px;">
-                <table class="table table-hover">
-                    <thead>
-                      <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">nom_article</th>
-                        <th scope="col">Catégorie</th>
-                        <th scope="col">Quantité</th>
-                        <th scope="col">Prix_unitaire (DH)</th>
-                        <th scope="col">Date_fabrication</th>
-                        <th scope="col">action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>samsung s10</td>
-                        <td>smartphone</td>
-                        <td>1500</td>
-                        <td>5000</td>
-                        <td>25/03/2023</td>
-                        <td>
-                          <button type="button" class="btn btn-primary"  style="background-color: #697ea9;border: #697ea9;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><i class='bx bx-pencil' ></i></button>
-                          <button type="button" class="btn btn-primary"  style="background-color:#ff6060 ;border: #ED2B2A;"><i class='bx bx-x-circle'></i></i></button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>samsung s10</td>
-                        <td>smartphone</td>
-                        <td>1500</td>
-                        <td>5000</td>
-                        <td>25/03/2023</td>
-                        <td>
-                          <button type="button" class="btn btn-primary" id="butedit" style="background-color: #697ea9;border: #697ea9;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><i class='bx bx-pencil' ></i></button>
-                          <button type="button" class="btn btn-primary" id="butsup" style="background-color: #ff6060;border: #ED2B2A;"><i class='bx bx-x-circle'></i></i></button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>samsung s10</td>
-                        <td>smartphone</td>
-                        <td>1500</td>
-                        <td>5000</td>
-                        <td>25/03/2023</td>
-                        <td>
-                          <button type="button" class="btn btn-primary" id="butedit" style="background-color: #697ea9;border: #697ea9;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><i class='bx bx-pencil' ></i></button>
-                          <button type="button" class="btn btn-primary" id="butsup" style="background-color:#ff6060 ;border: #ED2B2A;"><i class='bx bx-x-circle'></i></i></button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">4</th>
-                        <td>samsung s10</td>
-                        <td>smartphone</td>
-                        <td>1500</td>
-                        <td>5000</td>
-                        <td>25/03/2023</td>
-                        <td>
-                          <button type="button" class="btn btn-primary" id="butedit" style="background-color: #697ea9;border: #697ea9;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><i class='bx bx-pencil' ></i></button>
-                          <button type="button" class="btn btn-primary" id="butsup" style="background-color: #ff6060;border: #ED2B2A;"><i class='bx bx-x-circle'></i></i></button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">5</th>
-                        <td>samsung s10</td>
-                        <td>smartphone</td>
-                        <td>1500</td>
-                        <td>5000</td>
-                        <td>25/03/2023</td>
-                        <td>
-                          <button type="button" class="btn btn-primary" id="butedit" style="background-color: #697ea9;border: #697ea9;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><i class='bx bx-pencil' ></i></button>
-                          <button type="button" class="btn btn-primary" id="butsup" style="background-color: #ff6060;border: #ED2B2A;"><i class='bx bx-x-circle'></i></i></button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">6</th>
-                        <td>samsung s10</td>
-                        <td>smartphone</td>
-                        <td>1500</td>
-                        <td>5000</td>
-                        <td>25/03/2023</td>
-                        <td>
-                          <button type="button" class="btn btn-primary" id="butedit" style="background-color: #697ea9;border: #697ea9;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><i class='bx bx-pencil' ></i></button>
-                          <button type="button" class="btn btn-primary" id="butsup" style="background-color: #ff6060;border: #792525;"><i class='bx bx-x-circle'></i></i></button>
-                        </td>
-                      </tr>    
-                    </tbody>
-                  </table>
-            </div>
-            </div>
 </body>
+
 </html>
-<?php 
+
+<?php
 include '../php/script.php';
 ?>

@@ -1,21 +1,35 @@
 /* Googlefont Poppins CDN Link */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
-* {
+*{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
 }
+*::-webkit-scrollbar{
+  width: 8px;
+  border-radius: 15px;
+}
+*::-webkit-scrollbar-track{
+  background-color:lightgray;
+  border-radius: 15px;
+}
+*::-webkit-scrollbar-thumb{
+  background-color:#12192c;
+  border-radius: 15px;}
 
 .side-bar {
   position: fixed;
   height: 100%;
   width: 246px;
+  /*width: 80px;*/
   background: #12192c;
   transition: all 0.5s ease;
 }
 .side-bar.active {
-  width: 80px;
+  /*width: 246px;*/
+  width:246px;
 }
 
 .side-bar .logo {
@@ -49,8 +63,10 @@
   margin-left: 15px;
 }
 .side-bar.active ~ .home-section {
-  width: calc(100% - 80px);
-  left: 80px;
+  /*width: calc(100% - 80px);
+  left: 80px;*/
+  width: calc(100% - 246px);
+  left: 246px;
 }
 .home-section {
   position: relative;
@@ -58,8 +74,10 @@
   min-height: 100vh;
   width: calc(100% - 246px);
   left: 246px;
+  /*width: calc(100% - 80px);
+  left: 80px;*/
   transition: all 0.5s ease;
-  overflow-y: scroll;
+  overflow-y: hidden;
 }
 
 .home-section nav {
@@ -72,20 +90,27 @@
   position: fixed;
   width: calc(100% - 246px);
   left: 246px;
+  /*width: calc(100% - 80px);
+  left: 80px;*/
   z-index: 100;
   padding: 0 20px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   transition: all 0.5s ease;
 }
 .side-bar.active ~ .home-section nav {
-  left: 80px;
-  width: calc(100% - 80px);
+  /*left: 80px;
+  width: calc(100% - 80px);*/
+  width: calc(100% - 246px);
+  left: 246px;
 }
 .home-section nav .sidebar-button {
   display: flex;
   align-items: center;
   font-size: 22px;
   font-weight: 500;
+}
+.home-section nav .sidebar-button .sidebarBtn{
+  display: none;
 }
 .home-section nav .sidebar-button span{
 margin-left: 10px;
@@ -98,20 +123,22 @@ margin-left: 10px;
   position: relative;
   padding-top: 90px;
   padding-left: 20px;
+
 }
 .home-content .overview-boxes {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
-  padding: 0 5px 0 0;
+  padding: 0 0px 0 0;
+  margin-left: -10px;
+  margin-right: 10px;
   margin-bottom: 26px;
 }
 .overview-boxes .box {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: calc(100% / 4 - 15px);
+  min-width:250px;
   background: #fff;
   padding: 25px 14px;
   border-radius: 12px;
@@ -129,7 +156,11 @@ margin-left: 10px;
 #contentall {
   animation: page-transition 0.7s ease;
 }
-
+.home-content .tables{
+  max-height: 380px;
+  overflow-y:scroll;
+  margin-right: 3px;
+}
 @keyframes page-transition {
   from {
     opacity: 0;
@@ -167,5 +198,56 @@ margin-left: 10px;
 
 /* formClientOper.php */
 
-@media (min-width: 767px) {
+@media (max-width: 1224px) {
+   .home-section nav .sidebar-button .sidebarBtn{
+    display: block;
+  }
+  .side-bar {
+  width: 80px;
+  }
+  .side-bar.active {
+    width:246px;
+  }
+  .side-bar.active ~ .home-section {
+    width: calc(100% - 246px);
+    left: 246px;
+  }
+  .home-section {
+    width: calc(100% - 80px);
+    left: 80px;
+  }
+  .home-section nav {
+    width: calc(100% - 80px);
+    left: 80px;
+  }
+  .side-bar.active ~ .home-section nav {
+    left: 246px;
+    width: calc(100% - 246px);
+  }
+}
+@media (max-width: 1301px) {
+  .home-content .overview-boxes {
+   flex-wrap: wrap;
+   justify-content: space-around;
+  }
+  .overview-boxes .box {
+    margin: 10px 0;
+    min-width: 300px;
+    
+  }
+}
+@media (max-width: 620px) {
+.home-content .tables{
+  min-height: 100vh;
+}
+}
+@media (max-width: 420px) {
+  .overview-boxes .box {
+    min-width: 240px;
+    
+  }
+  .home-content .tables{
+    overflow-y:scroll;
+    min-height: 100vh;
+  }
 }

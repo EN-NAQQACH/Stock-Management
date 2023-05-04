@@ -83,9 +83,9 @@ include '../client/Function.php'
           <tbody>
             <!-- gat data from database-->
             <?php
-            $produits = gatProduct();
-            if (!empty($produits) && is_array($produits)) {
-              foreach ($produits as $key => $value) {
+            $clients = gatClient();
+            if (!empty($clients) && is_array($clients)) {
+              foreach ($clients as $key => $value) {
             ?>
                 <tr>
                   <th scope="row"><?= $value['ID'] ?></th>

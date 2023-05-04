@@ -63,9 +63,9 @@
         <div class="home-content" id="contentall" id="form" style="overflow: hidden;">
             <div style="display: flex;align-items: center;">
                 <div style="font-size: 20px;margin: -35px 20px 0 0;cursor: pointer;"><a href="../php/produits.php"><i class='bx bx-arrow-back'></i></a></div>
-                <div style="font-size: 60px;margin-top: -30px;"><i class='bx bxs-user-circle'></i></div>
+                <div style="font-size: 60px;margin-top: -30px;"><i class="bx bx-package icon-link" id="icons"></i></div>
             </div>
-            <form style="margin-top: -40px;overflow: hidden;padding:0 15px 0 0;" method="post" action="../client/insertData.php">
+            <form method="post" action="../produits/insertDataProduit.php" style="margin-top: -40px;overflow: hidden;padding:0 15px 0 0;">
                 <div class="row" style="flex-direction: column;align-items: center;">
                     <div class="col-md-7">
                         <div class="form-group" style="margin-top: 20px;">
@@ -76,25 +76,25 @@
                     <div class="col-md-7">
                         <div class="form-group" style="margin-top: 20px;">
                             <label for="formGroupExampleInput2" style="margin-bottom:5px;">Catégorie</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="smartphone, pc" name="Prenom" autocomplete="off">
+                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="smartphone, pc" name="categorie" autocomplete="off">
                         </div>
                     </div>
                     <div class="col-md-7">
                         <div class="form-group" style="margin-top: 20px;">
                             <label for="formGroupExampleInput3" style="margin-bottom:5px;">Quantité</label>
-                            <input type="number" class="form-control" id="formGroupExampleInput3" placeholder="Quantité" name="Telephone" autocomplete="off">
+                            <input type="number" class="form-control" id="formGroupExampleInput3" placeholder="Quantité" name="quantite" autocomplete="off">
                         </div>
                     </div>
                     <div class="col-md-7">
                         <div class="form-group" style="margin-top: 20px;">
                             <label for="formGroupExampleInput4" style="margin-bottom:5px;">Prix_unitaire</label>
-                            <input type="number" class="form-control" id="formGroupExampleInput4" placeholder="ex: 1500DH" name="Adress" autocomplete="off">
+                            <input type="number" class="form-control" id="formGroupExampleInput4" placeholder="ex: 1500DH" name="prix" autocomplete="off">
                         </div>
                     </div>
                     <div class="col-md-7">
                         <div class="form-group" style="margin-top: 20px;">
                             <label for="formGroupExampleInput4" style="margin-bottom:5px;">Date_fabrication</label>
-                            <input type="date" class="form-control" id="formGroupExampleInput4" placeholder="Adresse" name="Adress" autocomplete="off">
+                            <input type="date" class="form-control" id="formGroupExampleInput4" placeholder="Adresse" name="date" autocomplete="off">
                         </div>
                     </div>
                     <div class="col-md-7">
