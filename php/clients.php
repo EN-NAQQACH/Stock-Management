@@ -66,6 +66,31 @@ include '../client/Function.php'
       </d>
     </nav>
     <div class="home-content" id="contentall">
+      <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="background-color: green;border: #394867;">
+          Filter
+        </button>
+      </p>
+      <div class="collapse" id="collapseExample" style="max-width: 700px;">
+        <div class="card card-body">
+          <form>
+            <div class="row" style="margin-right:-55px;">
+              <div class="col-md-3" style="margin:5px 0;">
+                <input type="text" class="form-control" placeholder="nom or id ...">
+              </div>
+              <div class="col-md-3" style="margin:5px 0;">
+                <input type="text" class="form-control" placeholder="date de début" onfocus="(this.type = 'date')" onblur="(this.type = 'text')">
+              </div>
+              <div class="col-md-3" style="margin:5px 0;">
+                <input type="text" class="form-control" placeholder="date de fin" onfocus="(this.type = 'date')" onblur="(this.type = 'text')">
+              </div>
+              <div class="col-md-3" style="margin:5px 0;">
+                <button type="submit" class="btn btn-primary" style="background-color: #12192c;border: #394867;"> recherche </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
       <h4 style="margin-top: 10px;">Liste de clients</h4>
       <button type="button" class="btn btn-primary" style="background-color:#394867;border: #394867;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><a href="../client/FormClient.php" style="text-decoration: none;color: white;">Ajouter</a></button>
       <div class="tables" style="margin-top: 10px;">
