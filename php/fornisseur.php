@@ -67,31 +67,54 @@ include '../Fornisseur/Function.php';
       </d>
     </nav>
     <div class="home-content" id="contentall">
-      <p>
-        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"  style="background-color: green;border: #394867;">
-          Filter
-        </button>
-      </p>
-      <div class="collapse" id="collapseExample" style="max-width: 700px;">
-        <div class="card card-body" >
-          <form >
-            <div class="row" style="margin-right:-55px;">
-              <div class="col-md-3" style="margin:5px 0;">
-                <input type="text" class="form-control" placeholder="nom or id ...">
-              </div>
-              <div class="col-md-3" style="margin:5px 0;">
-                <input type="text" class="form-control" placeholder="date de début" onfocus="(this.type = 'date')" onblur="(this.type = 'text')">
-              </div>
-              <div class="col-md-3" style="margin:5px 0;">
-              <input type="text" class="form-control" placeholder="date de fin" onfocus="(this.type = 'date')" onblur="(this.type = 'text')">
-              </div>
-              <div class="col-md-3" style="margin:5px 0;">
-              <button type="submit" class="btn btn-primary" style="background-color: #12192c;border: #394867;"> recherche </button>
-              </div>
+      <div id="filterdiv" style="display: flex;justify-content: center;margin-right: 93px;margin-top: -10px;">
+        <form method="post" action="../php/fornisseur.php">
+          <div class="row">
+            <div class="col-md-9" style="margin:5px 0;">
+              <input type="text" class="form-control" placeholder="Nom or Id, Prenom ..." name="filter_value">
             </div>
-          </form>
+            <div class="col-md-3" style="margin:5px 0;">
+              <button type="submit" class="btn btn-primary" style="background-color: #12192c;border: #394867;" name="recherchebtn" required> recherche </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div id="filterdiv2">
+        <p>
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="background-color: green;border: #394867;">
+            Filter
+          </button>
+        </p>
+        <div class="collapse" id="collapseExample" style="max-width: 400px;margin-right: 18px;">
+          <div class="card card-body">
+            <form method="post" action="../php/fornisseur.php">
+              <div class="row">
+                <div class="col-md-8" style="margin:5px 0;">
+                  <input type="text" class="form-control" placeholder="Nom or Id, Prenom ..." name="filter_value">
+                </div>
+                <div class="col-md-3" style="margin:5px 0;">
+                  <button type="submit" class="btn btn-primary" style="background-color: #12192c;border: #394867;"> recherche </button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
+
+      <?php
+      $connection = mysqli_connect('localhost', 'root', '', 'gestion_stock');
+      $sql = "SELECT * FROM fornisseur";
+      $result = mysqli_query($connection, $sql);
+      if (isset($_POST['recherchebtn'])) {
+        $searchkey = $_POST['filter_value'];
+        $sql = "SELECT * FROM fornisseur WHERE CONCAT (Nom, Prenom, Telephone, Address) LIKE '%$searchkey%'";
+      } else {
+        $sql = "SELECT * FROM fornisseur";
+        $searchkey = "";
+      }
+      $result = mysqli_query($connection, $sql);
+      ?>
       <h4 style="margin-top: 10px;">Liste de Fornisseurs</h4>
       <button type="button" class="btn btn-primary" style="background-color:#394867;border: #394867;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><a href="../Fornisseur/FormFornisseur.php" style="text-decoration: none;color: white;">Ajouter</a></button>
       <div class="tables" style="margin-top: 10px;">
@@ -109,23 +132,28 @@ include '../Fornisseur/Function.php';
           <tbody>
             <!-- gat data from database-->
             <?php
-            $fornisseur = gatFornisseur();
-            if (!empty($fornisseur) && is_array($fornisseur)) {
-              foreach ($fornisseur as $key => $value) {
-            ?>
+
+            if (mysqli_num_rows($result) > 0) {
+              while ($row = mysqli_fetch_object($result)) { ?>
                 <tr>
-                  <th scope="row"><?= $value['ID'] ?></th>
-                  <td><?= $value['Nom'] ?></td> <!-- value from database-->
-                  <td><?= $value['Prenom'] ?></td> <!-- value from database-->
-                  <td><?= $value['Telephone'] ?></td> <!-- value from database-->
-                  <td><?= $value['Address'] ?></td> <!-- value from database-->
+                  <th scope="row"><?php echo $row->ID ?></th>
+                  <td><?php echo $row->Nom ?></td>
+                  <td><?php echo $row->Prenom ?></td>
+                  <td><?php echo $row->Telephone ?></td>
+                  <td><?php echo $row->Address ?></td>
                   <td>
                     <button type="button" class="btn btn-primary" style="background-color: #697ea9;border: #697ea9;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><a href="../Fornisseur/FormFornisseur.php" style="text-decoration: none;color: white;"><i class='bx bx-pencil'></i></a></button>
                     <button type="button" class="btn btn-primary" style="background-color: #ff6060;border: #ED2B2A;"><a href="" style="text-decoration: none;color: white;"><i class='bx bx-x-circle'></i></a></button>
                   </td>
                 </tr>
+              <?php }
+            } else {
+              // No results found
+              ?>
+              <tr>
+                <td style="font-size:20px; background-color: #EB1D36;color: white;" colspan="6">"Fornisseur non trouvé"</td>
+              </tr>
             <?php
-              }
             }
             ?>
           </tbody>

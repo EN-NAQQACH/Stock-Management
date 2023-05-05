@@ -1,8 +1,7 @@
 <?php
 session_start();
 include '../php/connexion.php';
-include '../client/Function.php'
-
+include '../client/Function.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,15 +66,15 @@ include '../client/Function.php'
     </nav>
     <div class="home-content" id="contentall">
 
-    
+
       <div id="filterdiv" style="display: flex;justify-content: center;margin-right: 93px;margin-top: -10px;">
-        <form>
+        <form method="post" action="../php/clients.php">
           <div class="row">
             <div class="col-md-9" style="margin:5px 0;">
-              <input type="text" class="form-control" placeholder="Nom or Id, Prenom ...">
+              <input type="text" class="form-control" placeholder="Nom or Id, Prenom ..." name="filter_value">
             </div>
             <div class="col-md-3" style="margin:5px 0;">
-              <button type="submit" class="btn btn-primary" style="background-color: #12192c;border: #394867;"> recherche </button>
+              <button type="submit" class="btn btn-primary" style="background-color: #12192c;border: #394867;" name="recherchebtn" required> recherche </button>
             </div>
           </div>
         </form>
@@ -89,10 +88,10 @@ include '../client/Function.php'
         </p>
         <div class="collapse" id="collapseExample" style="max-width: 400px;margin-right: 18px;">
           <div class="card card-body">
-            <form>
+            <form  method="post" action="../php/clients.php">
               <div class="row">
                 <div class="col-md-8" style="margin:5px 0;">
-                  <input type="text" class="form-control" placeholder="Nom or Id, Prenom ...">
+                  <input type="text" class="form-control" placeholder="Nom or Id, Prenom ..." name="filter_value">
                 </div>
                 <div class="col-md-3" style="margin:5px 0;">
                   <button type="submit" class="btn btn-primary" style="background-color: #12192c;border: #394867;"> recherche </button>
@@ -103,170 +102,67 @@ include '../client/Function.php'
         </div>
       </div>
 
+      <?php
+      $connection = mysqli_connect('localhost', 'root', '', 'gestion_stock');
+      $sql = "SELECT * FROM client";
+      $result = mysqli_query($connection, $sql);
+      if (isset($_POST['recherchebtn'])) {
+        $searchkey = $_POST['filter_value'];
+        $sql = "SELECT * FROM client WHERE CONCAT (Nom, Prenom, Telephone, Address) LIKE '%$searchkey%'";
+      } else {
+        $sql = "SELECT * FROM client";
+        $searchkey = "";
+      }
+      $result = mysqli_query($connection, $sql);
+      ?>
+
       <h4 style="margin-top: 10px;">Liste de clients</h4>
       <button type="button" class="btn btn-primary" style="background-color:#394867;border: #394867;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><a href="../client/FormClient.php" style="text-decoration: none;color: white;">Ajouter</a></button>
+
       <div class="tables" style="margin-top: 10px;">
         <table class="table table-hover">
           <thead>
             <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Nom</th>
+              <th scope="col" >ID</th>
+              <th scope="col" >Nom</th>
               <th scope="col">Prénom</th>
-              <th scope="col">Téléphone</th>
-              <th scope="col">Adresse</th>
-              <th scope="col">Action</th>
+              <th scope="col" >Téléphone</th>
+              <th scope="col" >Adresse</th>
+              <th scope="col" >Action</th>
             </tr>
           </thead>
           <tbody>
             <!-- gat data from database-->
+
             <?php
-            $clients = gatClient();
-            if (!empty($clients) && is_array($clients)) {
-              foreach ($clients as $key => $value) {
-            ?>
+
+            if (mysqli_num_rows($result) > 0) {
+              while ($row = mysqli_fetch_object($result)) { ?>
                 <tr>
-                  <th scope="row"><?= $value['ID'] ?></th>
-                  <td><?= $value['Nom'] ?></td> <!-- value from database-->
-                  <td><?= $value['Prenom'] ?></td> <!-- value from database-->
-                  <td><?= $value['Telephone'] ?></td> <!-- value from database-->
-                  <td><?= $value['Address'] ?></td> <!-- value from database-->
-                  <td>
-                    <button type="button" class="btn btn-primary" style="background-color: #697ea9;border: #697ea9;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><a href="../client/FormClient.php" style="text-decoration: none;color: white;"><i class='bx bx-pencil'></i></a></button>
+                  <th scope="row" ><?php echo $row->ID ?></th>
+                  <td ><?php echo $row->Nom ?></td>
+                  <td ><?php echo $row->Prenom ?></td>
+                  <td ><?php echo $row->Telephone ?></td>
+                  <td ><?php echo $row->Address ?></td>
+                  <td >
+                    <button type="button" class="btn btn-primary" style="background-color: #697ea9;border: #697ea9;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><a href="../Fornisseur/FormFornisseur.php" style="text-decoration: none;color: white;"><i class='bx bx-pencil'></i></a></button>
                     <button type="button" class="btn btn-primary" style="background-color: #ff6060;border: #ED2B2A;"><a href="" style="text-decoration: none;color: white;"><i class='bx bx-x-circle'></i></a></button>
                   </td>
                 </tr>
+              <?php }
+            } else {
+              // No results found
+              ?>
+              <tr>
+                <td style="font-size:20px; background-color: #EB1D36;color: white;" colspan="6">"Client non trouvé"</td>
+              </tr>
             <?php
-              }
             }
             ?>
-
-            <!--<tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>0645039258t</td>
-              <td>salé</td>
-              <td>
-                <button type="button" class="btn btn-primary" style="background-color: #697ea9;border: #697ea9;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><i class='bx bx-pencil'></i></button>
-                <button type="button" class="btn btn-primary" style="background-color: #ff6060;border: #ED2B2A;"><i class='bx bx-x-circle'></i></i></button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Larry the Bird</td>
-              <td>Thornton</td>
-              <td>0645039258r</td>
-              <td>Lnador</td>
-              <td>
-                <button type="button" class="btn btn-primary" style="background-color: #697ea9;border: #697ea9;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><i class='bx bx-pencil'></i></button>
-                <button type="button" class="btn btn-primary" style="background-color: #ff6060;border: #ED2B2A;"><i class='bx bx-x-circle'></i></i></button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">4</th>
-              <td>Larry the Bird</td>
-              <td>Thornton</td>
-              <td>0645039258</td>
-              <td>marrakech</td>
-              <td>
-                <button type="button" class="btn btn-primary" style="background-color: #697ea9;border: #697ea9;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><i class='bx bx-pencil'></i></button>
-                <button type="button" class="btn btn-primary" style="background-color: #ff6060;border: #ED2B2A;"><i class='bx bx-x-circle'></i></i></button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">5</th>
-              <td>Larry the Bird</td>
-              <td>Thornton</td>
-              <td>0645039258</td>
-              <td>safi</td>
-              <td>
-                <button type="button" class="btn btn-primary" style="background-color: #697ea9;border: #697ea9;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><i class='bx bx-pencil'></i></button>
-                <button type="button" class="btn btn-primary" style="background-color: #ff6060;border: #ED2B2A;"><i class='bx bx-x-circle'></i></i></button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">6</th>
-              <td>Larry the Bird</td>
-              <td>Thornton</td>
-              <td>0645039258</td>
-              <td>beni mellal</td>
-              <td>
-                <button type="button" class="btn btn-primary" style="background-color: #697ea9;border: #697ea9;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><a href="../client/FormClient.php" style="text-decoration: none;color: white;"><i class='bx bx-pencil'></i></a></button>
-                <button type="button" class="btn btn-primary" style="background-color: #ff6060;border: #ED2B2A;"><a href="" style="text-decoration: none;color: white;"><i class='bx bx-x-circle'></i></a></button>
-              </td>
-            </tr>
-            -->
           </tbody>
         </table>
       </div>
-
     </div>
-
-
-
-
-
-    <!-- Modal
-    <div class="modal fade" id="fullcontent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Clients</h5>
-            <div class="close" data-dismiss="modal" id="btnedit" aria-label="Close">
-              <span aria-hidden="true" style="font-size: 20px;cursor: pointer;">&times;</span>
-            </div>
-          </div>
-          <div class="modal-body">
-            <form method="post" action="../client/Add.php" id="my-form">
-              <div class="form-group">
-                <label for="formGroupExampleInput">Nom</label>
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nom Client" name="Nom" autocomplete="off">
-              </div>
-              <div class="form-group">
-                <label for="formGroupExampleInput2">Prénom</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Prénom" name="Prenom" autocomplete="off">
-              </div>
-              <div class="form-group">
-                <label for="formGroupExampleInput2">Téléphone</label>
-                <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Téléphone" name="Telephone" autocomplete="off">
-              </div>
-              <div class="form-group">
-                <label for="formGroupExampleInput2">Adresse</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Adresse" name="Adress" autocomplete="off">
-              </div>
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" name="submit" id="subbtn">Save changes</button>
-              </div>
-            </form>
-          </div>
-
-        </div>
-      </div>
-    </div>
-    
-    <style>
-      .form-group {
-        margin: 8px;
-      }
-
-      .form-group label {
-        padding-bottom: 4px;
-      }
-
-      .modal-footer .btn.btn-primary {
-        background-color: #536486;
-        border: #536486;
-      }
-
-      .modal-footer .btn.btn-primary:hover {
-        background-color: #12192c;
-        border: #394867;
-      }
-    </style>
-     -->
-    <!-- Button trigger modal -->
-
-
 </body>
 
 </html>

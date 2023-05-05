@@ -126,25 +126,25 @@ include '../produits/Function.php';
     <div class="home-content" id="contentall">
 
       <div id="filterdiv3">
-        <form style="margin-right:0;">
+        <form style="margin-right:0;overflow: hidden;" method="post" action="../php/produits.php">
           <div class="row" style="margin-right:-80px;">
             <div class="col-md-3" style="margin:5px 0;">
-              <input type="text" class="form-control" placeholder="nom or id ...">
+              <input type="text" class="form-control" placeholder="nom or id ..." name="filter_value">
             </div>
             <div class="col-md-3" style="margin:5px 0;">
-              <input type="text" class="form-control" placeholder="date de début" onfocus="(this.type = 'date')" onblur="(this.type = 'text')">
+              <input type="text" class="form-control" placeholder="date de début" onfocus="(this.type = 'date')" onblur="(this.type = 'text')" name="Fromdate">
             </div>
             <div class="col-md-3" style="margin:5px 0;">
-              <input type="text" class="form-control" placeholder="date de fin" onfocus="(this.type = 'date')" onblur="(this.type = 'text')">
+              <input type="text" class="form-control" placeholder="date de fin" onfocus="(this.type = 'date')" onblur="(this.type = 'text')" name="todate">
             </div>
             <div class="col-md-3" style="margin:5px 0;">
-              <button type="submit" class="btn btn-primary" style="background-color: #0E8388;border: #394867;"> recherche </button>
+              <button type="submit" class="btn btn-primary" style="background-color: #0E8388;border: #394867;" name="recherchebtn"> recherche </button>
             </div>
           </div>
         </form>
       </div>
 
-     <div id="filterdiv4">
+      <div id="filterdiv4">
         <p>
           <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="background-color: green;border: #394867;">
             Filter
@@ -155,22 +155,40 @@ include '../produits/Function.php';
             <form>
               <div class="row">
                 <div class="col-md-3" style="margin:5px 0;">
-                  <input type="text" class="form-control" placeholder="nom or id ...">
+                  <input type="text" class="form-control" placeholder="nom or id ..." name="filter_value">
                 </div>
                 <div class="col-md-3" style="margin:5px 0;">
-                  <input type="text" class="form-control" placeholder="date de début" onfocus="(this.type = 'date')" onblur="(this.type = 'text')">
+                  <input type="text" class="form-control" placeholder="date de début" onfocus="(this.type = 'date')" onblur="(this.type = 'text')" name="Fromdate">
                 </div>
                 <div class="col-md-3" style="margin:5px 0;">
-                  <input type="text" class="form-control" placeholder="date de fin" onfocus="(this.type = 'date')" onblur="(this.type = 'text')">
+                  <input type="text" class="form-control" placeholder="date de fin" onfocus="(this.type = 'date')" onblur="(this.type = 'text')" name="todate">
                 </div>
                 <div class="col-md-3" style="margin:5px 0;">
-                  <button type="submit" class="btn btn-primary" style="background-color: #12192c;border: #394867;"> recherche </button>
+                  <button type="submit" class="btn btn-primary" style="background-color: #12192c;border: #394867;" name="recherchebtn"> recherche </button>
                 </div>
               </div>
             </form>
           </div>
         </div>
       </div>
+
+      <?php
+      $connection = mysqli_connect('localhost', 'root', '', 'gestion_stock');
+      $sql = "SELECT * FROM article";
+      $result = mysqli_query($connection, $sql);
+      if (isset($_POST['filter_value'])) {
+        $searchkey = $_POST['filter_value'];
+        $sql = "SELECT * FROM article WHERE  Nom_Article LIKE '%$searchkey%'";
+      } else {
+        $sql = "SELECT * FROM article";
+      }
+      if (isset($_POST['Fromdate']) && isset($_POST['todate'])) {
+        $from = $_POST['Fromdate'];
+        $to = $_POST['todate'];
+        $sql = "SELECT * FROM article WHERE  DateFabrication BETWEEN '$from' AND '$to'";
+      }
+      $result = mysqli_query($connection, $sql);
+      ?>
 
       <h4 style="margin-top: 10px;">Liste de produits</h4>
       <a href="../produits/FormProduit.php" style="text-decoration: none;color: white;"><button type="button" class="btn btn-primary" style="background-color:#2E4F4F;border: #394867;" data-toggle="modal" data-target="#fullcontent">Ajouter</button></a>
@@ -189,26 +207,32 @@ include '../produits/Function.php';
           </thead>
           <tbody>
             <?php
-            $produits = gatProduct();
-            if (!empty($produits) && is_array($produits)) {
-              foreach ($produits as $key => $value) {
-            ?>
+
+            if (mysqli_num_rows($result) > 0) {
+              while ($row = mysqli_fetch_object($result)) { ?>
                 <tr>
-                  <th scope="row"><?= $value['ID'] ?></th>
-                  <td><?= $value['Nom_Article'] ?></td> <!-- value from database-->
-                  <td><?= $value['Categorie'] ?></td> <!-- value from database-->
-                  <td><?= $value['Quantite'] ?></td> <!-- value from database-->
-                  <td><?= $value['PrixUnitaire'] ?></td> <!-- value from database-->
-                  <td><?= $value['DateFabrication'] ?></td> <!-- value from database-->
+                  <th scope="row"><?php echo $row->ID ?></th>
+                  <td><?php echo $row->Nom_Article ?></td>
+                  <td><?php echo $row->Categorie ?></td>
+                  <td><?php echo $row->Quantite ?></td>
+                  <td><?php echo $row->PrixUnitaire ?></td>
+                  <td><?php echo $row->DateFabrication ?></td>
                   <td>
-                    <button type="button" class="btn btn-primary" style="background-color: #697ea9;border: #697ea9;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><a href="../produits/FormProduit.php" style="text-decoration: none;color: white;"><i class='bx bx-pencil'></i></a></button>
+                    <button type="button" class="btn btn-primary" style="background-color: #697ea9;border: #697ea9;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><a href="../Fornisseur/FormFornisseur.php" style="text-decoration: none;color: white;"><i class='bx bx-pencil'></i></a></button>
                     <button type="button" class="btn btn-primary" style="background-color: #ff6060;border: #ED2B2A;"><a href="" style="text-decoration: none;color: white;"><i class='bx bx-x-circle'></i></a></button>
                   </td>
                 </tr>
+              <?php }
+            } else {
+              // No results found
+              ?>
+              <tr>
+                <td style="font-size:20px; background-color: #EB1D36;color: white;" colspan="6">"produit non trouvé"</td>
+              </tr>
             <?php
-              }
             }
             ?>
+
           </tbody>
         </table>
       </div>
