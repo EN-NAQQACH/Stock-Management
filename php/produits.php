@@ -124,33 +124,56 @@ include '../produits/Function.php';
       </div>
     </nav>
     <div class="home-content" id="contentall">
-      <p>
-        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="background-color: green;border: #394867;">
-          Filter
-        </button>
-      </p>
-      <div class="collapse" id="collapseExample" style="max-width: 700px;">
-        <div class="card card-body">
-          <form>
-            <div class="row" style="margin-right:-55px;">
-              <div class="col-md-3" style="margin:5px 0;">
-                <input type="text" class="form-control" placeholder="nom or id ...">
-              </div>
-              <div class="col-md-3" style="margin:5px 0;">
-                <input type="text" class="form-control" placeholder="date de début" onfocus="(this.type = 'date')" onblur="(this.type = 'text')">
-              </div>
-              <div class="col-md-3" style="margin:5px 0;">
-                <input type="text" class="form-control" placeholder="date de fin" onfocus="(this.type = 'date')" onblur="(this.type = 'text')">
-              </div>
-              <div class="col-md-3" style="margin:5px 0;">
-                <button type="submit" class="btn btn-primary" style="background-color: #12192c;border: #394867;"> recherche </button>
-              </div>
+
+      <div id="filterdiv3">
+        <form style="margin-right:0;">
+          <div class="row" style="margin-right:-80px;">
+            <div class="col-md-3" style="margin:5px 0;">
+              <input type="text" class="form-control" placeholder="nom or id ...">
             </div>
-          </form>
+            <div class="col-md-3" style="margin:5px 0;">
+              <input type="text" class="form-control" placeholder="date de début" onfocus="(this.type = 'date')" onblur="(this.type = 'text')">
+            </div>
+            <div class="col-md-3" style="margin:5px 0;">
+              <input type="text" class="form-control" placeholder="date de fin" onfocus="(this.type = 'date')" onblur="(this.type = 'text')">
+            </div>
+            <div class="col-md-3" style="margin:5px 0;">
+              <button type="submit" class="btn btn-primary" style="background-color: #0E8388;border: #394867;"> recherche </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+     <div id="filterdiv4">
+        <p>
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="background-color: green;border: #394867;">
+            Filter
+          </button>
+        </p>
+        <div class="collapse" id="collapseExample" style="max-width: 700px;margin-right: 18px;">
+          <div class="card card-body">
+            <form>
+              <div class="row">
+                <div class="col-md-3" style="margin:5px 0;">
+                  <input type="text" class="form-control" placeholder="nom or id ...">
+                </div>
+                <div class="col-md-3" style="margin:5px 0;">
+                  <input type="text" class="form-control" placeholder="date de début" onfocus="(this.type = 'date')" onblur="(this.type = 'text')">
+                </div>
+                <div class="col-md-3" style="margin:5px 0;">
+                  <input type="text" class="form-control" placeholder="date de fin" onfocus="(this.type = 'date')" onblur="(this.type = 'text')">
+                </div>
+                <div class="col-md-3" style="margin:5px 0;">
+                  <button type="submit" class="btn btn-primary" style="background-color: #12192c;border: #394867;"> recherche </button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
+
       <h4 style="margin-top: 10px;">Liste de produits</h4>
-      <a href="../produits/FormProduit.php" style="text-decoration: none;color: white;"><button type="button" class="btn btn-primary" style="background-color:#394867;border: #394867;" data-toggle="modal" data-target="#fullcontent">Ajouter</button></a>
+      <a href="../produits/FormProduit.php" style="text-decoration: none;color: white;"><button type="button" class="btn btn-primary" style="background-color:#2E4F4F;border: #394867;" data-toggle="modal" data-target="#fullcontent">Ajouter</button></a>
       <div class="tables" style="margin-top: 10px;">
         <table class="table table-hover">
           <thead>
