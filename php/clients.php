@@ -117,8 +117,11 @@ include '../client/Function.php';
       ?>
 
       <h4 style="margin-top: 10px;">Liste de clients</h4>
+      <form action="../client/export-Client-list-pdf.php" method="post">
       <button type="button" class="btn btn-primary" style="background-color:#394867;border: #394867;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><a href="../client/FormClient.php" style="text-decoration: none;color: white;">Ajouter</a></button>
-
+      <button type="submit" name="submit" class="btn btn-primary" style="background-color:#394867;border: #394867;" data-toggle="modal" id="btnedit" data-target="#fullcontent">EXPORT PDF</button>
+      <!--<input type="submit" name="submit" value="EXPORT PDF">-->
+      </form>
       <div class="tables" style="margin-top: 10px;">
         <table class="table table-hover">
           <thead>
