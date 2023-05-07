@@ -117,16 +117,16 @@ include '../Fornisseur/Function.php';
       ?>
       <h4 style="margin-top: 10px;">Liste de Fornisseurs</h4>
       <button type="button" class="btn btn-primary" style="background-color:#394867;border: #394867;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><a href="../Fornisseur/FormFornisseur.php" style="text-decoration: none;color: white;">Ajouter</a></button>
-      <div class="tables" style="margin-top: 10px;">
+      <div class="tables" style="margin-top: 10px;" id="tabledatta">
         <table class="table table-hover">
           <thead>
             <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Nom</th>
-              <th scope="col">Prénom</th>
-              <th scope="col">Téléphone</th>
-              <th scope="col">Adresse</th>
-              <th scope="col">Action</th>
+              <th scope="col"style="border:1px solid #ddd;">ID</th>
+              <th scope="col"style="border:1px solid #ddd;">Nom</th>
+              <th scope="col"style="border:1px solid #ddd;">Prénom</th>
+              <th scope="col"style="border:1px solid #ddd;">Téléphone</th>
+              <th scope="col"style="border:1px solid #ddd;">Adresse</th>
+              <th scope="col"style="border:1px solid #ddd;">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -136,13 +136,13 @@ include '../Fornisseur/Function.php';
             if (mysqli_num_rows($result) > 0) {
               while ($row = mysqli_fetch_object($result)) { ?>
                 <tr>
-                  <th scope="row"><?php echo $row->ID ?></th>
-                  <td><?php echo $row->Nom ?></td>
-                  <td><?php echo $row->Prenom ?></td>
-                  <td><?php echo $row->Telephone ?></td>
-                  <td><?php echo $row->Address ?></td>
-                  <td>
-                    <button type="button" class="btn btn-primary" style="background-color: #697ea9;border: #697ea9;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><a href="../Fornisseur/FormFornisseur.php" style="text-decoration: none;color: white;"><i class='bx bx-pencil'></i></a></button>
+                  <th scope="row"style="border:1px solid #ddd;"><?php echo $row->ID ?></th>
+                  <td style="border:1px solid #ddd;"><?php echo $row->Nom ?></td>
+                  <td style="border:1px solid #ddd;"><?php echo $row->Prenom ?></td>
+                  <td style="border:1px solid #ddd;"><?php echo $row->Telephone ?></td>
+                  <td style="border:1px solid #ddd;"><?php echo $row->Address ?></td>
+                  <td style="border:1px solid #ddd;">
+                    <button type="button" class="btn btn-primary" style="background-color: #697ea9;border: #697ea9;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><a href="../Fornisseur/FormFornisseurUpdate.php?id=<?php echo $row->ID; ?>" style="text-decoration: none;color: white;"><i class='bx bx-pencil'></i></a></button>
                     <button type="button" class="btn btn-primary" style="background-color: #ff6060;border: #ED2B2A;"><a href="" style="text-decoration: none;color: white;"><i class='bx bx-x-circle'></i></a></button>
                   </td>
                 </tr>
