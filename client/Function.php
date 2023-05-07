@@ -5,7 +5,9 @@ include '../php/connexion.php';
 
 function gatClient()
 {
-    $SQL = "SELECT * FROM client";
+    $id = $_GET['id'];
+
+    $SQL = "SELECT * FROM client WHERE ID=$id";
     $REQUEST = $GLOBALS['connexion']->prepare($SQL);
     $REQUEST->execute();
     return $REQUEST->fetchAll();
