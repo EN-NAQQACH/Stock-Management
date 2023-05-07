@@ -192,7 +192,7 @@ include '../produits/Function.php';
 
       <h4 style="margin-top: 10px;">Liste de produits</h4>
       <a href="../produits/FormProduit.php" style="text-decoration: none;color: white;"><button type="button" class="btn btn-primary" style="background-color:#2E4F4F;border: #394867;" data-toggle="modal" data-target="#fullcontent">Ajouter</button></a>
-      <div class="tables" style="margin-top: 10px;">
+      <div class="tables" style="margin-top: 10px;" id="tabledatta">
         <table class="table table-hover">
           <thead>
             <tr>
@@ -201,21 +201,30 @@ include '../produits/Function.php';
               <th scope="col">Catégorie</th>
               <th scope="col">Quantité</th>
               <th scope="col">Prix_unitaire (DH)</th>
+              <th scope="col">Image</th>
               <th scope="col">Date_fabrication</th>
               <th scope="col">action</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody >
             <?php
 
             if (mysqli_num_rows($result) > 0) {
               while ($row = mysqli_fetch_object($result)) { ?>
-                <tr>
-                  <th scope="row"><?php echo $row->ID ?></th>
+                <tr >
+                  <th scope="row" ><?php echo $row->ID ?></th>
                   <td><?php echo $row->Nom_Article ?></td>
                   <td><?php echo $row->Categorie ?></td>
                   <td><?php echo $row->Quantite ?></td>
                   <td><?php echo $row->PrixUnitaire ?></td>
+                  <td > 
+                    <?php if (!empty($row->image)) { ?>
+                      <img src="<?php echo "../produits/upload/".$row->image ?>" alt="Product Image" width="50px" height="50px" style="border-radius: 10%;">
+                    <?php } else { ?>
+                      No image
+                    <?php } ?>
+                    
+                  </td>
                   <td><?php echo $row->DateFabrication ?></td>
                   <td>
                     <button type="button" class="btn btn-primary" style="background-color: #697ea9;border: #697ea9;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><a href="../Fornisseur/FormFornisseur.php" style="text-decoration: none;color: white;"><i class='bx bx-pencil'></i></a></button>

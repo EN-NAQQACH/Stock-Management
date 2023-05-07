@@ -12,11 +12,17 @@ if (empty($_POST['Nom']) || empty($_POST['categorie']) || empty($_POST['quantite
 } elseif(isset($_POST['BTNAJOUTER'])) {
 
     // Get data from textfield
-    $nom = trim($_POST['Nom']);
-    $categorie = trim($_POST['categorie']);
-    $quantite = trim($_POST['quantite']);
-    $prix = trim($_POST['prix']);
-    $date = trim($_POST['date']);
+    $nom = $_POST['Nom'];
+    $categorie = $_POST['categorie'];
+    $quantite = $_POST['quantite'];
+    $prix = $_POST['prix'];
+    $image = $_FILES["imageupload"]['name'];
+    $date = $_POST['date'];
+    $img_name= $_FILES['imageupload'] ['name'];
+    $tmp_img_name= $_FILES['imageupload'] ['tmp_name'];
+    $folder = 'upload/';
+
+
 
     // Check if the data already exists in the database
     $sql = "SELECT * FROM $database.article WHERE Nom_Article=? AND Categorie=? AND Quantite=? AND PrixUnitaire=? AND DateFabrication=?";
@@ -30,17 +36,12 @@ if (empty($_POST['Nom']) || empty($_POST['categorie']) || empty($_POST['quantite
     } else {
 
         // Insert data to table Client
-        $sql = "INSERT INTO $database.article (Nom_Article, Categorie, Quantite, PrixUnitaire, DateFabrication) VALUES(?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO $database.article (Nom_Article, Categorie, Quantite, PrixUnitaire, image, DateFabrication) VALUES(?, ?, ?, ?, ?, ?)";
         $req = $connexion->prepare($sql);
-        $req->execute(array(
-            $_POST['Nom'],
-            $_POST['categorie'],
-            $_POST['quantite'],
-            $_POST['prix'],
-            $_POST['date']
-        ));
+        $req->execute(array($nom, $categorie, $quantite, $prix, $image, $date));
 
         if ($req->rowCount() != 0) {
+            move_uploaded_file($tmp_img_name,$folder.$img_name); 
             $_SESSION['status'] = "Les données ont été insérées avec succès";
             $_SESSION['status_code'] = "success";
             $_POST = array(); // Clear the form fields

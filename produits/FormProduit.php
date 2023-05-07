@@ -65,7 +65,7 @@
                 <div style="font-size: 20px;margin: -35px 20px 0 0;cursor: pointer;"><a href="../php/produits.php"><i class='bx bx-arrow-back'></i></a></div>
                 <div style="font-size: 60px;margin-top: -30px;"><i class="bx bx-package icon-link" id="icons"></i></div>
             </div>
-            <form method="post" action="../produits/insertDataProduit.php" style="margin-top: -40px;overflow: hidden;padding:0 15px 0 0;">
+            <form enctype="multipart/form-data" method="post" action="../produits/insertDataProduit.php" style="margin-top: -30px;overflow: hidden;padding:0 15px 0 0;margin-bottom: 30px;">
                 <div class="row" style="flex-direction: column;align-items: center;">
                     <div class="col-md-7">
                         <div class="form-group" style="margin-top: 20px;">
@@ -91,6 +91,13 @@
                             <input type="number" class="form-control" id="formGroupExampleInput4" placeholder="ex: 1500DH" name="prix" autocomplete="off">
                         </div>
                     </div>
+                    <div class="col-md-7">
+                    <div class="form-group" style="margin-top: 20px;">
+                            <label for="formGroupExampleInput4" style="margin-bottom:5px;">Image de produit</label>
+                            <input type="file" class="form-control" id="formGroupExampleInput4" placeholder="ex: png, jpeg" name="imageupload" autocomplete="off">
+                        </div>
+                    </div>
+
                     <div class="col-md-7">
                         <div class="form-group" style="margin-top: 20px;">
                             <label for="formGroupExampleInput4" style="margin-bottom:5px;">Date_fabrication</label>
