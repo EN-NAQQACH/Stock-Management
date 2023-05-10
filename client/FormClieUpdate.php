@@ -144,6 +144,7 @@ include '../client/Function.php';
             }
             ?>
         </main>
+    </div>
         <script>
         var links = document.getElementsByTagName("li");
 

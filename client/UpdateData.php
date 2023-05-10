@@ -18,7 +18,7 @@ if (empty($_POST['Nom']) || empty($_POST['Prenom']) || empty($_POST['Telephone']
     $adresse = trim($_POST['Adress']);
 
     // Update data in table Client
-    $sql = "UPDATE $database.client SET Nom = ?, Prenom = ?, Telephone = ?, Address = ? WHERE id = ?";
+    $sql = "UPDATE $database.client SET Nom = ?, Prenom = ?, Telephone = ?, Address = ? WHERE ID = ?";
     $req = $connexion->prepare($sql);
     $req->execute(array(
         $_POST['Nom'],
