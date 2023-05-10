@@ -35,4 +35,4 @@ if (empty($_POST['Nom']) || empty($_POST['Prenom']) || empty($_POST['Telephone']
     }
 }
 
-header('Location: ../php/clients.php');
+header('Location: ../php/clie.php');
