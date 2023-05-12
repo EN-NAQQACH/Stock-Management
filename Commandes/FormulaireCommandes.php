@@ -1,7 +1,13 @@
 <?php
 session_start();
 include '../php/connexion.php';
-include '../client/Function2.php'
+
+$connection = mysqli_connect('localhost', 'root', '', 'gestion_stock');
+$sql = "SELECT ID FROM client";
+$result = mysqli_query($connection, $sql);
+$sql = "SELECT ID FROM article";
+$result = mysqli_query($connection, $sql);
+
 
 ?>
 <!DOCTYPE html>
@@ -25,6 +31,10 @@ include '../client/Function2.php'
         .activee a {
             color: #396aff;
         }
+
+        main {
+            padding-top: 10px;
+        }
     </style>
 </head>
 
@@ -34,11 +44,11 @@ include '../client/Function2.php'
         <div class="sidebar-container">
             <div class="sidebar-menu">
                 <div class="logo">
-                    
+
                     <span>
-                    <p>Easly<!--<span style="font-size: 20px;color: white;border: 1px #396aff solid;background-color: #396aff;border-radius: 5px;padding: 2px 5px;margin-left: 5px;letter-spacing: 1px;">Stock</span></p>-->
+                        <p>Easly<!--<span style="font-size: 20px;color: white;border: 1px #396aff solid;background-color: #396aff;border-radius: 5px;padding: 2px 5px;margin-left: 5px;letter-spacing: 1px;">Stock</span></p>-->
                     </span>
-                    
+
                 </div>
                 <ul>
                     <li class="active" id="link-dashboard">
@@ -92,13 +102,67 @@ include '../client/Function2.php'
         <main>
 
             <section class="home-table">
-                <h4>Liste de clients</h4>
-                <form action="../client/export-Client-list-pdf.php" method="post" style="margin-top: 12px;">
-                    <a href="../Commandes/FormulaireCommandes.php"><button type="button" class="btn btn-primary" data-toggle="modal" id="btnedit" data-target="#fullcontent">Ajouter</button></a>
-                    <button type="submit" name="submit" class="btn btn-primary" data-toggle="modal" id="btnpdf" data-target="#fullcontent"><i class='bx bxs-file-pdf'></i> PDF</button>
-                    <!--<input type="submit" name="submit" value="EXPORT PDF">-->
-                </form>
-                
+                <div class="tables">
+                    <table class="table table-bordred" id="frmClient">
+                        <thead>
+                            <tr>
+                                <th style="border:1px solid #ddd;">ID Client</th>
+                                <th style="border:1px solid #ddd;">Nom</th>
+                                <th style="border:1px solid #ddd;">Prenom</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border:1px solid #ddd;">
+                                    <input type="text" class="form-control" id="Client" oninput="selectid()" placeholder="Enter ID">
+                                </td>
+                                <td style="border:1px solid #ddd;">
+                                    <input type="text" id="nomField" name="Nom" class="form-control"  disabled>
+                                </td>
+                                <td style="border:1px solid #ddd;">
+                                    <input type="text" id="prenomField" name="Prenom" class="form-control"  disabled>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="table table-bordred" id="frmProduct">
+                        <thead>
+                            <tr>
+                                <th style="border:1px solid #ddd;">ID Produit</th>
+                                <th style="border:1px solid #ddd;">Nom</th>
+                                <th style="border:1px solid #ddd;">Prix</th>
+                                <th style="border:1px solid #ddd;">Quantite</th>
+                                <th style="border:1px solid #ddd;">Total</th>
+                                <th style="border:1px solid #ddd;">Option</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border:1px solid #ddd;">
+                                    <input type="text" class="form-control" id="Product" oninput="selectidproduct()" placeholder="Enter ID">
+                                </td>
+                                <td style="border:1px solid #ddd;">
+                                    <input type="text" id="NomField" name="Nom" class="form-control"  disabled>
+                                </td>
+                                <td style="border:1px solid #ddd;">
+                                    <input type="text" id="PrixField" name="prix" class="form-control"  disabled>
+                                </td>
+                                <td style="border:1px solid #ddd;">
+                                    <input type="number" id="QuantiteField" name="Quantite" class="form-control" oninput="calculateTotal()">
+                                </td>
+                                <td style="border:1px solid #ddd;">
+                                    <input type="text" id="TotalField" name="Prenom" class="form-control"  disabled>
+                                </td>
+                                <td style="border:1px solid #ddd;">
+                                <button type="button" class="btn btn-outline-success">Add</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
 
 
 
@@ -129,6 +193,10 @@ include '../client/Function2.php'
             </section>
         </main>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <script src="../js/getinfo.js"></script>
     <script>
         var links = document.getElementsByTagName("li");
 
