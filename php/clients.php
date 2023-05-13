@@ -1,108 +1,133 @@
 <?php
 session_start();
 include '../php/connexion.php';
-include '../client/Function.php';
+include '../client/Function2.php'
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/Dashboard.css">
-  <!--bootstrap-->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-  <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/clients.css" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
+
+    <title>Dashboard</title>
+    <style>
+        .activee {
+            background-color: #e9eefd;
+            color: #396aff;
+        }
+
+        .activee a {
+            color: #396aff;
+        }
+    </style>
 </head>
 
 <body>
-  <section class="side-bar" id="navbar">
-    <div class="logo">
-      <span>
-        <h4>Easly</h4>
-      </span>
-    </div>
-    <nav class="nav">
-      <div class="nav-links">
-        <a href="../php/Dashboard.php" class="nav-link" data-page="dashboard">
-          <i class="bx bxs-dashboard icon-link" id="icons"></i>
-          <span class="name">Tableau de bord</span>
-        </a>
-        <a href="../php/produits.php" class="nav-link">
-          <i class="bx bx-package icon-link" id="icons"></i>
-          <span class="name">Produit</span>
-        </a>
-        <a href="../php/clients.php" class="nav-link">
-          <i class="bx bx-user icon-link" id="icons"></i>
-          <span class="name">Clients</span>
-        </a>
-        <a href="../php/Commandes.php" class="nav-link">
-          <i class="bx bx-receipt icon-link" id="icons"></i>
-          <span class="name">Commandes</span>
-        </a>
-        <a href="../php/vente.php" class="nav-link">
-          <i class="bx bx-cart-add icon-link" id="icons"></i>
-          <span class="name">Vente</span>
-        </a>
-        <a href="../php/fornisseur.php" class="nav-link">
-          <i class="bx bxs-store icon-link" id="icons"></i>
-          <span class="name">Fornisseur</span>
-        </a>
-        <a href="#" class="nav-link">
-          <i class="bx bx-log-out icon-link" id="icons"></i>
-          <span>Déconnexion</span>
-        </a>
-      </div>
-    </nav>
-  </section>
-  <section class="home-section">
-    <nav>
-      <d iv class="sidebar-button">
-        <i class="bx bx-menu sidebarBtn"></i>
-        <span class="dashboard">Clients</span>
-      </d>
-    </nav>
-    <div class="home-content" id="contentall">
-
-
-      <div id="filterdiv" style="display: flex;justify-content: center;margin-right: 93px;margin-top: -10px;">
-        <form method="post" action="../php/clients.php">
-          <div class="row">
-            <div class="col-md-9" style="margin:5px 0;">
-              <input type="text" class="form-control" placeholder="Nom or Id, Prenom ..." name="filter_value">
-            </div>
-            <div class="col-md-3" style="margin:5px 0;">
-              <button type="submit" class="btn btn-primary" style="background-color: #12192c;border: #394867;" name="recherchebtn" required> recherche </button>
-            </div>
-          </div>
-        </form>
-      </div>
-
-      <div id="filterdiv2">
-        <p>
-          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="background-color: green;border: #394867;">
-            Filter
-          </button>
-        </p>
-        <div class="collapse" id="collapseExample" style="max-width: 400px;margin-right: 18px;">
-          <div class="card card-body">
-            <form  method="post" action="../php/clients.php">
-              <div class="row">
-                <div class="col-md-8" style="margin:5px 0;">
-                  <input type="text" class="form-control" placeholder="Nom or Id, Prenom ..." name="filter_value">
+    <input type="checkbox" name="" id="menutoggle">
+    <div class="sidebar">
+        <div class="sidebar-container">
+            <div class="sidebar-menu">
+                <div class="logo">
+                    
+                    <span>
+                    <p>Easly<!--<span style="font-size: 20px;color: white;border: 1px #396aff solid;background-color: #396aff;border-radius: 5px;padding: 2px 5px;margin-left: 5px;letter-spacing: 1px;">Stock</span></p>-->
+                    </span>
+                    
                 </div>
-                <div class="col-md-3" style="margin:5px 0;">
-                  <button type="submit" class="btn btn-primary" style="background-color: #12192c;border: #394867;"> recherche </button>
-                </div>
-              </div>
-            </form>
-          </div>
+                <ul>
+                    <li class="active" id="link-dashboard">
+                        <a href="../php/Accueil.php" style="text-decoration: none">
+                            <i class="bx bxs-dashboard icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Dashboard</span>
+                        </a>
+                    </li>
+                    <li id="link-produits">
+                        <a href="../php/Produits.php" style="text-decoration: none">
+                            <i class="bx bx-package icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Produit</span>
+                        </a>
+                    </li>
+                    <li id="link-clients">
+                        <a href="../php/Clients.php" style="text-decoration: none">
+                            <i class="bx bx-user icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Clients</span>
+                        </a>
+                    </li>
+                    <li id="commandes-link">
+                        <a href="../php/Commandes.php" style="text-decoration: none">
+                            <i class="bx bx-receipt icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Commandes</span><i class='bx bx-down-arrow-alt'></i>
+                        </a>
+                    </li>
+                    <li id="link-vente">
+                        <a href="../php/vente.php" style="text-decoration: none">
+                            <i class="bx bx-cart-add icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Vente</span>
+                        </a>
+                    </li>
+                    <li id="link-fournisseur">
+                        <a href="../php/fornisseur.php" style="text-decoration: none">
+                            <i class="bx bxs-store icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Fournisseur</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </div>
+    </div>
+    <div class="main-content">
+        <header>
+            <div class="header-title">
+                <div class="humb">
+                    <label for="menutoggle" class="humb" style="cursor: pointer;">
+                        <i class="fa-solid fa-bars"></i>
+                    </label>
+                </div>
+                <div>
+                    <h4 style="letter-spacing:1px;">Clients</h4>
+                </div>
+            </div>
+            <div class="header-action"></div>
+        </header>
+        <main>
 
-      <?php
+
+            <div id="filterdiv" style="display: flex;justify-content: center;margin-right: 93px;margin-top: -10px;">
+                <form method="post" action="../php/Clients.php">
+                    <div class="row">
+                        <div class="col-md-9" style="margin:5px 0;">
+                            <input type="text" class="form-control" placeholder="Nom or Id, Prenom ..." name="filter_value">
+                        </div>
+                        <div class="col-md-3" style="margin:5px 0;">
+                            <button type="submit" class="btn btn-primary" style="background-color: #92B4EC;border: #92B4EC;" name="recherchebtn" required> recherche </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div id="filterdiv2">
+                <p>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="background-color: green;border: #394867;">
+                        Filter
+                    </button>
+                </p>
+                <div class="collapse" id="collapseExample" style="max-width: 400px;margin-right: 18px;">
+                    <div class="card card-body">
+                        <form method="post" action="../php/Clients.php">
+                            <div class="row">
+                                <div class="col-md-8" style="margin:5px 0;">
+                                    <input type="text" class="form-control" placeholder="Nom or Id, Prenom ..." name="filter_value">
+                                </div>
+                                <div class="col-md-3" style="margin:5px 0;">
+                                    <button type="submit" class="btn btn-primary" style="background-color: #92B4EC;border: #92B4EC;" name="recherchebtn"> recherche </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <?php
       $connection = mysqli_connect('localhost', 'root', '', 'gestion_stock');
       $sql = "SELECT * FROM client";
       $result = mysqli_query($connection, $sql);
@@ -116,56 +141,87 @@ include '../client/Function.php';
       $result = mysqli_query($connection, $sql);
       ?>
 
-      <h4 style="margin-top: 10px;">Liste de clients</h4>
-      <form action="../client/export-Client-list-pdf.php" method="post">
-      <button type="button" class="btn btn-primary" style="background-color:#394867;border: #394867;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><a href="../client/FormClient.php" style="text-decoration: none;color: white;">Ajouter</a></button>
-      <button type="submit" name="submit" class="btn btn-primary" style="background-color:#394867;border: #394867;" data-toggle="modal" id="btnedit" data-target="#fullcontent">EXPORT PDF</button>
-      <!--<input type="submit" name="submit" value="EXPORT PDF">-->
-      </form>
-      <div class="tables" style="margin-top: 10px;">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th scope="col" >ID</th>
-              <th scope="col" >Nom</th>
-              <th scope="col">Prénom</th>
-              <th scope="col" >Téléphone</th>
-              <th scope="col" >Adresse</th>
-              <th scope="col" >Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- gat data from database-->
+            <section class="home-table">
+                <h4>Liste de clients</h4>
+                <form action="../client/export-Client-list-pdf.php" method="post" style="margin-top: 12px;">
+                    <a href="../client/FormulaireClient.php"><button type="button" class="btn btn-primary" data-toggle="modal" id="btnedit" data-target="#fullcontent">Ajouter</button></a>
+                    <button type="submit" name="submit" class="btn btn-primary" data-toggle="modal" id="btnpdf" data-target="#fullcontent"><i class='bx bxs-file-pdf'></i> PDF</button>
+                    <!--<input type="submit" name="submit" value="EXPORT PDF">-->
+                </form>
+                <div class="tables">
+                    <table class="table table-hover" id="tabledatta">
+                        <thead style="
+                  background-color: #e9eefd;
+                  border-radius: 50px;
+                  position: sticky;
+                  top: 0;
+                ">
+                            <tr>
+                                <th scope="col" style="border:1px solid #ddd;">ID</th>
+                                <th scope="col"style="border:1px solid #ddd;">Nom</th>
+                                <th scope="col"style="border:1px solid #ddd;">Prénom</th>
+                                <th scope="col"style="border:1px solid #ddd;">Téléphone</th>
+                                <th colspan="col"style="border:1px solid #ddd;">Adresse</th>
+                                <th colspan="col"style="border:1px solid #ddd;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Add more customer rows as needed -->
+                            <!-- gat data from database-->
+                            <?php
 
-            <?php
-
-            if (mysqli_num_rows($result) > 0) {
-              while ($row = mysqli_fetch_object($result)) { ?>
-                <tr>
-                  <th scope="row" ><?php echo $row->ID ?></th>
-                  <td ><?php echo $row->Nom ?></td>
-                  <td ><?php echo $row->Prenom ?></td>
-                  <td ><?php echo $row->Telephone ?></td>
-                  <td ><?php echo $row->Address ?></td>
-                  <td >
-                    <button type="button" class="btn btn-primary" style="background-color: #697ea9;border: #697ea9;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><a href="../Fornisseur/FormFornisseur.php" style="text-decoration: none;color: white;"><i class='bx bx-pencil'></i></a></button>
-                    <button type="button" class="btn btn-primary" style="background-color: #ff6060;border: #ED2B2A;"><a href="" style="text-decoration: none;color: white;"><i class='bx bx-x-circle'></i></a></button>
-                  </td>
-                </tr>
-              <?php }
-            } else {
-              // No results found
-              ?>
-              <tr>
-                <td style="font-size:20px; background-color: #EB1D36;color: white;" colspan="6">"Client non trouvé"</td>
-              </tr>
-            <?php
-            }
-            ?>
-          </tbody>
-        </table>
-      </div>
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_object($result)) { ?>
+                                    <tr>
+                                        <th scope="row" style="border:1px solid #ddd;"><?php echo $row->ID ?></th>
+                                        <td style="border:1px solid #ddd;"><?php echo $row->Nom ?></td>
+                                        <td style="border:1px solid #ddd;"><?php echo $row->Prenom ?></td>
+                                        <td style="border:1px solid #ddd;"><?php echo $row->Telephone ?></td>
+                                        <td style="border:1px solid #ddd;"><?php echo $row->Address ?></td>
+                                        <td style="text-align: center;">
+                                        <div style="display: flex;justify-content: space-around;align-items: center;">
+                                            <a href="../client/Formulaire de Modification.php?id=<?php echo $row->ID; ?>" style="text-decoration: none;color: black;font-size: 1.2rem;" title="edit"><i class='bx bx-pencil'></i></a>
+                                            <a href="../client/deleteData.php?id=<?php echo $row->ID; ?>" style="text-decoration: none;color: red;font-size: 1.2rem;"><i class='bx bx-x-circle'></i></a>
+                                        </div>
+                                        </td>
+                                    </tr>
+                                <?php }
+                            } else {
+                                // No results found
+                                ?>
+                                <tr>
+                                    <td style="font-size:20px; background-color: #EB1D36;color: white;" colspan="6">"Client non trouvé"</td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
     </div>
+    <script>
+        var links = document.getElementsByTagName("li");
+
+        for (var i = 0; i < links.length; i++) {
+            links[i].addEventListener("click", function(event) {
+                localStorage.setItem("clickedLink", this.id);
+            });
+
+            var clickedLink = localStorage.getItem("clickedLink");
+            if (links[i].id === clickedLink) {
+                links[i].classList.add("activee");
+            }
+        }
+    </script>
+
+
+    <script src="https://kit.fontawesome.com/b6d8dff8c8.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </body>
 
 </html>

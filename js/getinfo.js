@@ -93,30 +93,67 @@ function addRow() {
     var row = document.createElement("tr");
 
     var productIdCell = document.createElement("td");
-    productIdCell.textContent = productId;
+    var productIdInput = document.createElement("input");
+    productIdInput.setAttribute("class", "form-control");
+    productIdInput.type = "text";
+    productIdInput.name = "productId[]";
+    productIdInput.value = productId;
+    productIdCell.appendChild(productIdInput);
     productIdCell.setAttribute("style", "border:1px solid #ddd;");
 
     var productNameCell = document.createElement("td");
-    productNameCell.textContent = productName;
+    var productNameInput = document.createElement("input");
+    productNameInput.type = "text";
+    productNameInput.setAttribute("class", "form-control");
+    productNameInput.name = "productName[]";
+    productNameInput.value = productName;
+    productNameCell.appendChild(productNameInput);
     productNameCell.setAttribute("style", "border:1px solid #ddd;");
 
     var priceCell = document.createElement("td");
-    priceCell.textContent = price;
+    var priceInput = document.createElement("input");
+    priceInput.type = "text";
+    priceInput.setAttribute("class", "form-control");
+    priceInput.name = "price[]";
+    priceInput.value = price;
+    priceCell.appendChild(priceInput);
     priceCell.setAttribute("style", "border:1px solid #ddd;");
 
     var quantityCell = document.createElement("td");
-    quantityCell.textContent = quantity;
+    var quantityInput = document.createElement("input");
+    quantityInput.type = "text";
+    quantityInput.setAttribute("class", "form-control");
+    quantityInput.name = "quantityy[]";
+    quantityInput.value = quantity;
+    quantityCell.appendChild(quantityInput);
     quantityCell.setAttribute("style", "border:1px solid #ddd;");
 
     var totalCell = document.createElement("td");
-    totalCell.textContent = total;
+    var totalInput = document.createElement("input");
+    totalInput.type = "text";
+    totalInput.setAttribute("class", "form-control");
+    totalInput.name = "totalpr[]";
+    totalInput.value = total;
+    totalCell.appendChild(totalInput);
     totalCell.setAttribute("style", "border:1px solid #ddd;");
+    
+    var removeButtonCell = document.createElement("td");
+    removeButtonCell.setAttribute("style", "border:1px solid #ddd;display:flex;justify-content: center;align-items: center;");
+    var removeButton = document.createElement("button");
+    removeButton.setAttribute("type", "button");
+    removeButton.setAttribute("class", "btn btn-outline-danger");
+    removeButton.innerHTML = "<i class='bx bx-x-circle'></i>";
+    removeButton.addEventListener("click", function() {
+        table.removeChild(row);
+    });
+    removeButtonCell.appendChild(removeButton);
 
     row.appendChild(productIdCell);
     row.appendChild(productNameCell);
     row.appendChild(priceCell);
     row.appendChild(quantityCell);
     row.appendChild(totalCell);
+    row.appendChild(removeButtonCell);
 
     table.appendChild(row);
 
@@ -126,4 +163,6 @@ function addRow() {
     document.getElementById("PrixField").value = "";
     document.getElementById("QuantiteField").value = "";
     document.getElementById("TotalField").value = "";
+    
+
 }
