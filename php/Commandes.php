@@ -1,7 +1,7 @@
 <?php
 session_start();
 include '../php/connexion.php';
-include '../client/Function2.php'
+
 
 ?>
 <!DOCTYPE html>
@@ -34,11 +34,11 @@ include '../client/Function2.php'
         <div class="sidebar-container">
             <div class="sidebar-menu">
                 <div class="logo">
-                    
+
                     <span>
-                    <p>Easly<!--<span style="font-size: 20px;color: white;border: 1px #396aff solid;background-color: #396aff;border-radius: 5px;padding: 2px 5px;margin-left: 5px;letter-spacing: 1px;">Stock</span></p>-->
+                        <p>Easly<!--<span style="font-size: 20px;color: white;border: 1px #396aff solid;background-color: #396aff;border-radius: 5px;padding: 2px 5px;margin-left: 5px;letter-spacing: 1px;">Stock</span></p>-->
                     </span>
-                    
+
                 </div>
                 <ul>
                     <li class="active" id="link-dashboard">
@@ -90,7 +90,11 @@ include '../client/Function2.php'
             <div class="header-action"></div>
         </header>
         <main>
-
+            <?php
+            $connection = mysqli_connect('localhost', 'root', '', 'gestion_stock');
+            $sql = "SELECT cmd.ID, c.Nom, c.Prenom, cmd.date, cmd.statu FROM commandes AS cmd JOIN client AS c ON cmd.ID_Client = c.ID;";
+            $result = mysqli_query($connection, $sql);
+            ?>
             <section class="home-table">
                 <h4>Liste de clients</h4>
                 <form action="../client/export-Client-list-pdf.php" method="post" style="margin-top: 12px;">
@@ -98,7 +102,44 @@ include '../client/Function2.php'
                     <button type="submit" name="submit" class="btn btn-primary" data-toggle="modal" id="btnpdf" data-target="#fullcontent"><i class='bx bxs-file-pdf'></i> PDF</button>
                     <!--<input type="submit" name="submit" value="EXPORT PDF">-->
                 </form>
-                
+                <div class="tables">
+                    <table class="table table-hover" id="tabledatta">
+                        <thead style="
+                  background-color: #e9eefd;
+                  border-radius: 50px;
+                  position: sticky;
+                  top: 0;
+                ">
+                            <tr>
+                                <th scope="col" style="border:1px solid #ddd;">ID</th>
+                                <th scope="col" style="border:1px solid #ddd;">Nom</th>
+                                <th scope="col" style="border:1px solid #ddd;">Prénom</th>
+                                <th scope="col" style="border:1px solid #ddd;">Date_commandes</th>
+                                <th colspan="col" style="border:1px solid #ddd;">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_object($result)) { ?>
+                                    <tr>
+                                        <th scope="row" style="border:1px solid #ddd;"><?php echo $row->ID ?></th>
+                                        <td style="border:1px solid #ddd;"><?php echo $row->Nom ?></td>
+                                        <td style="border:1px solid #ddd;"><?php echo $row->Prenom ?></td>
+                                        <td style="border:1px solid #ddd;"><?php echo $row->date ?></td>
+                                        <td style="border:1px solid #ddd;">
+                                            <?php
+                                            if ($row->statu == 1) {
+                                              ?> <span style="display: flex;justify-content: center;"><h6 style="color: white;text-align:center;background-color: #A4D0A4;padding:5px;width: 80px;border-radius: 50px;font-size: 14px;">active</h6></span>  <?php
+                                            } elseif ($row->statu == 2) {
+                                                ?> <span style="display: flex;justify-content: center;"><h6 style="color: white;text-align:center;background-color: #FFD95A;padding:5px;width: 80px;border-radius: 50px;font-size: 14px;">Pending</h6></span> <?php
+                                            }
+                                            ?>
+                                        </td>
+                                    </tr>
+                            <?php }
+                            } ?>
+                        </tbody>
 
 
 
