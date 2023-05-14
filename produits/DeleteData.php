@@ -31,4 +31,4 @@ if(isset($_GET['id'])) {
     }
 }
 
-header('Location: ../php/prod.php');
+header('Location: ../php/produits.php');

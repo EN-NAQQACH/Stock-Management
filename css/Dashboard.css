@@ -24,7 +24,7 @@
   height: 100%;
   width: 246px;
   /*width: 80px;*/
-  background: #12192c;
+  background: #0F3D3E;
   transition: all 0.5s ease;
 }
 .side-bar.active {
@@ -57,6 +57,11 @@
   transition: all 0.4s ease;
   letter-spacing: 0.7px;
 }
+.nav-links a:hover{
+  background-color: #203239;
+  color: #fff;
+}
+
 .nav-links a i {
   font-size: 20px;
   min-width: 50px;
@@ -173,7 +178,7 @@ margin-left: 10px;
   }
 }
 
-.nav-list .nav-link.active {
+.nav .nav-list .nav-link.active {
   background-color: #212a3e;
   color: white;
 }
@@ -194,6 +199,14 @@ margin-left: 10px;
   left: 240px;
   transition: all 0.4s ease;
   z-index: auto;
+}
+
+#tabledatta{
+  position: relative;
+}
+#tabledatta table thead{
+  position: sticky;
+  top: -0.1px;
 }
 
 /* formClientOper.php */
@@ -225,6 +238,9 @@ margin-left: 10px;
     width: calc(100% - 246px);
   }
 }
+
+
+
 @media (max-width: 1301px) {
   .home-content .overview-boxes {
    flex-wrap: wrap;
@@ -251,3 +267,33 @@ margin-left: 10px;
     min-height: 100vh;
   }
 }
+@media (max-width: 768px) {
+ #filterdiv form{
+  display: none;
+ }
+}
+@media (min-width: 768px) {
+  #filterdiv2 form{
+   display: none;
+  }
+  #filterdiv2 p{
+    display: none;
+   }
+ }
+
+ @media (max-width: 847px) {
+  #filterdiv3 form{
+    display: none;
+   }
+ }
+ @media (min-width: 847px) {
+  #filterdiv4{
+    display: none;
+  }
+  #filterdiv4 form{
+   display: none;
+  }
+  #filterdiv4 p{
+    display: none;
+   }
+ }

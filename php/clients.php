@@ -34,11 +34,11 @@ include '../client/Function2.php'
         <div class="sidebar-container">
             <div class="sidebar-menu">
                 <div class="logo">
-                    
+
                     <span>
-                    <p>Easly<!--<span style="font-size: 20px;color: white;border: 1px #396aff solid;background-color: #396aff;border-radius: 5px;padding: 2px 5px;margin-left: 5px;letter-spacing: 1px;">Stock</span></p>-->
+                        <p>Easly<!--<span style="font-size: 20px;color: white;border: 1px #396aff solid;background-color: #396aff;border-radius: 5px;padding: 2px 5px;margin-left: 5px;letter-spacing: 1px;">Stock</span></p>-->
                     </span>
-                    
+
                 </div>
                 <ul>
                     <li class="active" id="link-dashboard">
@@ -128,18 +128,18 @@ include '../client/Function2.php'
             </div>
 
             <?php
-      $connection = mysqli_connect('localhost', 'root', '', 'gestion_stock');
-      $sql = "SELECT * FROM client";
-      $result = mysqli_query($connection, $sql);
-      if (isset($_POST['recherchebtn'])) {
-        $searchkey = $_POST['filter_value'];
-        $sql = "SELECT * FROM client WHERE CONCAT (Nom, Prenom, Telephone, Address) LIKE '%$searchkey%'";
-      } else {
-        $sql = "SELECT * FROM client";
-        $searchkey = "";
-      }
-      $result = mysqli_query($connection, $sql);
-      ?>
+            $connection = mysqli_connect('localhost', 'root', '', 'gestion_stock');
+            $sql = "SELECT * FROM client";
+            $result = mysqli_query($connection, $sql);
+            if (isset($_POST['recherchebtn'])) {
+                $searchkey = $_POST['filter_value'];
+                $sql = "SELECT * FROM client WHERE CONCAT (Nom, Prenom, Telephone, Address) LIKE '%$searchkey%'";
+            } else {
+                $sql = "SELECT * FROM client";
+                $searchkey = "";
+            }
+            $result = mysqli_query($connection, $sql);
+            ?>
 
             <section class="home-table">
                 <h4>Liste de clients</h4>
@@ -158,11 +158,11 @@ include '../client/Function2.php'
                 ">
                             <tr>
                                 <th scope="col" style="border:1px solid #ddd;">ID</th>
-                                <th scope="col"style="border:1px solid #ddd;">Nom</th>
-                                <th scope="col"style="border:1px solid #ddd;">Prénom</th>
-                                <th scope="col"style="border:1px solid #ddd;">Téléphone</th>
-                                <th colspan="col"style="border:1px solid #ddd;">Adresse</th>
-                                <th colspan="col"style="border:1px solid #ddd;">Action</th>
+                                <th scope="col" style="border:1px solid #ddd;">Nom</th>
+                                <th scope="col" style="border:1px solid #ddd;">Prénom</th>
+                                <th scope="col" style="border:1px solid #ddd;">Téléphone</th>
+                                <th colspan="col" style="border:1px solid #ddd;">Adresse</th>
+                                <th colspan="col" style="border:1px solid #ddd;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -179,10 +179,10 @@ include '../client/Function2.php'
                                         <td style="border:1px solid #ddd;"><?php echo $row->Telephone ?></td>
                                         <td style="border:1px solid #ddd;"><?php echo $row->Address ?></td>
                                         <td style="text-align: center;">
-                                        <div style="display: flex;justify-content: space-around;align-items: center;">
-                                            <a href="../client/Formulaire de Modification.php?id=<?php echo $row->ID; ?>" style="text-decoration: none;color: black;font-size: 1.2rem;" title="edit"><i class='bx bx-pencil'></i></a>
-                                            <a href="../client/deleteData.php?id=<?php echo $row->ID; ?>" style="text-decoration: none;color: red;font-size: 1.2rem;"><i class='bx bx-x-circle'></i></a>
-                                        </div>
+                                            <div style="display: flex;justify-content: space-around;align-items: center;">
+                                                <a href="../client/Formulaire de Modification.php?id=<?php echo $row->ID; ?>" style="text-decoration: none;color: black;font-size: 1.2rem;" title="edit"><i class='bx bx-pencil'></i></a>
+                                                <a href="../client/deleteData.php?id=<?php echo $row->ID; ?>" style="text-decoration: none;color: red;font-size: 1.2rem;"><i class='bx bx-x-circle'></i></a>
+                                            </div>
                                         </td>
                                     </tr>
                                 <?php }

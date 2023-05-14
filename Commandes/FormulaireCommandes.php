@@ -8,8 +8,8 @@ $result = mysqli_query($connection, $sql);
 $sql = "SELECT ID FROM article";
 $result = mysqli_query($connection, $sql);
 
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -102,65 +102,86 @@ $result = mysqli_query($connection, $sql);
         <main>
 
             <section class="home-table">
-                <div class="tables">
-                    <table class="table table-bordred" id="frmClient">
-                        <thead>
-                            <tr>
-                                <th style="border:1px solid #ddd;">ID Client</th>
-                                <th style="border:1px solid #ddd;">Nom</th>
-                                <th style="border:1px solid #ddd;">Prenom</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="border:1px solid #ddd;">
-                                    <input type="text" class="form-control" id="Client" oninput="selectid()" placeholder="Enter ID">
-                                </td>
-                                <td style="border:1px solid #ddd;">
-                                    <input type="text" id="nomField" name="Nom" class="form-control"  disabled>
-                                </td>
-                                <td style="border:1px solid #ddd;">
-                                    <input type="text" id="prenomField" name="Prenom" class="form-control"  disabled>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <form action="../Commandes/InsertData.php" method="post">
+                    <button type="submit" class="btn btn-primary" name="ajoutercmd">Ajouter</button>
+                    <div class="tables">
+                        <h4>Commandes Info</h4>
+                        <table class="table table-bordred" id="frmClient">
+                            <thead style="
+                  background-color: #e9eefd;
+                  border-radius: 50px;">
+                                <tr>
+                                    <th style="border:1px solid #ddd;">ID Client</th>
+                                    <th style="border:1px solid #ddd;">Nom</th>
+                                    <th style="border:1px solid #ddd;">Prenom</th>
+                                    <th style="border:1px solid #ddd;">Date</th>
+                                    <th style="border:1px solid #ddd;">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="border:1px solid #ddd;">
+                                        <input type="text" class="form-control" name="ID_clinet" id="Client" oninput="selectid()" placeholder="Enter ID">
+                                    </td>
+                                    <td style="border:1px solid #ddd;">
+                                        <input type="text" id="nomField" name="Nom" class="form-control" disabled>
+                                    </td>
+                                    <td style="border:1px solid #ddd;">
+                                        <input type="text" id="prenomField" name="Prenom" class="form-control" disabled>
+                                    </td>
+                                    <td style="border:1px solid #ddd;">
+                                        <input type="date" id="prenomField" name="date" class="form-control">
+                                    </td>
+                                    <td style="border:1px solid #ddd;">
+                                        <select class="form-select" aria-label="Default select example" name="optionvalue">
+                                            <option value="1">Active</option>
+                                            <option value="2">Pending</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h4>Les Produits</h4>
+                        <table class="table table-bordred" id="frmProduct">
+                            <thead style="
+                  background-color: #e9eefd;
+                  border-radius: 50px;">
+                                <tr>
+                                    <th style="border:1px solid #ddd;">ID Produit</th>
+                                    <th style="border:1px solid #ddd;">Nom</th>
+                                    <th style="border:1px solid #ddd;">Prix</th>
+                                    <th style="border:1px solid #ddd;">Quantite</th>
+                                    <th style="border:1px solid #ddd;">Total</th>
+                                    <th style="border:1px solid #ddd;">Option</th>
+                                </tr>
+                            </thead>
 
-                    <table class="table table-bordred" id="frmProduct">
-                        <thead>
-                            <tr>
-                                <th style="border:1px solid #ddd;">ID Produit</th>
-                                <th style="border:1px solid #ddd;">Nom</th>
-                                <th style="border:1px solid #ddd;">Prix</th>
-                                <th style="border:1px solid #ddd;">Quantite</th>
-                                <th style="border:1px solid #ddd;">Total</th>
-                                <th style="border:1px solid #ddd;">Option</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="border:1px solid #ddd;">
-                                    <input type="text" class="form-control" id="Product" oninput="selectidproduct()" placeholder="Enter ID">
-                                </td>
-                                <td style="border:1px solid #ddd;">
-                                    <input type="text" id="NomField" name="Nom" class="form-control"  disabled>
-                                </td>
-                                <td style="border:1px solid #ddd;">
-                                    <input type="text" id="PrixField" name="prix" class="form-control"  disabled>
-                                </td>
-                                <td style="border:1px solid #ddd;">
-                                    <input type="number" id="QuantiteField" name="Quantite" class="form-control" oninput="calculateTotal()">
-                                </td>
-                                <td style="border:1px solid #ddd;">
-                                    <input type="text" id="TotalField" name="Prenom" class="form-control"  disabled>
-                                </td>
-                                <td style="border:1px solid #ddd;">
-                                <button type="button" class="btn btn-outline-success">Add</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                            <tbody id="myTable">
+                                <tr>
+                                    <td style="border:1px solid #ddd;">
+                                        <input type="text" class="form-control" name="idproduct" id="Product" oninput="selectidproduct()" placeholder="Enter ID">
+                                    </td>
+                                    <td style="border:1px solid #ddd;">
+                                        <input type="text" id="NomField" name="Nom" class="form-control" disabled>
+                                    </td>
+                                    <td style="border:1px solid #ddd;">
+                                        <input type="text" id="PrixField" name="prix" class="form-control" disabled>
+                                    </td>
+                                    <td style="border:1px solid #ddd;">
+                                        <input type="number" id="QuantiteField" name="Quantite" class="form-control" oninput="calculateTotal()" min="1">
+                                    </td>
+                                    <td style="border:1px solid #ddd;">
+                                        <input type="text" id="TotalField" name="total" class="form-control" disabled>
+                                    </td>
+                                    <td style="border:1px solid #ddd;">
+                                        <button type="button" name="calcul" class="btn btn-outline-success" id="addButton" onclick="addRow()">Add</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            
+                        </table>
+                    </div>
+                </form>
 
 
 

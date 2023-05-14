@@ -116,6 +116,7 @@ include '../php/connexion.php';
                                 <th scope="col" style="border:1px solid #ddd;">Prénom</th>
                                 <th scope="col" style="border:1px solid #ddd;">Date_commandes</th>
                                 <th colspan="col" style="border:1px solid #ddd;">Status</th>
+                                <th colspan="col" style="border:1px solid #ddd;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -130,11 +131,21 @@ include '../php/connexion.php';
                                         <td style="border:1px solid #ddd;">
                                             <?php
                                             if ($row->statu == 1) {
-                                              ?> <span style="display: flex;justify-content: center;"><h6 style="color: white;text-align:center;background-color: #A4D0A4;padding:5px;width: 80px;border-radius: 50px;font-size: 14px;">active</h6></span>  <?php
-                                            } elseif ($row->statu == 2) {
-                                                ?> <span style="display: flex;justify-content: center;"><h6 style="color: white;text-align:center;background-color: #FFD95A;padding:5px;width: 80px;border-radius: 50px;font-size: 14px;">Pending</h6></span> <?php
-                                            }
-                                            ?>
+                                            ?> <span style="display: flex;justify-content: center;">
+                                                    <h6 style="color: white;text-align:center;background-color: #A4D0A4;padding:5px;width: 80px;border-radius: 50px;font-size: 14px;">active</h6>
+                                                </span> <?php
+                                                    } elseif ($row->statu == 2) {
+                                                        ?> <span style="display: flex;justify-content: center;">
+                                                    <h6 style="color: white;text-align:center;background-color: #FFD95A;padding:5px;width: 80px;border-radius: 50px;font-size: 14px;">Pending</h6>
+                                                </span> <?php
+                                                    }
+                                                        ?>
+                                        </td>
+                                        <td style="text-align: center;">
+                                        <div style="display: flex;justify-content: space-around;align-items: center;">
+                                            <a href="../Commandes/Formulaire de Modification.php?id=<?php echo $row->ID; ?>" style="text-decoration: none;color: black;font-size: 1.2rem;" title="edit"><i class='bx bx-pencil'></i></a>
+                                            <a href="../client/deleteData.php?id=<?php echo $row->ID; ?>" style="text-decoration: none;color: red;font-size: 1.2rem;"><i class='bx bx-x-circle'></i></a>
+                                        </div>
                                         </td>
                                     </tr>
                             <?php }

@@ -20,6 +20,7 @@ body {
   font-family: "Poppins", sans-serif;
   scroll-behavior: smooth;
   list-style-type: none;
+  transition: all 0.2S;
 }
 
 .sidebar {

@@ -20,7 +20,7 @@ if (empty($_POST['Nom']) || empty($_POST['categorie']) || empty($_POST['quantite
     $date = $_POST['date'];
     $img_name= $_FILES['imageupload'] ['name'];
     $tmp_img_name= $_FILES['imageupload'] ['tmp_name'];
-    $folder = 'upload/';
+    $folder = '../upload/';
 
 
 
@@ -41,7 +41,7 @@ if (empty($_POST['Nom']) || empty($_POST['categorie']) || empty($_POST['quantite
         $req->execute(array($nom, $categorie, $quantite, $prix, $image, $date));
 
         if ($req->rowCount() != 0) {
-            move_uploaded_file($tmp_img_name,$folder.$img_name); 
+            move_uploaded_file($_FILES['imageupload'] ['tmp_name'],"../upload/".$img_name= $_FILES['imageupload'] ['name']); 
             $_SESSION['status'] = "Les données ont été insérées avec succès";
             $_SESSION['status_code'] = "success";
             $_POST = array(); // Clear the form fields

@@ -5,7 +5,7 @@ include '../php/connexion.php';
 
 function gatFornisseur()
 {
-    $SQL = "SELECT * FROM fornisseur";
+    $SQL = "SELECT * FROM fornisseur ";
     $REQUEST = $GLOBALS['connexion']->prepare($SQL);
     $REQUEST->execute();
     return $REQUEST->fetchAll();

@@ -1,255 +1,261 @@
 <?php
 session_start();
 include '../php/connexion.php';
-include '../produits/Function.php';
+include '../produits/Function2.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-  <link rel="stylesheet" href="../css/Dashboard.css">
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-  <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/product.css" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
+
+    <title>Dashboard</title>
+    <style>
+        .activee {
+            background-color: #e9eefd;
+            color: #396aff;
+        }
+
+        .activee a {
+            color: #396aff;
+        }
+    </style>
 </head>
 
 <body>
-  <!-- Modal 
-  <div class="modal fade" id="fullcontent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Produit</h5>
-          <div class="close" data-dismiss="modal" id="btnedit" aria-label="Close">
-            <span aria-hidden="true" style="font-size: 20px;cursor: pointer;">&times;</span>
-          </div>
+    <input type="checkbox" name="" id="menutoggle">
+    <div class="sidebar">
+        <div class="sidebar-container">
+            <div class="sidebar-menu">
+                <div class="logo">
+                    <span>
+                        <p>Easly</p>
+                    </span>
+                </div>
+                <ul>
+                    <li class="active" id="link-dashboard">
+                        <a href="../php/Accueil.php" style="text-decoration: none">
+                            <i class="bx bxs-dashboard icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Dashboard</span>
+                        </a>
+                    </li>
+                    <li id="link-produits">
+                        <a href="../php/Produits.php" style="text-decoration: none">
+                            <i class="bx bx-package icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Produit</span>
+                        </a>
+                    </li>
+                    <li id="link-clients">
+                        <a href="../php/Clients.php" style="text-decoration: none">
+                            <i class="bx bx-user icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Clients</span>
+                        </a>
+                    </li>
+                    <li id="commandes-link">
+                        <a href="../php/Commandes.php" style="text-decoration: none">
+                            <i class="bx bx-receipt icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Commandes</span><i class='bx bx-down-arrow-alt'></i>
+                        </a>
+                    </li>
+                    <li id="link-vente">
+                        <a href="../php/vente.php" style="text-decoration: none">
+                            <i class="bx bx-cart-add icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Vente</span>
+                        </a>
+                    </li>
+                    <li id="link-fournisseur">
+                        <a href="../php/fornisseur.php" style="text-decoration: none">
+                            <i class="bx bxs-store icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Fournisseur</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="formGroupExampleInput">nom_article</label>
-              <input type="text" class="form-control" id="formGroupExampleInput" placeholder="nom_article">
-            </div>
-            <div class="form-group">
-              <label for="formGroupExampleInput2">Catégorie</label>
-              <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Catégorie">
-            </div>
-            <div class="form-group">
-              <label for="formGroupExampleInput2">Quantité</label>
-              <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Quantité">
-            </div>
-            <div class="form-group">
-              <label for="formGroupExampleInput2">Prix_unitaire</label>
-              <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Prix_unitaire">
-            </div>
-            <div class="form-group">
-              <label for="formGroupExampleInput2">Date_fabrication</label>
-              <input type="date" class="form-control" id="formGroupExampleInput2" placeholder="Date_fabrication">
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
     </div>
-  </div>
-  <style>
-    .form-group{
-      margin:8px;
-    }
-    .form-group label{
-      padding-bottom: 4px;
-    }
-    .modal-footer .btn.btn-primary{
-      background-color:#536486;
-      border: #536486;
-    }
-    .modal-footer .btn.btn-primary:hover{
-      background-color:#394867;
-      border: #394867;
-    }
-
-
-  </style>-->
-  <!-- Button trigger modal -->
-
-  <section class="side-bar" id="navbar">
-    <div class="logo">
-      <span>
-        <h4>Easly</h4>
-      </span>
-    </div>
-    <nav class="nav">
-      <div class="nav-links">
-        <a href="../php/Dashboard.php" class="nav-link" data-page="dashboard">
-          <i class="bx bxs-dashboard icon-link" id="icons"></i>
-          <span class="name">Tableau de bord</span>
-        </a>
-        <a href="../php/produits.php" class="nav-link">
-          <i class="bx bx-package icon-link" id="icons"></i>
-          <span class="name">Produit</span>
-        </a>
-        <a href="../php/clients.php" class="nav-link">
-          <i class="bx bx-user icon-link" id="icons"></i>
-          <span class="name">Clients</span>
-        </a>
-        <a href="../php/Commandes.php" class="nav-link">
-          <i class="bx bx-receipt icon-link" id="icons"></i>
-          <span class="name">Commandes</span>
-        </a>
-        <a href="../php/vente.php" class="nav-link">
-          <i class="bx bx-cart-add icon-link" id="icons"></i>
-          <span class="name">Vente</span>
-        </a>
-        <a href="../php/fornisseur.php" class="nav-link">
-          <i class="bx bxs-store icon-link" id="icons"></i>
-          <span class="name">Fornisseur</span>
-        </a>
-        <a href="#" class="nav-link">
-          <i class="bx bx-log-out icon-link" id="icons"></i>
-          <span>Déconnexion</span>
-        </a>
-      </div>
-    </nav>
-  </section>
-  <section class="home-section">
-    <nav>
-      <div class="sidebar-button">
-        <i class="bx bx-menu sidebarBtn"></i>
-        <span class="dashboard">Produits</span>
-      </div>
-    </nav>
-    <div class="home-content" id="contentall">
-
-      <div id="filterdiv3">
-        <form style="margin-right:0;overflow: hidden;" method="post" action="../php/produits.php">
-          <div class="row" style="margin-right:-80px;">
-            <div class="col-md-3" style="margin:5px 0;">
-              <input type="text" class="form-control" placeholder="nom or id ..." name="filter_value">
-            </div>
-            <div class="col-md-3" style="margin:5px 0;">
-              <input type="text" class="form-control" placeholder="date de début" onfocus="(this.type = 'date')" onblur="(this.type = 'text')" name="Fromdate">
-            </div>
-            <div class="col-md-3" style="margin:5px 0;">
-              <input type="text" class="form-control" placeholder="date de fin" onfocus="(this.type = 'date')" onblur="(this.type = 'text')" name="todate">
-            </div>
-            <div class="col-md-3" style="margin:5px 0;">
-              <button type="submit" class="btn btn-primary" style="background-color: #0E8388;border: #394867;" name="recherchebtn"> recherche </button>
-            </div>
-          </div>
-        </form>
-      </div>
-
-      <div id="filterdiv4">
-        <p>
-          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="background-color: green;border: #394867;">
-            Filter
-          </button>
-        </p>
-        <div class="collapse" id="collapseExample" style="max-width: 700px;margin-right: 18px;">
-          <div class="card card-body">
-            <form>
-              <div class="row">
-                <div class="col-md-3" style="margin:5px 0;">
-                  <input type="text" class="form-control" placeholder="nom or id ..." name="filter_value">
+    <div class="main-content">
+        <header>
+            <div class="header-title">
+                <div class="humb">
+                    <label for="menutoggle" class="humb" style="cursor: pointer;">
+                        <i class="fa-solid fa-bars"></i>
+                    </label>
                 </div>
-                <div class="col-md-3" style="margin:5px 0;">
-                  <input type="text" class="form-control" placeholder="date de début" onfocus="(this.type = 'date')" onblur="(this.type = 'text')" name="Fromdate">
+                <div>
+                    <h4 style="letter-spacing:1px;">Dashboard</h4>
                 </div>
-                <div class="col-md-3" style="margin:5px 0;">
-                  <input type="text" class="form-control" placeholder="date de fin" onfocus="(this.type = 'date')" onblur="(this.type = 'text')" name="todate">
-                </div>
-                <div class="col-md-3" style="margin:5px 0;">
-                  <button type="submit" class="btn btn-primary" style="background-color: #12192c;border: #394867;" name="recherchebtn"> recherche </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
+            </div>
+            <div class="header-action"></div>
+        </header>
+        <main>
 
-      <?php
-      $connection = mysqli_connect('localhost', 'root', '', 'gestion_stock');
-      $sql = "SELECT * FROM article";
-      $result = mysqli_query($connection, $sql);
-      if (isset($_POST['filter_value'])) {
-        $searchkey = $_POST['filter_value'];
-        $sql = "SELECT * FROM article WHERE  Nom_Article LIKE '%$searchkey%'";
-      } else {
-        $sql = "SELECT * FROM article";
-      }
-      if (isset($_POST['Fromdate']) && isset($_POST['todate'])) {
-        $from = $_POST['Fromdate'];
-        $to = $_POST['todate'];
-        $sql = "SELECT * FROM article WHERE  DateFabrication BETWEEN '$from' AND '$to'";
-      }
-      $result = mysqli_query($connection, $sql);
-      ?>
+            <div id="filterdiv3" style="display: flex;justify-content: center;">
+                <form style="margin-right:0;" method="post" action="../php/Produits.php">
+                    <div class="row" style="margin-right:-80px;">
+                        <div class="col-md-3" style="margin:5px 0;">
+                            <input type="text" class="form-control" placeholder="nom or id ..." name="filter_value">
+                        </div>
+                        <div class="col-md-3" style="margin:5px 0;">
+                            <input type="text" class="form-control" placeholder="date de début" onfocus="(this.type = 'date')" onblur="(this.type = 'text')" name="Fromdate">
+                        </div>
+                        <div class="col-md-3" style="margin:5px 0;">
+                            <input type="text" class="form-control" placeholder="date de fin" onfocus="(this.type = 'date')" onblur="(this.type = 'text')" name="todate">
+                        </div>
+                        <div class="col-md-3" style="margin:5px 0;">
+                            <button type="submit" class="btn btn-primary" style="background-color: #92B4EC;border: #92B4EC;" name="recherchebtn"> recherche </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
 
-      <h4 style="margin-top: 10px;">Liste de produits</h4>
-      <a href="../produits/FormProduit.php" style="text-decoration: none;color: white;"><button type="button" class="btn btn-primary" style="background-color:#2E4F4F;border: #394867;" data-toggle="modal" data-target="#fullcontent">Ajouter</button></a>
-      <div class="tables" style="margin-top: 10px;" id="tabledatta">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">nom_article</th>
-              <th scope="col">Catégorie</th>
-              <th scope="col">Quantité</th>
-              <th scope="col">Prix_unitaire (DH)</th>
-              <th scope="col">Image</th>
-              <th scope="col">Date_fabrication</th>
-              <th scope="col">action</th>
-            </tr>
-          </thead>
-          <tbody >
+            <div id="filterdiv4">
+                <p>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="background-color: green;border: #394867;">
+                        Filter
+                    </button>
+                </p>
+                <div class="collapse" id="collapseExample" style="max-width: 700px;margin-right: 18px;">
+                    <div class="card card-body">
+                        <form method="post" action="../php/Produits.php">
+                            <div class="row">
+                                <div class="col-md-3" style="margin:5px 0;">
+                                    <input type="text" class="form-control" placeholder="nom or id ..." name="filter_value">
+                                </div>
+                                <div class="col-md-3" style="margin:5px 0;">
+                                    <input type="text" class="form-control" placeholder="date de début" onfocus="(this.type = 'date')" onblur="(this.type = 'text')" name="Fromdate">
+                                </div>
+                                <div class="col-md-3" style="margin:5px 0;">
+                                    <input type="text" class="form-control" placeholder="date de fin" onfocus="(this.type = 'date')" onblur="(this.type = 'text')" name="todate">
+                                </div>
+                                <div class="col-md-3" style="margin:5px 0;">
+                                    <button type="submit" class="btn btn-primary" style="background-color: #12192c;border: #394867;" name="recherchebtn"> recherche </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
             <?php
-
-            if (mysqli_num_rows($result) > 0) {
-              while ($row = mysqli_fetch_object($result)) { ?>
-                <tr >
-                  <th scope="row" ><?php echo $row->ID ?></th>
-                  <td><?php echo $row->Nom_Article ?></td>
-                  <td><?php echo $row->Categorie ?></td>
-                  <td><?php echo $row->Quantite ?></td>
-                  <td><?php echo $row->PrixUnitaire ?></td>
-                  <td > 
-                    <?php if (!empty($row->image)) { ?>
-                      <img src="<?php echo "../produits/upload/".$row->image ?>" alt="Product Image" width="50px" height="50px" style="border-radius: 10%;">
-                    <?php } else { ?>
-                      No image
-                    <?php } ?>
-                    
-                  </td>
-                  <td><?php echo $row->DateFabrication ?></td>
-                  <td>
-                    <button type="button" class="btn btn-primary" style="background-color: #697ea9;border: #697ea9;" data-toggle="modal" id="btnedit" data-target="#fullcontent"><a href="../Fornisseur/FormFornisseur.php" style="text-decoration: none;color: white;"><i class='bx bx-pencil'></i></a></button>
-                    <button type="button" class="btn btn-primary" style="background-color: #ff6060;border: #ED2B2A;"><a href="" style="text-decoration: none;color: white;"><i class='bx bx-x-circle'></i></a></button>
-                  </td>
-                </tr>
-              <?php }
+            $connection = mysqli_connect('localhost', 'root', '', 'gestion_stock');
+            $sql = "SELECT * FROM article";
+            $result = mysqli_query($connection, $sql);
+            if (isset($_POST['recherchebtn'])) {
+                $search = $_POST['filter_value'];
+                $sql = "SELECT * FROM article WHERE CONCAT (Nom_Article, Categorie) LIKE '%$search%' ";
             } else {
-              // No results found
-              ?>
-              <tr>
-                <td style="font-size:20px; background-color: #EB1D36;color: white;" colspan="6">"produit non trouvé"</td>
-              </tr>
-            <?php
+                $sql = "SELECT * FROM article";
             }
+            if (isset($_POST['Fromdate']) && isset($_POST['todate'])) {
+                $from = $_POST['Fromdate'];
+                $to = $_POST['todate'];
+                $sql = "SELECT * FROM article WHERE  DateFabrication BETWEEN '$from' AND '$to'";
+            }
+            $result = mysqli_query($connection, $sql);
             ?>
 
-          </tbody>
-        </table>
-      </div>
+
+            <section class="home-table">
+                <h4>Liste de clients</h4>
+                <form action="../produits/export-products-list-pdf.php" method="post" style="margin-top: 12px;">
+                    <a href="../produits/FormulaireProduit.php"><button type="button" class="btn btn-primary" data-toggle="modal" id="btnedit" data-target="#fullcontent">Ajouter</button></a>
+                    <button type="submit" name="submit" class="btn btn-primary" data-toggle="modal" id="btnpdf" data-target="#fullcontent"><i class='bx bxs-file-pdf'></i> PDF</button>
+                    <!--<input type="submit" name="submit" value="EXPORT PDF">-->
+                </form>
+                <div class="tables">
+                    <table class="table table-hover" id="tabledatta">
+                        <thead style="
+                  background-color: #e9eefd;
+                  border-radius: 50px;
+                  position: sticky;
+                  top: 0;
+                ">
+                            <tr>
+                                <th scope="col" style="border:1px solid #ddd;">ID</th>
+                                <th scope="col" style="border:1px solid #ddd;">nom_article</th>
+                                <th scope="col" style="border:1px solid #ddd;">Catégorie</th>
+                                <th scope="col" style="border:1px solid #ddd;">Quantité</th>
+                                <th scope="col" style="border:1px solid #ddd;">Prix (DH)</th>
+                                <th scope="col" style="border:1px solid #ddd;">Image</th>
+                                <th scope="col" style="border:1px solid #ddd;">Date_fabrication</th>
+                                <th scope="col" style="text-align:center;border:1px solid #ddd;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_object($result)) { ?>
+                                    <tr>
+                                        <th scope="row" style="border:1px solid #ddd;"><?php echo $row->ID ?></th>
+                                        <td style="border:1px solid #ddd;"><?php echo $row->Nom_Article ?></td>
+                                        <td style="border:1px solid #ddd;"><?php echo $row->Categorie ?></td>
+                                        <td style="border:1px solid #ddd;">
+                                            <?php
+                                            if ($row->Quantite == 0) {
+                                            ?> <span style="display: flex;justify-content: center;">
+                                                    <h6 style="color: white;text-align:center;background-color: #A4D0A4;padding:5px;width: 80px;border-radius: 50px;font-size: 14px;">Out of Stock</h6>
+                                                </span> <?php
+                                                    } else {
+                                                         echo $row->Quantite;
+                                                    }
+                                                        ?>
+
+                                        </td>
+                                        <td style="border:1px solid #ddd;"><?php echo $row->PrixUnitaire ?></td>
+                                        <td style="border:1px solid #ddd;"><?php echo $row->DateFabrication ?></td>
+                                        <td style="border:1px solid #ddd;">
+                                            <?php if (!empty($row->image)) { ?>
+                                                <div style="display: flex;justify-content: center;">
+                                                    <img src="<?php echo "../upload/" . $row->image ?>" alt="Product Image" width="50px" height="50px" style="border-radius: 10%;">
+                                                </div>
+                                            <?php } else { ?>
+                                                No image
+                                            <?php } ?>
+
+                                        </td>
+                                        <td style="text-align: center;border:1px solid #ddd;">
+                                            <a href="../produits/Formulaire de Modification.php?id=<?php echo $row->ID; ?>" style="text-decoration: none;color: black;font-size: 1.2rem;" title="edit"><i class='bx bx-pencil'></i></a>
+                                            <a href="../produits/DeleteData.php?id=<?php echo $row->ID; ?>" style="text-decoration: none;color: red;font-size: 1.2rem;"><i class='bx bx-x-circle'></i></a>
+                                        </td>
+                                    </tr>
+                                <?php }
+                            } else {
+                                // No results found
+                                ?>
+                                <tr>
+                                    <td style="font-size:20px; background-color: #EB1D36;color: white;" colspan="6">"produit non trouvé"</td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
     </div>
+    <script>
+        var links = document.getElementsByTagName("li");
+
+        for (var i = 0; i < links.length; i++) {
+            links[i].addEventListener("click", function(event) {
+                localStorage.setItem("clickedLink", this.id);
+            });
+
+            var clickedLink = localStorage.getItem("clickedLink");
+            if (links[i].id === clickedLink) {
+                links[i].classList.add("activee");
+            }
+        }
+    </script>
+
+    <script src="https://kit.fontawesome.com/b6d8dff8c8.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </body>
 
 </html>
-
 <?php
 include '../php/script.php';
 ?>

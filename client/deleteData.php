@@ -16,5 +16,5 @@ if(isset($_GET['id'])) {
     }
 }
 
-header('Location: ../php/clie.php');
+header('Location: ../php/clients.php');
 ?>
