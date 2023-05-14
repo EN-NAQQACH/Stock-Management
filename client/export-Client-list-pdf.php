@@ -1,6 +1,6 @@
 <?php
 require_once ("../php/connexion.php");
-require_once ("../vendor/autoload.php");
+require_once("../dompdf/autoload.inc.php");
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
@@ -11,7 +11,7 @@ if(isset($_POST["submit"])){
     $result = mysqli_query($connection, $sql);
     $html = '';
     $html .= '
-    <h1 style="margin-bottom:17px;margin-top:-20px;text-align:left;color:#5f9bce;">EASLY INFORMATIQUE</h1>
+    <img src="../php/LOGO.png"style="width:120px;height:120px">
     <div style="border:1px solid #ddd;margin-bottom:15px;padding:0 9px;">
     <p style="font-size:14px;">Tél: (+212) 0528820175</p>
     <p style="font-size:14px;">Tél: (+212) 0666-068756</p>
@@ -48,9 +48,7 @@ if(mysqli_num_rows($result)>0){
     </tr>
     ';
 }
-$options = new Options();
-$options->set('defaultFont', 'Courier');
-$dompdf = new Dompdf($options);
+
   $html .= '</table>';
   $dompdf = new Dompdf();
   $dompdf->loadHtml($html);
