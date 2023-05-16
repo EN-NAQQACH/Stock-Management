@@ -11,8 +11,9 @@ if(isset($_POST["submit"])){
     $result = mysqli_query($connection, $sql);
     $html = '';
     $html .= '
-    <img src="../php/LOGO.png"style="width:120px;height:120px">
-    <div style="border:1px solid #ddd;margin-bottom:15px;padding:0 9px;">
+    
+    <img src="../php/LOGO.png"style="width:190px;height:190px">
+    <div style="border-top:1px solid #ddd;margin-bottom:25px;padding:0 7px;margin-top:-80px">
     <p style="font-size:14px;">Tél: (+212) 0528820175</p>
     <p style="font-size:14px;">Tél: (+212) 0666-068756</p>
     <p style="font-size:14px;">Email:easly@easlyinfo.com</p>
@@ -20,12 +21,12 @@ if(isset($_POST["submit"])){
     </div>
     <h2 style="text-align:center;border:1px solid #ddd;margin-bottom:20px;padding:9px;">Liste des clients</h2>
     <table style="width:100%;border-collapse:collapse">
-      <tr>
-        <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;">ID</th>
-        <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;">Nom</th>
-        <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;">Prénom</th>
-        <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;">Téléphone</th>
-        <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;">Adresse</th>
+      <tr style="background-color:#3da4f0;">
+        <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;color:white;">ID</th>
+        <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;color:white;">Nom</th>
+        <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;color:white;">Prénom</th>
+        <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;color:white;">Téléphone</th>
+        <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;color:white;">Adresse</th>
       </tr>
     ';
 if(mysqli_num_rows($result)>0){
@@ -48,7 +49,9 @@ if(mysqli_num_rows($result)>0){
     </tr>
     ';
 }
-
+$options = new Options();
+$options->set('defaultFont', 'Courier');
+$dompdf = new Dompdf($options);
   $html .= '</table>';
   $dompdf = new Dompdf();
   $dompdf->loadHtml($html);

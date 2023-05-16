@@ -103,23 +103,19 @@ $result = mysqli_query($connection, $sql);
             <?php
             $connection = mysqli_connect('localhost', 'root', '', 'gestion_stock');
             $id = $_GET['id'];
-            $sql = "SELECT DISTINCT c.ID , c.Nom, c.Prenom , cmd.Date , p.ID , p.Nom_Article , ac.Quantite, ac.Price, ac.Total
+            $sql = "SELECT DISTINCT c.ID , c.Nom, c.Prenom , cmd.Date, cmd.statu
             FROM commandes AS cmd
             JOIN client AS c ON cmd.ID_Client = c.ID
-            JOIN `article de commande` AS ac ON cmd.ID = ac.id_commandes
-            JOIN article AS p ON ac.id_article = p.ID
-            WHERE cmd.ID = $id
+           WHERE cmd.ID = $id
             GROUP BY c.ID;
             ";
             $result = mysqli_query($connection, $sql);
             ?>
             <section class="home-table">
-                <form action="../Commandes/InsertData.php" method="post">
-                    <button type="submit" class="btn btn-primary" name="ajoutercmd">Ajouter</button>
+                <form action="../Commandes/Updatedata.php" method="post">
+                    <button type="submit" class="btn btn-primary" name="ajoutercmd">edit</button>
                     <div class="tables">
-                        <div class="form-group" style="margin-top: 20px; display: none;">
-                            <input type="hidden" class="form-control" id="formGroupExampleInput" name="id" value="<?php echo $_GET['id']; ?>">
-                        </div>
+                    <input type="hidden" class="form-control" name="id" value="<?php echo $_GET['id']; ?>">
                         <h4>Commandes Info</h4>
                         <table class="table table-bordred" id="frmClient">
                             <thead style="
@@ -138,22 +134,26 @@ $result = mysqli_query($connection, $sql);
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td style="border:1px solid #ddd;"><?php echo $row->ID ?>
-                                    </td>
-                                    <td style="border:1px solid #ddd;"><?php echo $row->Nom ?>
-                                    </td>
-                                    <td style="border:1px solid #ddd;"><?php echo $row->Prenom ?>
-                                    </td>
-                                    <td style="border:1px solid #ddd;"><?php echo $row->Date ?>
+                                    <td style="border:1px solid #ddd;">
+                                    <input type="text" id="nomField" name="ID_clinet" class="form-control" disabled value="<?php echo $row->ID ?>">
                                     </td>
                                     <td style="border:1px solid #ddd;">
-                                        <select class="form-select" aria-label="Default select example" name="optionvalue">
-                                            <option value="1">Active</option>
-                                            <option value="2">Pending</option>
+                                    <input type="text" id="prenomField" name="Nom" class="form-control" disabled value="<?php echo $row->Nom ?>">
+                                    </td>
+                                    <td style="border:1px solid #ddd;">
+                                    <input type="text" id="prenomField" name="Prenom" class="form-control" value="<?php echo $row->Prenom ?>">
+                                    </td>
+                                    <td style="border:1px solid #ddd;">
+                                    <input type="date" id="prenomField" name="date" class="form-control" value="<?php echo $row->Date ?>">
+                                    </td>
+                                    <td style="border:1px solid #ddd;">
+                                        <select class="form-select" aria-label="Default select example" name="optionvalue" >
+                                            <option value="1" <?php if ($row->statu == 1) echo 'selected'; ?>>Terminée</option>
+                                            <option value="2" <?php if ($row->statu == 2) echo 'selected'; ?>>En attente</option>
                                         </select>
                                     </td>
                                 </tr>
-                                <?php }}?>
+                                <?php }} ?>
                             </tbody>
                         </table>
 
@@ -183,35 +183,25 @@ $result = mysqli_query($connection, $sql);
                                     <th style="border:1px solid #ddd;">Action</th>
                                 </tr>
                             </thead>
-
-                            <tbody >
+                            <tbody>
+                            <div class="form-group" style="margin-top: 20px; display: none;">
+                        </div>
                             <?php
                             if (mysqli_num_rows($result) > 0) {
                                 while ($row = mysqli_fetch_object($result)) { ?>
-                                <tr>
+                                <tr id="<?php echo $row->ID ?>">
                                     <td style="border:1px solid #ddd;"><?php echo $row->ID ?></td>
                                     <td style="border:1px solid #ddd;"><?php echo $row->Nom_Article ?></td>
                                     <td style="border:1px solid #ddd;"><?php echo $row->Quantite ?></td>
                                     <td style="border:1px solid #ddd;"><?php echo $row->Price ?></td>
                                     <td style="border:1px solid #ddd;"><?php echo $row->Total ?></td>
                                     <td style="border-right:1px solid #ddd;display: flex;justify-content: center;align-items: center;">
-                                    <button type="button" name="calcul" class="btn btn-outline-danger" ><i class='bx bx-x-circle'></i></button>
+                                    <button type="button" name="calcul" class="btn btn-outline-danger" onclick="deleterow(<?php echo $row->ID ; ?>)"></button>
                                     </td>
                                 </tr>
                                 <?php }}?>
                             </tbody>
                         </table>
-
-
-
-
-
-
-
-
-
-
-
 
                         <h4>Les Produits</h4>
                         <table class="table table-bordred" id="frmProduct">
@@ -258,40 +248,36 @@ $result = mysqli_query($connection, $sql);
                 </form>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </section>
         </main>
     </div>
+    
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
+    <!-- script for add rows with properties-->
     <script src="../js/getinfo.js"></script>
+
+    <!-- script for remove rows from database-->
+    <script src="../js/DeleteRow.js"></script>
+
+    <script>
+    $(document).ready(function() {
+      $("#myForm").submit(function(event) {
+        event.preventDefault();
+        var formData = $(this).serialize();
+        $.ajax({
+          url: "../php/connexion.php",
+          type: "POST",
+          data: formData,
+          success: function(response) {
+            console.log(response);
+          },
+        });
+      });
+    });
+  </script>
+
     <script>
         var links = document.getElementsByTagName("li");
 
@@ -306,15 +292,12 @@ $result = mysqli_query($connection, $sql);
             }
         }
     </script>
-
-
     <script src="https://kit.fontawesome.com/b6d8dff8c8.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </body>
-
 </html>
 
 <?php
