@@ -101,7 +101,7 @@ $result = mysqli_query($connection, $sql);
         </header>
         <main>
             <?php
-            $connection = mysqli_connect('localhost', 'root', '', 'gestion_stock');
+            $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
             $id = $_GET['id'];
             $sql = "SELECT DISTINCT c.ID , c.Nom, c.Prenom , cmd.Date, cmd.statu
             FROM commandes AS cmd
@@ -158,7 +158,7 @@ $result = mysqli_query($connection, $sql);
                         </table>
 
                         <?php
-            $connection = mysqli_connect('localhost', 'root', '', 'gestion_stock');
+            $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
             $id = $_GET['id'];
             $sql = "SELECT p.ID , p.Nom_Article , ac.Quantite, ac.Price, ac.Total
             FROM commandes AS cmd
@@ -170,7 +170,7 @@ $result = mysqli_query($connection, $sql);
             $result = mysqli_query($connection, $sql);
             ?>
 
-                        <table class="table table-bordred" id="frmProduct">
+                        <table class="table table-bordred">
                             <thead>
                             
 
@@ -196,19 +196,17 @@ $result = mysqli_query($connection, $sql);
                                     <td style="border:1px solid #ddd;"><?php echo $row->Price ?></td>
                                     <td style="border:1px solid #ddd;"><?php echo $row->Total ?></td>
                                     <td style="border-right:1px solid #ddd;display: flex;justify-content: center;align-items: center;">
-                                    <button type="button" name="calcul" class="btn btn-outline-danger" onclick="deleterow(<?php echo $row->ID ; ?>)"></button>
+                                    <button type="button" name="calcul" class="btn btn-outline-danger" onclick="deleterow(<?php echo $row->ID ; ?>)"><i class='bx bx-x-circle'></i></button>
                                     </td>
                                 </tr>
                                 <?php }}?>
                             </tbody>
                         </table>
-
+                       
+       
                         <h4>Les Produits</h4>
                         <table class="table table-bordred" id="frmProduct">
-                            <thead style="
-                  background-color: #e9eefd;
-                  border-radius: 50px;">
-
+                            <thead style="background-color: #e9eefd;border-radius: 50px;">
                                 <tr>
                                     <th style="border:1px solid #ddd;">ID Produit</th>
                                     <th style="border:1px solid #ddd;">Nom</th>
@@ -218,24 +216,23 @@ $result = mysqli_query($connection, $sql);
                                     <th style="border:1px solid #ddd;">Option</th>
                                 </tr>
                             </thead>
-
+                            
                             <tbody id="myTable">
-
                                 <tr>
                                     <td style="border:1px solid #ddd;">
-                                        <input type="text" class="form-control" name="idproduct" id="Product" oninput="selectidproduct()" placeholder="Enter ID">
+                                        <input type="text" class="form-control" name="idarticl" id="Product" oninput="selectidproduct()" placeholder="Enter ID">
                                     </td>
                                     <td style="border:1px solid #ddd;">
-                                        <input type="text" id="NomField" name="Nom" class="form-control" disabled>
+                                        <input type="text" id="NomField" name="Nomartic" class="form-control" >
                                     </td>
                                     <td style="border:1px solid #ddd;">
-                                        <input type="text" id="PrixField" name="prix" class="form-control" disabled>
+                                        <input type="text" id="PrixField" name="PRI" class="form-control" disabled>
                                     </td>
                                     <td style="border:1px solid #ddd;">
-                                        <input type="number" id="QuantiteField" name="Quantite" class="form-control" oninput="calculateTotal()" min="1">
+                                        <input type="number" id="QuantiteField" name="Quantitearticl" class="form-control" oninput="calculateTotal()" min="1">
                                     </td>
                                     <td style="border:1px solid #ddd;">
-                                        <input type="text" id="TotalField" name="total" class="form-control" disabled>
+                                        <input type="text" id="TotalField" name="tota" class="form-control" disabled>
                                     </td>
                                     <td style="border:1px solid #ddd;">
                                         <button type="button" name="calcul" class="btn btn-outline-success" id="addButton" onclick="addRow()">Add</button>
@@ -254,10 +251,45 @@ $result = mysqli_query($connection, $sql);
     
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
 
-    <!-- script for add rows with properties-->
-    <script src="../js/getinfo.js"></script>
+            var html = '<tr><td style="border:1px solid #ddd;"><input type="text" class="form-control" name="idarticle[]" id="Product" oninput="selectidproduct()" placeholder="Enter ID"></td><td style="border:1px solid #ddd;"><input type="text" id="NomField" name="Nomarticle[]" class="form-control" disabled></td><td style="border:1px solid #ddd;"><input type="text" id="PrixField" name="PRIX[]" class="form-control" disabled></td><td style="border:1px solid #ddd;"><input type="number" id="QuantiteField" name="Quantitearticle[]" class="form-control" oninput="calculateTotal()" min="1"></td><td style="border:1px solid #ddd;"><input type="text" id="TotalField" name="total[]" class="form-control" disabled></td><td style="border-right:1px solid #ddd;display: flex;justify-content: center;align-items: center;"><button type="button" name="calcul" class="btn btn-outline-danger""><i class="bx bx-x-circle"></i></button></td>';
 
+            $("#addButton").click(function() {
+                var productId = $("#Product").val();
+                var productName = $("#NomField").val();
+                var price = $("#PrixField").val();
+                var quantity = $("#QuantiteField").val();
+                var total = $("#TotalField").val();
+                if (productId === '' || productName === '' || price === '' || quantity === '' || total === '') {
+                    // Check if any of the fields are empty before adding the row
+                    return;
+                }
+
+                var newRow = $(html); // Create a new row using the html string
+                newRow.find('#Product').val(productId); // Set the value of the "Product" input
+                newRow.find('#NomField').val(productName); // Set the value of the "NomField" input
+                newRow.find('#PrixField').val(price); // Set the value of the "PrixField" input
+                newRow.find('#QuantiteField').val(quantity); // Set the value of the "QuantiteField" input
+                newRow.find('#TotalField').val(total); // Set the value of the "TotalField" input
+                
+                newRow.find('button.btn-outline-danger').click(function() {
+                    $(this).closest('tr').remove(); // Remove the row when the button is clicked
+                });
+
+                $("#frmProduct").append(newRow); // Append the new row to the table
+
+                document.getElementById("Product").value = "";
+                document.getElementById("NomField").value = "";
+                document.getElementById("PrixField").value = "";
+                document.getElementById("QuantiteField").value = "";
+                document.getElementById("TotalField").value = "";
+            })
+        })
+    </script>
+        <!-- script for add rows with properties-->
+        <script src="../js/getinfo.js"></script>
     <!-- script for remove rows from database-->
     <script src="../js/DeleteRow.js"></script>
 

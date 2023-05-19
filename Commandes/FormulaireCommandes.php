@@ -2,7 +2,7 @@
 session_start();
 include '../php/connexion.php';
 
-$connection = mysqli_connect('localhost', 'root', '', 'gestion_stock');
+$connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
 $sql = "SELECT ID FROM client";
 $result = mysqli_query($connection, $sql);
 $sql = "SELECT ID FROM article";
@@ -103,13 +103,11 @@ $result = mysqli_query($connection, $sql);
 
             <section class="home-table">
                 <form action="../Commandes/InsertData.php" method="post">
-                    <button type="submit" class="btn btn-primary" name="ajoutercmd">Ajouter</button>
+                    <button type="submit" class="btn btn-primary" name="addorder">Ajouter</button>
                     <div class="tables">
                         <h4>Commandes Info</h4>
                         <table class="table table-bordred" id="frmClient">
-                            <thead style="
-                  background-color: #e9eefd;
-                  border-radius: 50px;">
+                            <thead style="background-color: #e9eefd;border-radius: 50px;">
                                 <tr>
                                     <th style="border:1px solid #ddd;">ID Client</th>
                                     <th style="border:1px solid #ddd;">Nom</th>
@@ -134,8 +132,8 @@ $result = mysqli_query($connection, $sql);
                                     </td>
                                     <td style="border:1px solid #ddd;">
                                         <select class="form-select" aria-label="Default select example" name="optionvalue">
-                                            <option value="1">Active</option>
-                                            <option value="2">Pending</option>
+                                            <option value="1">Terminée</option>
+                                            <option value="2">En attente</option>
                                         </select>
                                     </td>
                                 </tr>
@@ -143,9 +141,7 @@ $result = mysqli_query($connection, $sql);
                         </table>
                         <h4>Les Produits</h4>
                         <table class="table table-bordred" id="frmProduct">
-                            <thead style="
-                  background-color: #e9eefd;
-                  border-radius: 50px;">
+                            <thead style="background-color: #e9eefd;border-radius: 50px;">
                                 <tr>
                                     <th style="border:1px solid #ddd;">ID Produit</th>
                                     <th style="border:1px solid #ddd;">Nom</th>
@@ -155,69 +151,40 @@ $result = mysqli_query($connection, $sql);
                                     <th style="border:1px solid #ddd;">Option</th>
                                 </tr>
                             </thead>
-
+                            
                             <tbody id="myTable">
                                 <tr>
                                     <td style="border:1px solid #ddd;">
-                                        <input type="text" class="form-control" name="idproduct" id="Product" oninput="selectidproduct()" placeholder="Enter ID">
+                                        <input type="text" class="form-control" name="" id="Product" oninput="selectidproduct()" placeholder="Enter ID">
                                     </td>
                                     <td style="border:1px solid #ddd;">
-                                        <input type="text" id="NomField" name="Nom" class="form-control" disabled>
+                                        <input type="text" id="NomField" name="" class="form-control" disabled>
                                     </td>
                                     <td style="border:1px solid #ddd;">
-                                        <input type="text" id="PrixField" name="prix" class="form-control" disabled>
+                                        <input type="text" id="PrixField" name="p" class="form-control" disabled>
                                     </td>
                                     <td style="border:1px solid #ddd;">
-                                        <input type="number" id="QuantiteField" name="Quantite" class="form-control" oninput="calculateTotal()" min="1">
+                                        <input type="number" id="QuantiteField" name="Qty" class="form-control" oninput="calculateTotal()" min="1">
                                     </td>
                                     <td style="border:1px solid #ddd;">
-                                        <input type="text" id="TotalField" name="total" class="form-control" disabled>
+                                        <input type="text" id="TotalField" name="ttl" class="form-control" disabled>
                                     </td>
                                     <td style="border:1px solid #ddd;">
                                         <button type="button" name="calcul" class="btn btn-outline-success" id="addButton" onclick="addRow()">Add</button>
                                     </td>
                                 </tr>
                             </tbody>
-                            
+
                         </table>
                     </div>
                 </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </section>
         </main>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-
     <script src="../js/getinfo.js"></script>
+    <script src="../js/DeleteRow.js"></script>
     <script>
         var links = document.getElementsByTagName("li");
 
@@ -232,17 +199,16 @@ $result = mysqli_query($connection, $sql);
             }
         }
     </script>
-
-
     <script src="https://kit.fontawesome.com/b6d8dff8c8.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+    <script>
+        flatpickr("input[type=date]", {});
+    </script>
 </body>
 
 </html>
-
 <?php
 include '../php/script.php';
 ?>
