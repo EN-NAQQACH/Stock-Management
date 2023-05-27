@@ -1,14 +1,14 @@
 <?php
-include '../php/connexion.php';
+include '../easly/connexion.php';
 session_start();
-
+use FontLib\Table\Type\post;
 var_dump($_POST);
 
 // Check if the textfields are not empty
 if (empty($_POST['Nom']) || empty($_POST['Prenom']) || empty($_POST['Telephone']) || empty($_POST['Adress'])) {
     $_SESSION['status'] = " Veuillez saisir les données";
     $_SESSION['status_code'] = "info";
-
+    header('Location: ../client/FormulaireClient.php');
 } elseif(isset($_POST['BTNAJOUTER'])) {
 
     // Get data from textfield
@@ -25,7 +25,7 @@ if (empty($_POST['Nom']) || empty($_POST['Prenom']) || empty($_POST['Telephone']
     if ($req->rowCount() > 0) {
         $_SESSION['status'] = "Les données existent déjà dans la base de données";
         $_SESSION['status_code'] = "warning";
-    
+        header('Location: ../client/FormulaireClient.php');
     } else {
 
         // Insert data to table Client
@@ -42,13 +42,14 @@ if (empty($_POST['Nom']) || empty($_POST['Prenom']) || empty($_POST['Telephone']
             $_SESSION['status'] = "Les données ont été insérées avec succès";
             $_SESSION['status_code'] = "success";
             $_POST = array(); // Clear the form fields
+            header('Location: ../client/FormulaireClient.php');
         
         } else {
             $_SESSION['status'] = "Echec d'insertion des données";
             $_SESSION['status_code'] = "error";
-        
+            header('Location: ../client/FormulaireClient.php');
         }
     }
 }
 
-header('Location: ../php/clients.php');
+header('Location: ../client/FormulaireClient.php');

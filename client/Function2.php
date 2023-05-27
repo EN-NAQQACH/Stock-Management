@@ -1,5 +1,5 @@
 <?php
-include '../php/connexion.php';
+include '../easly/connexion.php';
 
 //vfunction to get data from table CLIENT
 

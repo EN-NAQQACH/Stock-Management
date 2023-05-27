@@ -1,5 +1,5 @@
 <?php
-include '../php/connexion.php';
+include '../easly/connexion.php';
 session_start();
 
 if(isset($_GET['id'])) {
@@ -16,5 +16,5 @@ if(isset($_GET['id'])) {
     }
 }
 
-header('Location: ../php/clients.php');
+header('Location: ../easly/clients.php');
 ?>

@@ -1,12 +1,12 @@
 <?php
-include '../php/connexion.php';
+include '../easly/connexion.php';
 session_start();
 
 if(isset($_GET['id'])) {
     $id = $_GET['id'];
 
     // Delete data from table Client
-    $sql = "DELETE FROM $database.fornisseur WHERE id = ?";
+    $sql = "DELETE FROM $database.fornisseur WHERE ID = ?";
     $req = $connexion->prepare($sql);
     $req->execute(array($id));
 
@@ -16,5 +16,5 @@ if(isset($_GET['id'])) {
     }
 }
 
-header('Location: ../php/Fornisseur.php');
+header('Location: ../easly/Fornisseur.php');
 ?>

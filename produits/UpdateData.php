@@ -1,5 +1,5 @@
 <?php
-include '../php/connexion.php';
+include '../easly/connexion.php';
 session_start();
 
 var_dump($_POST);
@@ -30,7 +30,7 @@ if (empty($_POST['Nom']) || empty($_POST['categorie']) || empty($_POST['quantite
         $update_file = $old_image;
     }
 
-    $connection = mysqli_connect('localhost', 'root', '', 'gestion_stock');
+    $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
     $sql = "UPDATE $database.article SET Nom_Article ='$nom', Categorie ='$categorie', Quantite ='$quantite', PrixUnitaire ='$prix', image ='$update_file' , DateFabrication ='$date' WHERE id ='$id'";
     $run = mysqli_query($connection, $sql);
 
@@ -48,4 +48,4 @@ if (empty($_POST['Nom']) || empty($_POST['categorie']) || empty($_POST['quantite
     }
 }
 
-header('Location: ../php/produits.php');
+header('Location: ../easly/produits.php');

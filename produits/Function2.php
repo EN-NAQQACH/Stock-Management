@@ -1,5 +1,5 @@
 <?php
-include '../php/connexion.php';
+include '../easly/connexion.php';
 
 //function to get data from table article
 

@@ -1,5 +1,5 @@
 <?php
-include '../php/connexion.php';
+include '../easly/connexion.php';
 session_start();
 
 if(isset($_GET['id'])) {

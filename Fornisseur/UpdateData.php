@@ -1,5 +1,5 @@
 <?php
-include '../php/connexion.php';
+include '../easly/connexion.php';
 session_start();
 
 var_dump($_POST);
@@ -35,4 +35,4 @@ if (empty($_POST['Nom']) || empty($_POST['Prenom']) || empty($_POST['Telephone']
     }
 }
 
-header('Location: ../php/Fornisseur.php');
+header('Location: ../easly/Fornisseur.php');

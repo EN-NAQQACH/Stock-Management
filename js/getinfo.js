@@ -7,7 +7,32 @@ function selectid() {
         document.getElementById("prenomField").value = "";
     } else {
         jq.ajax({
-            url: '../php/fetch_data.php',
+            url: '../easly/fetch_data.php',
+            method: 'POST',
+            data: {
+                id: x
+            },
+            dataType: 'JSON',
+            success: function (data) {
+                if (data.Nom && data.Prenom) {
+                    document.getElementById("nomField").value = data.Nom;
+                    document.getElementById("prenomField").value = data.Prenom;
+                } else {
+                    document.getElementById("nomField").value = "";
+                    document.getElementById("prenomField").value = "";
+                }
+            }
+        });
+    }
+}
+function selectfr() {
+    var x = document.getElementById('fr').value;
+    if (x === '') {
+        document.getElementById("nomField").value = "";
+        document.getElementById("prenomField").value = "";
+    } else {
+        jq.ajax({
+            url: '../easly/fetch-data-fr.php',
             method: 'POST',
             data: {
                 id: x
@@ -37,7 +62,7 @@ function selectidproduct() {
         document.getElementById("QuantiteField").value = "";
     } else {
         jqq.ajax({
-            url: '../php/fetch_data_produit.php',
+            url: '../easly/fetch_data_produit.php',
             method: 'POST',
             data: {
                 id: xx
@@ -96,7 +121,7 @@ function addRow() {
     var productIdInput = document.createElement("input");
     productIdInput.setAttribute("class", "form-control");
     productIdInput.type = "text";
-    productIdInput.name = "productId[]";
+    productIdInput.name = "idar[]";
     productIdInput.value = productId;
     productIdCell.appendChild(productIdInput);
     productIdCell.setAttribute("style", "border:1px solid #ddd;");
@@ -105,7 +130,7 @@ function addRow() {
     var productNameInput = document.createElement("input");
     productNameInput.type = "text";
     productNameInput.setAttribute("class", "form-control");
-    productNameInput.name = "productName[]";
+    productNameInput.name = "Nom[]";
     productNameInput.value = productName;
     productNameCell.appendChild(productNameInput);
     productNameCell.setAttribute("style", "border:1px solid #ddd;");
@@ -114,7 +139,7 @@ function addRow() {
     var priceInput = document.createElement("input");
     priceInput.type = "text";
     priceInput.setAttribute("class", "form-control");
-    priceInput.name = "price[]";
+    priceInput.name = "prix[]";
     priceInput.value = price;
     priceCell.appendChild(priceInput);
     priceCell.setAttribute("style", "border:1px solid #ddd;");
@@ -123,7 +148,7 @@ function addRow() {
     var quantityInput = document.createElement("input");
     quantityInput.type = "text";
     quantityInput.setAttribute("class", "form-control");
-    quantityInput.name = "quantityy[]";
+    quantityInput.name = "Qty[]";
     quantityInput.value = quantity;
     quantityCell.appendChild(quantityInput);
     quantityCell.setAttribute("style", "border:1px solid #ddd;");
@@ -132,7 +157,7 @@ function addRow() {
     var totalInput = document.createElement("input");
     totalInput.type = "text";
     totalInput.setAttribute("class", "form-control");
-    totalInput.name = "totalpr[]";
+    totalInput.name = "ttl[]";
     totalInput.value = total;
     totalCell.appendChild(totalInput);
     totalCell.setAttribute("style", "border:1px solid #ddd;");

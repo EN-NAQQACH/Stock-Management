@@ -1,5 +1,5 @@
 <?php
-include '../php/connexion.php';
+include '../easly/connexion.php';
 session_start();
 
 var_dump($_POST);
@@ -52,4 +52,4 @@ if (empty($_POST['Nom']) || empty($_POST['categorie']) || empty($_POST['quantite
     }
 }
 
-header('Location: ../php/produits.php');
+header('Location: ../produits/FormulaireProduit.php');

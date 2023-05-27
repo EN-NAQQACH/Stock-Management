@@ -1,12 +1,12 @@
 <?php
-require_once ("../php/connexion.php");
+require_once ("../easly/connexion.php");
 require_once ("../vendor/autoload.php");
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
 extract($_POST);
 if(isset($_POST["submit"])){
-    $connection = mysqli_connect('localhost', 'root', '', 'gestion_stock');
+    $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
     $sql = "SELECT * FROM fornisseur";
     $result = mysqli_query($connection, $sql);
     $html = '';

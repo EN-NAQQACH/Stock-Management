@@ -1,18 +1,18 @@
 <?php
-require_once ("../php/connexion.php");
+require_once ("../easly/connexion.php");
 require_once("../dompdf/autoload.inc.php");
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
 extract($_POST);
 if(isset($_POST["submit"])){
-    $connection = mysqli_connect('localhost', 'root', '', 'gestion_stock');
+    $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
     $sql = "SELECT * FROM client";
     $result = mysqli_query($connection, $sql);
     $html = '';
     $html .= '
     
-    <img src="../php/LOGO.png"style="width:190px;height:190px">
+    <img src="../easly/LOGO.png"style="width:190px;height:190px">
     <div style="border-top:1px solid #ddd;margin-bottom:25px;padding:0 7px;margin-top:-80px">
     <p style="font-size:14px;">Tél: (+212) 0528820175</p>
     <p style="font-size:14px;">Tél: (+212) 0666-068756</p>
