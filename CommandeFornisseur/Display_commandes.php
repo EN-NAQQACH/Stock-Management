@@ -41,7 +41,7 @@ include '../easly/connexion.php';
                 <div class="navlist">
                     <div class="nav-items">
                         <a href="../easly/Accueil.php" style="text-decoration: none" class="nav-link">
-                            <i class="bx bxs-dashboard icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Dashboard</span>
+                            <i class="bx bxs-dashboard icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Tableau de bord</span>
                         </a>
                         <a href="../easly/Produits.php" style="text-decoration: none" class="nav-link">
                             <i class="bx bx-package icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Produit</span>
@@ -57,21 +57,21 @@ include '../easly/connexion.php';
                             </a>
                             <div class="nav-dropdown-collapse">
                                 <div class="dropdown-content">
-                                <a href="../easly/Commandes.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Commandes Clients</a>
-                                <a href="../easly/CommandeFornisseur.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Commandes Fornisseurs</a>
+                                    <a href="../easly/Commandes.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Commandes Clients</a>
+                                    <a href="../easly/CommandeFornisseur.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Commandes Fornisseurs</a>
                                 </div>
                             </div>
                         </div>
                         <div class="nav-dropdown">
-                        <a href="../easly/Facture.php" style="text-decoration: none" class="nav-link">
-                            <i class="bx bx-cart-add icon-link" id="icons"></i>
-                            <span style="font-weight: 500;letter-spacing: 1px;">Facture</span>
-                            <i class='bx bx-down-arrow-alt arrow-down'></i>
-                        </a>
+                            <a href="../easly/Facture.php" style="text-decoration: none" class="nav-link">
+                                <i class="bx bx-cart-add icon-link" id="icons"></i>
+                                <span style="font-weight: 500;letter-spacing: 1px;">Facture</span>
+                                <i class='bx bx-down-arrow-alt arrow-down'></i>
+                            </a>
                             <div class="nav-dropdown-collapse">
                                 <div class="dropdown-content">
-                                <a href="../easly/Facture.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Clients</a>
-                                <a href="../easly/FactureFornisseur.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Fornisseurs</a>
+                                    <a href="../easly/Facture.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Clients</a>
+                                    <a href="../easly/FactureFornisseur.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Fornisseurs</a>
                                 </div>
                             </div>
                         </div>
@@ -102,7 +102,7 @@ include '../easly/connexion.php';
         <main>
 
 
-        <input type="hidden" class="form-control" id="formGroupExampleInput" name="id" value="<?php echo $_GET['id']; ?>">
+            <input type="hidden" class="form-control" id="formGroupExampleInput" name="id" value="<?php echo $_GET['id']; ?>">
             <?php
             $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
             if (!$connection) {
@@ -128,9 +128,9 @@ include '../easly/connexion.php';
             while ($row = mysqli_fetch_assoc($result)) {
                 $rows .= '<tr>';
                 $rows .= '<td style="border:1px solid #ddd;padding:9px;text-align:left;">' . $row['Nom_Article'] . '</td>';
-                $rows .= '<td style="border:1px solid #ddd;padding:9px;text-align:left;">' . $row['price'] . '</td>';
+                $rows .= '<td style="border:1px solid #ddd;padding:9px;text-align:left;">' . number_format($row['price'], 2) . '</td>';
                 $rows .= '<td style="border:1px solid #ddd;padding:9px;text-align:left;">' . $row['Quantite'] . '</td>';
-                $rows .= '<td style="border:1px solid #ddd;padding:9px;text-align:left;">' . $row['Total'] . '</td>';
+                $rows .= '<td style="border:1px solid #ddd;padding:9px;text-align:left;">' . number_format($row['Total'], 2) . '</td>';
                 $rows .= '</tr>';
             }
             ?>
@@ -155,29 +155,29 @@ include '../easly/connexion.php';
                                             Tél: (+212) 0666-068756<br>
                                         </td>
                                         <?php
-            $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
-            if (!$connection) {
-                die('Database connection failed: ' . mysqli_connect_error());
-            }
-            ?>
-            <?php
-            $idc = $_GET['id'];
-            $query = "SELECT f.Nom, f.Prenom, cmd.date
+                                        $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
+                                        if (!$connection) {
+                                            die('Database connection failed: ' . mysqli_connect_error());
+                                        }
+                                        ?>
+                                        <?php
+                                        $idc = $_GET['id'];
+                                        $query = "SELECT f.Nom, f.Prenom, cmd.date
           FROM commandesfornissuer AS cmd
           JOIN fornisseur AS f ON cmd.ID_Fornisseur = f.ID
           JOIN `article de commande fornisseur` AS ac ON cmd.No = ac.id_commandes
           JOIN article AS p ON ac.id_article = p.ID
           WHERE cmd.No = $idc GROUP BY f.Nom, f.Prenom, cmd.date;";
 
-            $result = mysqli_query($connection, $query);
-            ?>
-                                    <?php
-            if (mysqli_num_rows($result) != 0) {
-                while ($row = mysqli_fetch_object($result)) { ?>
-                                        <td style="text-align: right;">
-                                            commande # <?php echo $_GET['id']; ?> <br>
-                                            <?php echo $row->date ?><br>
-                                        </td>
+                                        $result = mysqli_query($connection, $query);
+                                        ?>
+                                        <?php
+                                        if (mysqli_num_rows($result) != 0) {
+                                            while ($row = mysqli_fetch_object($result)) { ?>
+                                                <td style="text-align: right;">
+                                                    commande # <?php echo $_GET['id']; ?> <br>
+                                                    <?php echo $row->date ?><br>
+                                                </td>
 
                                     </tr>
                                 </tbody>
@@ -187,13 +187,15 @@ include '../easly/connexion.php';
                                     <tr>
                                         <td style="text-align:left;">
                                             <h5 style="line-height:10px;background-color: #3da4f0;display:inline-block;padding:10px 20px 10px 10px;">Commander par,</h5><br>
-                                            <?php echo $row->Nom ;$row->Prenom ?>,<br>
+                                            <?php echo $row->Nom;
+                                                $row->Prenom ?>,<br>
                                         </td>
-                                        <?php }}?>
+                                <?php }
+                                        } ?>
 
-                                        <td style="text-align: right;">
+                                <td style="text-align: right;">
 
-                                        </td>
+                                </td>
 
                                     </tr>
                                 </tbody>
@@ -214,12 +216,31 @@ include '../easly/connexion.php';
                                     <?php echo $rows; ?>
                                 </tbody>
                             </table>
-                            <div style="width:100%;">
-                                <div style="width:50%;padding:0px;margin:0px 20px;float:right;">
-                                    <div style="text-align:right">
+                            <?php
+                            $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
+                            $idc = $_GET['id'];
+                            $query = "SELECT SUM(ac.Total) AS total_sum
+            FROM commandesfornissuer AS cmd
+            JOIN fornisseur AS f ON cmd.ID_Fornisseur = f.ID
+            JOIN `article de commande fornisseur` AS ac ON cmd.No = ac.id_commandes
+            JOIN article AS p ON ac.id_article = p.ID
+            WHERE cmd.No = $idc
+            LIMIT 1;
+            ";
+                            $result = mysqli_query($connection, $query);
+                            ?>
+                            <?php
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_object($result)) { ?>
+                                    <div style="width:100%;">
+                                        <div style="width:50%;padding:0px;margin:0px 20px;float:right;">
+                                            <div style="text-align:right">
+                                                <span style="width:150px;display: inline-block;">Total:&nbsp;</span> <span style="width:150px;display: inline-block;font-weight: bold;"> <?php echo number_format($row->total_sum, 2) ?> DH</span><br>
+                                            </div>
+                                    <?php }
+                            } ?>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
                         </div>
 
 

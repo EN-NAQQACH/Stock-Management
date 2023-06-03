@@ -42,7 +42,7 @@ include '../client/Function.php';
                 <div class="navlist">
                     <div class="nav-items">
                         <a href="../easly/Accueil.php" style="text-decoration: none" class="nav-link">
-                            <i class="bx bxs-dashboard icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Dashboard</span>
+                            <i class="bx bxs-dashboard icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Tableau de bord</span>
                         </a>
                         <a href="../easly/Produits.php" style="text-decoration: none" class="nav-link">
                             <i class="bx bx-package icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Produit</span>
@@ -125,12 +125,6 @@ include '../client/Function.php';
                             <div class="form-group" style="margin-top: 20px;">
                                 <label for="formGroupExampleInput" style="margin-bottom:5px;">Nom</label>
                                 <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nom" name="Nom" autocomplete="off" value="<?php echo $client['Nom']; ?>">
-                            </div>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="form-group" style="margin-top: 20px;">
-                                <label for="formGroupExampleInput2" style="margin-bottom:5px;">Prénom</label>
-                                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Prénom" name="Prenom" autocomplete="off" value="<?php echo $client['Prenom']; ?>">
                             </div>
                         </div>
                         <div class="col-md-7">

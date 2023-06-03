@@ -57,7 +57,7 @@ $result = mysqli_query($connection, $sql);
                 <div class="navlist">
                     <div class="nav-items">
                         <a href="../easly/Accueil.php" style="text-decoration: none" class="nav-link">
-                            <i class="bx bxs-dashboard icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Dashboard</span>
+                            <i class="bx bxs-dashboard icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Tableau de bord</span>
                         </a>
                         <a href="../easly/Produits.php" style="text-decoration: none" class="nav-link">
                             <i class="bx bx-package icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Produit</span>
@@ -121,15 +121,15 @@ $result = mysqli_query($connection, $sql);
                 <form action="../CommandeFornisseur/InsertData.php" method="post">
                     <button type="submit" class="btn btn-primary" name="addorder">Ajouter</button>
                     <div class="tables">
-                        <h4>Commandes Info</h4>
+                        <h4>Commande</h4>
                         <table class="table table-bordred" id="frmClient">
                             <thead style="background-color: #e9eefd;border-radius: 50px;">
                                 <tr>
-                                    <th style="border:1px solid #ddd;">ID Client</th>
+                                    <th style="border:1px solid #ddd;">No Fornisseur</th>
                                     <th style="border:1px solid #ddd;">Nom</th>
                                     <th style="border:1px solid #ddd;">Prenom</th>
                                     <th style="border:1px solid #ddd;">Date</th>
-                                    <th style="border:1px solid #ddd;">Status</th>
+                                    <th style="border:1px solid #ddd;">État</th>
                                 </tr>
                             </thead>
                             <tbody>

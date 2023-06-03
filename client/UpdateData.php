@@ -13,16 +13,14 @@ if (empty($_POST['Nom']) || empty($_POST['Prenom']) || empty($_POST['Telephone']
     // Get data from textfield
     $id = $_GET['id'];
     $nom = trim($_POST['Nom']);
-    $prenom = trim($_POST['Prenom']);
     $telephone = trim($_POST['Telephone']);
     $adresse = trim($_POST['Adress']);
 
     // Update data in table Client
-    $sql = "UPDATE $database.client SET Nom = ?, Prenom = ?, Telephone = ?, Address = ? WHERE ID = ?";
+    $sql = "UPDATE $database.client SET Nom = ?, Telephone = ?, Address = ? WHERE ID = ?";
     $req = $connexion->prepare($sql);
     $req->execute(array(
         $_POST['Nom'],
-        $_POST['Prenom'],
         $_POST['Telephone'],
         $_POST['Adress'],
         $_POST['id'] // Assuming there is an 'id' field in your form

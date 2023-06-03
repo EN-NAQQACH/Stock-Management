@@ -57,7 +57,7 @@ $result = mysqli_query($connection, $sql);
                 <div class="navlist">
                     <div class="nav-items">
                         <a href="../easly/Accueil.php" style="text-decoration: none" class="nav-link">
-                            <i class="bx bxs-dashboard icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Dashboard</span>
+                            <i class="bx bxs-dashboard icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Tableau de bord</span>
                         </a>
                         <a href="../easly/Produits.php" style="text-decoration: none" class="nav-link">
                             <i class="bx bx-package icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Produit</span>
@@ -132,7 +132,7 @@ $result = mysqli_query($connection, $sql);
                     <button type="submit" class="btn btn-primary" name="ajoutercmd">edit</button>
                     <div class="tables">
                         <input type="hidden" class="form-control" name="id" value="<?php echo $_GET['id']; ?>">
-                        <h4>Commandes Info</h4>
+                        <h4>Commande</h4>
                         <table class="table table-bordred" id="frmClient">
                             <thead style="
                   background-color: #e9eefd;
@@ -141,11 +141,11 @@ $result = mysqli_query($connection, $sql);
                                 if (mysqli_num_rows($result) > 0) {
                                     while ($row = mysqli_fetch_object($result)) { ?>
                                         <tr>
-                                            <th style="border:1px solid #ddd;">ID Client</th>
+                                            <th style="border:1px solid #ddd;">No Fornisseur</th>
                                             <th style="border:1px solid #ddd;">Nom</th>
                                             <th style="border:1px solid #ddd;">Prenom</th>
                                             <th style="border:1px solid #ddd;">Date</th>
-                                            <th style="border:1px solid #ddd;">Status</th>
+                                            <th style="border:1px solid #ddd;">État</th>
                                         </tr>
                             </thead>
                             <tbody>
@@ -269,33 +269,12 @@ $result = mysqli_query($connection, $sql);
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script>
-        var je = jQuery.noConflict();
-
-        function deleterow(id) {
-            je.ajax({
-                url: '../Commandes/functionn.php',
-                method: 'POST',
-                data: {
-                    id: id,
-                    action: 'delete'
-                },
-                dataType: 'JSON',
-                success: function(response) {
-                    if (response == 1) {
-                        alert("Row deleted");
-                        document.getElementById(id).style.display = "none";
-                    } else if (response == 0) {
-                        alert("Error");
-                    }
-                }
-            });
-        }
-    </script>
+    <script src="../js/Deleterow2.js"></script>
     </script>
     <!-- script for add rows with properties-->
     <script src="../js/getinfo.js"></script>
     <!-- script for remove rows from database-->
+    
 
 
     <script>
