@@ -24,7 +24,6 @@ if(isset($_POST["submit"])){
       <tr style="background-color:#3da4f0;">
         <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;color:white;">ID</th>
         <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;color:white;">Nom</th>
-        <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;color:white;">Prénom</th>
         <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;color:white;">Téléphone</th>
         <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;color:white;">Adresse</th>
       </tr>
@@ -36,7 +35,6 @@ if(mysqli_num_rows($result)>0){
         <tr>
         <th style="border:1px solid #ddd;padding:9px;text-align:left;">'.$data["ID"].'</th>
         <td style="border:1px solid #ddd;padding:9px;text-align:left;">'.$data["Nom"].'</td>
-        <td style="border:1px solid #ddd;padding:9px;text-align:left;">'.$data["Prenom"].'</td>
         <td style="border:1px solid #ddd;padding:9px;text-align:left;">'.$data["Telephone"].'</td>
         <td style="border:1px solid #ddd;padding:9px;text-align:left;">'.$data["Address"].'</td>
       </tr>
