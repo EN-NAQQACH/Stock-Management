@@ -8,7 +8,7 @@ use Dompdf\Options;
 extract($_POST);
 
     $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
-    $sql = "SELECT f.no, c.Nom, c.Prenom, f.date FROM facture AS f JOIN client AS c ON f.no_client = c.ID;";
+    $sql = "SELECT f.no, c.Nom, f.date FROM facture AS f JOIN client AS c ON f.no_client = c.ID;";
     $result = mysqli_query($connection, $sql);
     $html = '';
     $html .= '
@@ -25,7 +25,6 @@ extract($_POST);
       <tr style="background-color:#3da4f0;">
         <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;color:white;">N° Facture</th>
         <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;color:white;">Nom</th>
-        <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;color:white;">Prénom</th>
         <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;color:white;">Date</th>
       </tr>
     ';
@@ -35,7 +34,6 @@ extract($_POST);
                 <tr>
                     <th scope="row" style="border:1px solid #ddd;padding:9px;text-align:center;">' . $data['no'] . '</th>
                     <td style="border:1px solid #ddd;padding:9px;text-align:left;">' . $data['Nom'] . '</td>
-                    <td style="border:1px solid #ddd;padding:9px;text-align:left;">' . $data['Prenom'] . '</td>
                     <td style="border:1px solid #ddd;padding:15px;text-align:left;width:120px">' . $data['date'] . '</td>
                     ';
         }

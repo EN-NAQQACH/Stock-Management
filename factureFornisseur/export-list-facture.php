@@ -60,6 +60,28 @@ if (mysqli_num_rows($result) > 0) {
     </tr>
     ';
 }
+$idfr = $_GET['id'] ;
+    $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
+    $sql = "SELECT SUM(ac.Total) AS total_sum, SUM(ac.Total)*0.2 as tva, SUM(ac.Total)*1.2 as ttc FROM facturefornisseur AS f JOIN commandesfornissuer AS cmd ON f.id_commandes = cmd.No JOIN fornisseur AS c ON cmd.ID_Fornisseur = c.ID JOIN `article de commande fornisseur` AS ac ON cmd.No = ac.id_commandes JOIN article AS p ON ac.id_article = p.ID WHERE f.no = $idfr ;";
+    $result = mysqli_query($connection, $sql);
+if (mysqli_num_rows($result) > 0) {
+  foreach ($result as $data) {
+    $html .= '
+        <tr>
+        <td colspan="3" style="border:1px solid #ddd;padding:9px;text-align:right;">Montant HT</td>
+        <td colspan="1" style="border:1px solid #ddd;padding:9px;text-align:left;font-weight:bold;">' . number_format($data['total_sum'], 2) . '</td>
+        </tr>
+        <tr>
+        <td colspan="3" style="border:1px solid #ddd;padding:9px;text-align:right;">TVA20%</td>
+        <td colspan="1" style="border:1px solid #ddd;padding:9px;text-align:left;">' . number_format($data['tva'], 2) . '</td>
+        </tr>
+        <tr>
+        <td colspan="3" style="border:1px solid #ddd;padding:9px;text-align:right;">Montant TTc</td>
+        <td colspan="1" style="border:1px solid #ddd;padding:9px;text-align:left;font-weight:bold;">' . number_format($data['ttc'], 2) . '</td>
+        </tr>
+        ';
+      }
+      }
 $options = new Options();
 $options->set('defaultFont', 'Courier');
 $dompdf = new Dompdf($options);

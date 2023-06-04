@@ -11,9 +11,9 @@ include '../produits/Function2.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/product.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <title>Dashboard</title>
     <style>
         .activee {
@@ -44,7 +44,7 @@ include '../produits/Function2.php';
                 <div class="navlist">
                     <div class="nav-items">
                         <a href="../easly/Accueil.php" style="text-decoration: none" class="nav-link">
-                            <i class="bx bxs-dashboard icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Dashboard</span>
+                            <i class="bx bxs-dashboard icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Tableau de bord</span>
                         </a>
                         <a href="../easly/Produits.php" style="text-decoration: none" class="nav-link">
                             <i class="bx bx-package icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Produit</span>
@@ -74,7 +74,7 @@ include '../produits/Function2.php';
                             <div class="nav-dropdown-collapse">
                                 <div class="dropdown-content">
                                 <a href="../easly/Facture.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Clients</a>
-                                <a href="../easly/FactureFornisseur.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Fornisseurs</a>
+                                <a href="../easly/FactureFornisseur.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Fournisseurs</a>
                                 </div>
                             </div>
                         </div>
@@ -105,15 +105,12 @@ include '../produits/Function2.php';
         <main>
 
             <div id="filterdiv3" style="display: flex;justify-content: center;">
-                <form style="margin-right:0;" method="post" action="../php/Produits.php">
+                <form style="margin-right:0;" method="post" action="../easly/Produits.php">
                     <div class="row" style="margin-right:-80px;">
-                        <div class="col-md-3" style="margin:5px 0;">
-                            <input type="text" class="form-control" placeholder="nom or id ..." name="filter_value">
-                        </div>
-                        <div class="col-md-3" style="margin:5px 0;">
+                        <div class="col-md-4" style="margin:5px 0;">
                             <input type="date" class="form-control" placeholder="date de début"  name="Fromdate">
                         </div>
-                        <div class="col-md-3" style="margin:5px 0;">
+                        <div class="col-md-4" style="margin:5px 0;">
                             <input type="date" class="form-control" placeholder="date de fin"  name="todate">
                         </div>
                         <div class="col-md-3" style="margin:5px 0;">
@@ -131,11 +128,8 @@ include '../produits/Function2.php';
                 </p>
                 <div class="collapse" id="collapseExample" style="max-width: 700px;margin-right: 18px;">
                     <div class="card card-body">
-                        <form method="post" action="../php/Produits.php">
+                        <form method="post" action="../easly/Produits.php">
                             <div class="row">
-                                <div class="col-md-3" style="margin:5px 0;">
-                                    <input type="text" class="form-control" placeholder="nom or id ..." name="filter_value">
-                                </div>
                                 <div class="col-md-3" style="margin:5px 0;">
                                     <input type="text" class="form-control" placeholder="date de début" onfocus="(this.type = 'date')" onblur="(this.type = 'text')" name="Fromdate">
                                 </div>
@@ -155,12 +149,13 @@ include '../produits/Function2.php';
             $sql = "SELECT * FROM article";
             $result = mysqli_query($connection, $sql);
             if (isset($_POST['recherchebtn'])) {
-                $search = $_POST['filter_value'];
                 $from = $_POST['Fromdate'];
                 $to = $_POST['todate'];
-                $sql = "SELECT * FROM article WHERE CONCAT (Nom_Article, Categorie) LIKE '%$search%' or DateFabrication BETWEEN '$from' AND '$to' ";
+                $sql = "SELECT * FROM article WHERE DateFabrication BETWEEN '$from' AND '$to' ";
             } else {
                 $sql = "SELECT * FROM article";
+                $from = "";
+                $to = "";
             }
             $result = mysqli_query($connection, $sql);
             ?>
@@ -194,7 +189,6 @@ include '../produits/Function2.php';
                         </thead>
                         <tbody>
                             <?php
-
                             if (mysqli_num_rows($result) > 0) {
                                 while ($row = mysqli_fetch_object($result)) { ?>
                                     <tr>
@@ -236,7 +230,9 @@ include '../produits/Function2.php';
                                     }else{
                                     $resetQuery = "ALTER TABLE article AUTO_INCREMENT = 1";
                                     mysqli_query($connection, $resetQuery); ?>
-                                    <?php } ?>
+                   
+                                    <td style="text-align: center;border:1px solid #ddd;" colspan="7">Liste Vide</td> 
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>

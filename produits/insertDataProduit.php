@@ -25,9 +25,9 @@ if (empty($_POST['Nom']) || empty($_POST['categorie']) || empty($_POST['quantite
 
 
     // Check if the data already exists in the database
-    $sql = "SELECT * FROM $database.article WHERE Nom_Article=? AND Categorie=? AND Quantite=? AND PrixUnitaire=? AND DateFabrication=?";
+    $sql = "SELECT * FROM $database.article WHERE Nom_Article=? AND Categorie=? AND Quantite=? AND PrixUnitaire=? AND DateFabrication=? or Nom_Article=? ";
     $req = $connexion->prepare($sql);
-    $req->execute(array($nom, $categorie, $quantite, $prix, $date));
+    $req->execute(array($nom, $categorie, $quantite, $prix, $date, $nom));
 
     if ($req->rowCount() > 0) {
         $_SESSION['status'] = "Les données existent déjà dans la base de données";

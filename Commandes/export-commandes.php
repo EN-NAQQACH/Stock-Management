@@ -7,7 +7,7 @@ extract($_POST);
 var_dump($_POST);
 $id_comd = $_GET['id'] ;
 $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
-$sql = "SELECT cmd.ID,cmd.date, c.Nom, c.Prenom
+$sql = "SELECT cmd.ID,cmd.date, c.Nom
 FROM commandes AS cmd
 JOIN client AS c ON cmd.ID_Client = c.ID
 WHERE cmd.ID = $id_comd";
@@ -28,7 +28,7 @@ $result = mysqli_query($connection, $sql);
     <pre style="color:#241a2c;font-weight:500;"> Commandes N°: #' . $data['ID'].'</pre>
     <pre style="color:#241a2c;font-weight:500;">  Date:  ' . $data['date'].'</pre>
 </div>
-    <h3 style="text-align:center;border:1px solid #ddd;margin-bottom:10px;padding:9px;color:#241a2c;"><span style="margin-right:6px;text-transform: uppercase;">client:</span><span style="margin-right:1px;text-transform: uppercase;">' . $data['Nom'].'</span> <span style="text-transform: uppercase;">' .$data['Prenom']. '</span>  </h3>
+    <h3 style="text-align:center;border:1px solid #ddd;margin-bottom:10px;padding:9px;color:#241a2c;"><span style="margin-right:6px;text-transform: uppercase;">client:</span><span style="margin-right:1px;text-transform: uppercase;">' . $data['Nom'].'</span> <span style="text-transform: uppercase;"></span>  </h3>
     <div>
     </div>
 

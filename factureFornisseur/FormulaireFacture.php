@@ -141,7 +141,7 @@ include '../easly/connexion.php';
             } ?>
             <?php
             $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
-            $sql = "SELECT ac.Total,SUM(ac.total) AS total_sum FROM facturefornisseur AS f JOIN commandesfornissuer AS cmd ON f.id_commandes = cmd.No JOIN fornisseur AS c ON cmd.ID_Fornisseur = c.ID JOIN `article de commande fornisseur` AS ac ON cmd.No = ac.id_commandes JOIN article AS p ON ac.id_article = p.ID WHERE f.no = $id;";
+            $sql = "SELECT SUM(ac.total) AS total_sum FROM facturefornisseur AS f JOIN commandesfornissuer AS cmd ON f.id_commandes = cmd.No JOIN fornisseur AS c ON cmd.ID_Fornisseur = c.ID JOIN `article de commande fornisseur` AS ac ON cmd.No = ac.id_commandes JOIN article AS p ON ac.id_article = p.ID WHERE f.no = $id;";
             $result = mysqli_query($connection, $sql);
             ?>
             <?php

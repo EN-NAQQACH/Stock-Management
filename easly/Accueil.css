@@ -173,8 +173,8 @@ main .overview-boxes .box .icon {
   margin-right: 20px;
 }
 main .overview-boxes .box:first-child .icon {
-  background-color: #dce5ff;
-  color: var(--main-text);
+  background-color: #d1f8ea;
+  color: #26916a;
 }
 main .overview-boxes .box:nth-child(2) .icon {
   background-color: #ffe7dc;

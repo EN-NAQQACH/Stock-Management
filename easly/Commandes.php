@@ -45,7 +45,7 @@ include '../easly/connexion.php';
                 <div class="navlist">
                     <div class="nav-items">
                         <a href="../easly/Accueil.php" style="text-decoration: none" class="nav-link">
-                            <i class="bx bxs-dashboard icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Dashboard</span>
+                            <i class="bx bxs-dashboard icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Tableau de bord</span>
                         </a>
                         <a href="../easly/Produits.php" style="text-decoration: none" class="nav-link">
                             <i class="bx bx-package icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Produit</span>
@@ -75,7 +75,7 @@ include '../easly/connexion.php';
                             <div class="nav-dropdown-collapse">
                                 <div class="dropdown-content">
                                 <a href="../easly/Facture.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Clients</a>
-                                <a href="../easly/FactureFornisseur.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Fornisseurs</a>
+                                <a href="../easly/FactureFornisseur.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Fournisseurs</a>
                                 </div>
                             </div>
                         </div>
@@ -109,12 +109,12 @@ include '../easly/connexion.php';
 
             <?php
             $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
-            $sql = "SELECT cmd.ID, c.Nom, c.Prenom, cmd.date, cmd.statu FROM commandes AS cmd JOIN client AS c ON cmd.ID_Client = c.ID;";
+            $sql = "SELECT cmd.ID, c.Nom, cmd.date, cmd.statu FROM commandes AS cmd JOIN client AS c ON cmd.ID_Client = c.ID;";
             $result = mysqli_query($connection, $sql);
             ?>
 
             <section class="home-table">
-                <h4>Liste de Commandes</h4>
+                <h4>Liste des commandes</h4>
                 <form action="../Commandes/export-list-commandes.php" method="post" style="margin-top: 12px;">
                     <a href="../Commandes/FormulaireCommandes.php"><button type="button" class="btn btn-primary" data-toggle="modal" id="btnedit" data-target="#fullcontent">Ajouter</button></a>
                     <button type="submit" name="submit" class="btn btn-primary" data-toggle="modal" id="btnpdf" data-target="#fullcontent"><i class='bx bxs-file-pdf'></i> PDF</button>
@@ -131,7 +131,6 @@ include '../easly/connexion.php';
                             <tr>
                                 <th scope="col" style="border:1px solid #ddd;">ID</th>
                                 <th scope="col" style="border:1px solid #ddd;">Nom</th>
-                                <th scope="col" style="border:1px solid #ddd;">Prénom</th>
                                 <th scope="col" style="border:1px solid #ddd;">Date_commandes</th>
                                 <th colspan="col" style="border:1px solid #ddd;">Status</th>
                                 <th colspan="col" style="border:1px solid #ddd;">Action</th>
@@ -146,7 +145,6 @@ include '../easly/connexion.php';
                                     <tr>
                                         <th scope="row" style="border:1px solid #ddd;"><?php echo $row->ID ?></th>
                                         <td style="border:1px solid #ddd;"><?php echo $row->Nom ?></td>
-                                        <td style="border:1px solid #ddd;"><?php echo $row->Prenom ?></td>
                                         <td style="border:1px solid #ddd;"><?php echo $row->date ?></td>
                                         <td style="border:1px solid #ddd;">
                                             <?php

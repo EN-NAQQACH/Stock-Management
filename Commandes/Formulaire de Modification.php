@@ -28,14 +28,106 @@ include '../easly/connexion.php';
         main {
             padding-top: 10px;
         }
+
+        #clicked-two:hover {
+            cursor: pointer;
+        }
     </style>
 </head>
 
 <body>
+    <div class="modal fade" id="productdata" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="max-width: 900px;" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="row" style="margin: 20px 5px 0px 5px;">
+                    <div class="col-md-12">
+                        <input type="text" class="form-control" placeholder="Nom or Id, Prenom ..." name="filter" id="getproduct">
+                    </div>
+                </div>
+
+                <div class="modal-body">
+                    <?php
+                    $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
+                    $sql = "SELECT * FROM article";
+                    $result = mysqli_query($connection, $sql);
+                    ?>
+                    <div class="tables">
+                        <table class="table table-hover" id="tabledatta">
+                            <thead style=" background-color: #e9eefd;border-radius: 50px;position: sticky;top: 0;">
+                                <tr>
+                                    <th scope="col" style="border:1px solid #ddd;">ID</th>
+                                    <th scope="col" style="border:1px solid #ddd;">article</th>
+                                    <th scope="col" style="border:1px solid #ddd;">Catégorie</th>
+                                    <th scope="col" style="border:1px solid #ddd;">Quantité</th>
+                                    <th scope="col" style="border:1px solid #ddd;">Prix dh</th>
+                                    <th scope="col" style="border:1px solid #ddd;">Image</th>
+                                </tr>
+                            </thead>
+                            <tbody id="showdata2">
+                                <?php
+                                if (mysqli_num_rows($result) > 0) {
+                                    while ($row = mysqli_fetch_object($result)) { ?>
+                                        <tr onclick="displayProductValues(this)" id="clicked-two">
+                                            <td scope="row" style="border:1px solid #ddd;"><?php echo $row->ID ?></td>
+                                            <td style="border:1px solid #ddd;"><?php echo $row->Nom_Article ?></td>
+                                            <td style="border:1px solid #ddd;"><?php echo $row->Categorie ?></td>
+                                            <td style="border:1px solid #ddd;">
+                                                <?php
+                                                if ($row->Quantite == 0) {
+                                                ?> <span style="display: flex;justify-content: center;">
+                                                        <h6 style="color:red">Alerts stock</h6>
+                                                    </span> <?php
+                                                        } elseif ($row->Quantite < 0) {
+                                                            echo $row->Quantite = '<span style="display: flex;justify-content: center;"><h6 style="color:red">Alerts stock/h6></span>';
+                                                        } else {
+                                                            echo $row->Quantite;
+                                                        }
+                                                            ?>
+
+                                            </td>
+                                            <td style="border:1px solid #ddd;"><?php echo number_format($row->PrixUnitaire, 2)  ?></td>
+                                            <td style="border:1px solid #ddd;">
+                                                <?php if (!empty($row->image)) { ?>
+                                                    <div style="display: flex;justify-content: center;">
+                                                        <img src="<?php echo "../upload/" . $row->image ?>" alt="Product Image" width="50px" height="50px" style="border-radius: 10%;">
+                                                    </div>
+                                                <?php } else { ?>
+                                                    No image
+                                                <?php } ?>
+
+                                            </td>
+
+                                        </tr>
+                                    <?php }
+                                } else {
+                                    $resetQuery = "ALTER TABLE article AUTO_INCREMENT = 1";
+                                    mysqli_query($connection, $resetQuery); ?>
+
+                                    <td style="text-align: center;border:1px solid #ddd;" colspan="7">Liste Vide</td>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <input type="checkbox" name="" id="menutoggle">
     <div class="overlay">
-      <label for="menutoggle">
-      </label>
+        <label for="menutoggle">
+        </label>
     </div>
     <div class="sidebar">
         <div class="sidebar-container">
@@ -50,7 +142,7 @@ include '../easly/connexion.php';
                 <div class="navlist">
                     <div class="nav-items">
                         <a href="../easly/Accueil.php" style="text-decoration: none" class="nav-link">
-                            <i class="bx bxs-dashboard icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Dashboard</span>
+                            <i class="bx bxs-dashboard icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Tableau de bord</span>
                         </a>
                         <a href="../easly/Produits.php" style="text-decoration: none" class="nav-link">
                             <i class="bx bx-package icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Produit</span>
@@ -66,21 +158,21 @@ include '../easly/connexion.php';
                             </a>
                             <div class="nav-dropdown-collapse">
                                 <div class="dropdown-content">
-                                <a href="../easly/Commandes.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Commandes Clients</a>
-                                <a href="../easly/CommandeFornisseur.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Commandes Fornisseurs</a>
+                                    <a href="../easly/Commandes.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Commandes Clients</a>
+                                    <a href="../easly/CommandeFornisseur.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Commandes Fornisseurs</a>
                                 </div>
                             </div>
                         </div>
                         <div class="nav-dropdown">
-                        <a href="../easly/Facture.php" style="text-decoration: none" class="nav-link">
-                            <i class="bx bx-cart-add icon-link" id="icons"></i>
-                            <span style="font-weight: 500;letter-spacing: 1px;">Facture</span>
-                            <i class='bx bx-down-arrow-alt arrow-down'></i>
-                        </a>
+                            <a href="../easly/Facture.php" style="text-decoration: none" class="nav-link">
+                                <i class="bx bx-cart-add icon-link" id="icons"></i>
+                                <span style="font-weight: 500;letter-spacing: 1px;">Facture</span>
+                                <i class='bx bx-down-arrow-alt arrow-down'></i>
+                            </a>
                             <div class="nav-dropdown-collapse">
                                 <div class="dropdown-content">
-                                <a href="../easly/Facture.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Clients</a>
-                                <a href="../easly/FactureFornisseur.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Fornisseurs</a>
+                                    <a href="../easly/Facture.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Clients</a>
+                                    <a href="../easly/FactureFornisseur.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Fornisseurs</a>
                                 </div>
                             </div>
                         </div>
@@ -112,7 +204,7 @@ include '../easly/connexion.php';
             <?php
             $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
             $id = $_GET['id'];
-            $sql = "SELECT DISTINCT c.ID , c.Nom, c.Prenom , cmd.Date, cmd.statu
+            $sql = "SELECT DISTINCT c.ID , c.Nom, cmd.Date, cmd.statu
             FROM commandes AS cmd
             JOIN client AS c ON cmd.ID_Client = c.ID
            WHERE cmd.ID = $id
@@ -124,64 +216,61 @@ include '../easly/connexion.php';
                 <form action="../Commandes/Updatedata.php" method="post">
                     <button type="submit" class="btn btn-primary" name="ajoutercmd">edit</button>
                     <div class="tables">
-                    <input type="hidden" class="form-control" name="id" value="<?php echo $_GET['id']; ?>">
-                        <h4>Commandes Info</h4>
+                        <input type="hidden" class="form-control" name="id" value="<?php echo $_GET['id']; ?>">
+                        <h4>Commande</h4>
                         <table class="table table-bordred" id="frmClient">
                             <thead style="
                   background-color: #e9eefd;
                   border-radius: 50px;">
-                                              <?php
-                            if (mysqli_num_rows($result) > 0) {
-                                while ($row = mysqli_fetch_object($result)) { ?>
-                                <tr>
-                                    <th style="border:1px solid #ddd;">ID Client</th>
-                                    <th style="border:1px solid #ddd;">Nom</th>
-                                    <th style="border:1px solid #ddd;">Prenom</th>
-                                    <th style="border:1px solid #ddd;">Date</th>
-                                    <th style="border:1px solid #ddd;">Status</th>
-                                </tr>
+                                <?php
+                                if (mysqli_num_rows($result) > 0) {
+                                    while ($row = mysqli_fetch_object($result)) { ?>
+                                        <tr>
+                                            <th style="border:1px solid #ddd;">ID Client</th>
+                                            <th style="border:1px solid #ddd;">Nom</th>
+                                            <th style="border:1px solid #ddd;">Date</th>
+                                            <th style="border:1px solid #ddd;">Status</th>
+                                        </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td style="border:1px solid #ddd;">
-                                    <input type="text" id="nomField" name="ID_clinet" class="form-control" disabled value="<?php echo $row->ID ?>">
+                                        <input type="text" id="nomField" name="ID_clinet" class="form-control" disabled value="<?php echo $row->ID ?>">
                                     </td>
                                     <td style="border:1px solid #ddd;">
-                                    <input type="text" id="prenomField" name="Nom" class="form-control" disabled value="<?php echo $row->Nom ?>">
+                                        <input type="text" id="prenomField" name="Nom" class="form-control" disabled value="<?php echo $row->Nom ?>">
                                     </td>
                                     <td style="border:1px solid #ddd;">
-                                    <input type="text" id="prenomField" name="Prenom" class="form-control" value="<?php echo $row->Prenom ?>">
+                                        <input type="date" id="prenomField" name="date" class="form-control" value="<?php echo $row->Date ?>">
                                     </td>
                                     <td style="border:1px solid #ddd;">
-                                    <input type="date" id="prenomField" name="date" class="form-control" value="<?php echo $row->Date ?>">
-                                    </td>
-                                    <td style="border:1px solid #ddd;">
-                                        <select class="form-select" aria-label="Default select example" name="optionvalue" >
+                                        <select class="form-select" aria-label="Default select example" name="optionvalue">
                                             <option value="1" <?php if ($row->statu == 1) echo 'selected'; ?>>Terminée</option>
                                             <option value="2" <?php if ($row->statu == 2) echo 'selected'; ?>>En attente</option>
                                         </select>
                                     </td>
                                 </tr>
-                                <?php }} ?>
+                        <?php }
+                                } ?>
                             </tbody>
                         </table>
 
                         <?php
-            $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
-            $id = $_GET['id'];
-            $sql = "SELECT p.ID , p.Nom_Article , ac.Quantite, ac.Price, ac.Total
+                        $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
+                        $id = $_GET['id'];
+                        $sql = "SELECT p.ID , p.Nom_Article , ac.Quantite, ac.Price, ac.Total
             FROM commandes AS cmd
             JOIN client AS c ON cmd.ID_Client = c.ID
             JOIN `article de commande` AS ac ON cmd.ID = ac.id_commandes
             JOIN article AS p ON ac.id_article = p.ID
             WHERE cmd.ID = $id;
             ";
-            $result = mysqli_query($connection, $sql);
-            ?>
+                        $result = mysqli_query($connection, $sql);
+                        ?>
 
                         <table class="table table-bordred">
                             <thead>
-                            
+
 
                                 <tr>
                                     <th style="border:1px solid #ddd;">ID Produit</th>
@@ -193,26 +282,27 @@ include '../easly/connexion.php';
                                 </tr>
                             </thead>
                             <tbody>
-                            <div class="form-group" style="margin-top: 20px; display: none;">
-                        </div>
-                            <?php
-                            if (mysqli_num_rows($result) > 0) {
-                                while ($row = mysqli_fetch_object($result)) { ?>
-                                <tr id="<?php echo $row->ID ?>">
-                                    <td style="border:1px solid #ddd;"><?php echo $row->ID ?></td>
-                                    <td style="border:1px solid #ddd;"><?php echo $row->Nom_Article ?></td>
-                                    <td style="border:1px solid #ddd;"><?php echo $row->Quantite ?></td>
-                                    <td style="border:1px solid #ddd;"><?php echo $row->Price ?></td>
-                                    <td style="border:1px solid #ddd;"><?php echo $row->Total ?></td>
-                                    <td style="border-right:1px solid #ddd;display: flex;justify-content: center;align-items: center;">
-                                    <button type="button" name="calcul" class="btn btn-outline-danger" onclick="deleterow(<?php echo $row->ID ; ?>)"><i class='bx bx-x-circle'></i></button>
-                                    </td>
-                                </tr>
-                                <?php }}?>
+                                <div class="form-group" style="margin-top: 20px; display: none;">
+                                </div>
+                                <?php
+                                if (mysqli_num_rows($result) > 0) {
+                                    while ($row = mysqli_fetch_object($result)) { ?>
+                                        <tr id="<?php echo $row->ID ?>">
+                                            <td style="border:1px solid #ddd;"><?php echo $row->ID ?></td>
+                                            <td style="border:1px solid #ddd;"><?php echo $row->Nom_Article ?></td>
+                                            <td style="border:1px solid #ddd;"><?php echo $row->Price ?></td>
+                                            <td style="border:1px solid #ddd;"><?php echo $row->Quantite ?></td>
+                                            <td style="border:1px solid #ddd;"><?php echo $row->Total ?></td>
+                                            <td style="border-right:1px solid #ddd;display: flex;justify-content: center;align-items: center;">
+                                                <button type="button" name="calcul" class="btn btn-outline-danger" onclick="deleterow(<?php echo $row->ID; ?>)"><i class='bx bx-x-circle'></i></button>
+                                            </td>
+                                        </tr>
+                                <?php }
+                                } ?>
                             </tbody>
                         </table>
-                       
-       
+
+
                         <h4>Les Produits</h4>
                         <table class="table table-bordred" id="frmProduct">
                             <thead style="background-color: #e9eefd;border-radius: 50px;">
@@ -225,14 +315,14 @@ include '../easly/connexion.php';
                                     <th style="border:1px solid #ddd;">Option</th>
                                 </tr>
                             </thead>
-                            
+
                             <tbody id="myTable">
                                 <tr>
                                     <td style="border:1px solid #ddd;">
-                                        <input type="text" class="form-control" name="idarticl" id="Product" oninput="selectidproduct()" placeholder="Enter ID">
+                                        <input type="text" class="form-control" name="idarticl" id="Product" oninput="selectidproduct()" placeholder="Enter ID" data-toggle="modal" data-target="#productdata">
                                     </td>
                                     <td style="border:1px solid #ddd;">
-                                        <input type="text" id="NomField" name="Nomartic" class="form-control" >
+                                        <input type="text" id="NomField" name="Nomartic" class="form-control">
                                     </td>
                                     <td style="border:1px solid #ddd;">
                                         <input type="text" id="PrixField" name="PRI" class="form-control" disabled>
@@ -257,9 +347,29 @@ include '../easly/connexion.php';
             </section>
         </main>
     </div>
-    
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        var jqq = jQuery.noConflict();
+        jqq(document).ready(function() {
+            $('#getproduct').keyup(function() {
+                var getproduct = $(this).val();
+                jqq.ajax({
+                    method: 'post',
+                    url: '../easly/searchpr.php',
+                    data: {
+                        name: getproduct
+                    },
+                    success: function(response) {
+                        $("#showdata2").html(response);
+                    }
+                })
+            });
+
+
+        });
+    </script>
     <script>
         $(document).ready(function() {
 
@@ -282,7 +392,7 @@ include '../easly/connexion.php';
                 newRow.find('#PrixField').val(price); // Set the value of the "PrixField" input
                 newRow.find('#QuantiteField').val(quantity); // Set the value of the "QuantiteField" input
                 newRow.find('#TotalField').val(total); // Set the value of the "TotalField" input
-                
+
                 newRow.find('button.btn-outline-danger').click(function() {
                     $(this).closest('tr').remove(); // Remove the row when the button is clicked
                 });
@@ -297,27 +407,27 @@ include '../easly/connexion.php';
             })
         })
     </script>
-        <!-- script for add rows with properties-->
-        <script src="../js/getinfo.js"></script>
+    <!-- script for add rows with properties-->
+    <script src="../js/getinfo.js"></script>
     <!-- script for remove rows from database-->
     <script src="../js/DeleteRow.js"></script>
 
     <script>
-    $(document).ready(function() {
-      $("#myForm").submit(function(event) {
-        event.preventDefault();
-        var formData = $(this).serialize();
-        $.ajax({
-          url: "../php/connexion.php",
-          type: "POST",
-          data: formData,
-          success: function(response) {
-            console.log(response);
-          },
+        $(document).ready(function() {
+            $("#myForm").submit(function(event) {
+                event.preventDefault();
+                var formData = $(this).serialize();
+                $.ajax({
+                    url: "../php/connexion.php",
+                    type: "POST",
+                    data: formData,
+                    success: function(response) {
+                        console.log(response);
+                    },
+                });
+            });
         });
-      });
-    });
-  </script>
+    </script>
 
     <script>
         var links = document.getElementsByTagName("li");
@@ -339,6 +449,7 @@ include '../easly/connexion.php';
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </body>
+
 </html>
 
 <?php

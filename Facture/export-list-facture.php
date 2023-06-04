@@ -7,7 +7,7 @@ extract($_POST);
 var_dump($_POST);
 $idfr = $_GET['id'] ;
 $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
-$sql = "SELECT f.no, f.date, c.Nom, c.Prenom FROM facture AS f JOIN commandes AS cmd ON f.id_commandes = cmd.ID JOIN client AS c ON cmd.ID_Client = c.ID JOIN `article de commande` AS ac ON cmd.ID = ac.id_commandes JOIN article AS p ON ac.id_article = p.ID WHERE f.no = $idfr GROUP BY c.Nom;";
+$sql = "SELECT f.no, f.date, c.Nom FROM facture AS f JOIN commandes AS cmd ON f.id_commandes = cmd.ID JOIN client AS c ON cmd.ID_Client = c.ID JOIN `article de commande` AS ac ON cmd.ID = ac.id_commandes JOIN article AS p ON ac.id_article = p.ID WHERE f.no = $idfr GROUP BY c.Nom;";
 $result = mysqli_query($connection, $sql);
     $html = '';
     if (mysqli_num_rows($result) > 0) {
@@ -25,7 +25,7 @@ $result = mysqli_query($connection, $sql);
     <pre style="color:#241a2c;font-weight:500;"> Facture N°: #' . $data['no'].'</pre>
     <pre style="color:#241a2c;font-weight:500;">  Date:  ' . $data['date'].'</pre>
 </div>
-    <h3 style="text-align:center;border:1px solid #ddd;margin-bottom:10px;padding:9px;color:#241a2c;"><span style="margin-right:6px;text-transform: uppercase;">client:</span><span style="margin-right:1px;text-transform: uppercase;">' . $data['Nom'].'</span> <span style="text-transform: uppercase;">' .$data['Prenom']. '</span>  </h3>
+    <h3 style="text-align:center;border:1px solid #ddd;margin-bottom:10px;padding:9px;color:#241a2c;"><span style="margin-right:6px;text-transform: uppercase;">client:</span><span style="margin-right:1px;text-transform: uppercase;">' . $data['Nom'].'</span> <span style="text-transform: uppercase;"></span>  </h3>
     <div>
     </div>
 
@@ -48,9 +48,8 @@ if (mysqli_num_rows($result) > 0) {
         <tr>
             <td style="border:1px solid #ddd;padding:9px;text-align:left;">' . $data['Nom_Article'] . '</td>
             <td style="border:1px solid #ddd;padding:9px;text-align:left;">' . $data['Quantite'] . '</td>
-            <td style="border:1px solid #ddd;padding:9px;text-align:left;">' . $data['Price'] . '</td>
-            <td style="border:1px solid #ddd;padding:9px;text-align:left;">' . $data['Total'] . '</td>
-        </tr>
+            <td style="border:1px solid #ddd;padding:9px;text-align:left;">' . number_format($data['Price'], 2) . '</td>
+            <td style="border:1px solid #ddd;padding:9px;text-align:left;">' . number_format($data['Total'], 2) . '</td>
     ';
 }
 }else{
@@ -60,6 +59,29 @@ if (mysqli_num_rows($result) > 0) {
     </tr>
     ';
 }
+$idfr = $_GET['id'] ;
+    $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
+    $sql = "SELECT SUM(ac.Total) AS total_sum, SUM(ac.Total)*0.2 as tva, SUM(ac.Total)*1.2 as ttc FROM facture AS f JOIN commandes AS cmd ON f.id_commandes = cmd.ID JOIN client AS c ON cmd.ID_Client = c.ID JOIN `article de commande` AS ac ON cmd.ID = ac.id_commandes JOIN article AS p ON ac.id_article = p.ID WHERE f.no = $idfr;";
+    $result = mysqli_query($connection, $sql);
+if (mysqli_num_rows($result) > 0) {
+  foreach ($result as $data) {
+    $html .= '
+        <tr>
+        <td colspan="3" style="border:1px solid #ddd;padding:9px;text-align:right;">Montant HT</td>
+        <td colspan="1" style="border:1px solid #ddd;padding:9px;text-align:left;font-weight:bold;">' . number_format($data['total_sum'], 2) . '</td>
+        </tr>
+        <tr>
+        <td colspan="3" style="border:1px solid #ddd;padding:9px;text-align:right;">TVA20%</td>
+        <td colspan="1" style="border:1px solid #ddd;padding:9px;text-align:left;">' . number_format($data['tva'], 2) . '</td>
+        </tr>
+        <tr>
+        <td colspan="3" style="border:1px solid #ddd;padding:9px;text-align:right;">Montant TTc</td>
+        <td colspan="1" style="border:1px solid #ddd;padding:9px;text-align:left;font-weight:bold;">' . number_format($data['ttc'], 2) . '</td>
+        </tr>
+        ';
+      }
+      }
+
 $options = new Options();
 $options->set('defaultFont', 'Courier');
 $dompdf = new Dompdf($options);

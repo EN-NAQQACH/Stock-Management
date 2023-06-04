@@ -85,7 +85,7 @@ include '../client/Function2.php'
               <div class="nav-dropdown-collapse">
                 <div class="dropdown-content">
                   <a href="../easly/Facture.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Clients</a>
-                  <a href="../easly/FactureFornisseur.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Fornisseurs</a>
+                  <a href="../easly/FactureFornisseur.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Fournisseurs</a>
                 </div>
               </div>
             </div>
@@ -142,7 +142,7 @@ include '../client/Function2.php'
       ?>
       <div class="box">
         <div class="icon">
-          <i class="bx bx-cart-alt cart"></i>
+        <i class="bx bx-receipt icon-link" id="icons"></i>
         </div>
         <?php
         $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
@@ -168,7 +168,7 @@ include '../client/Function2.php'
       </div>
       <div class="box">
         <div class="icon">
-          <i class="bx bx-cart-alt cart"></i>
+        <i class="bx bx-package icon-link" id="icons"></i>
         </div>
         <?php
         $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
@@ -188,7 +188,7 @@ include '../client/Function2.php'
 
       <div class="box">
         <div class="icon">
-          <i class="bx bx-cart-alt cart"></i>
+        <i class="bx bx-user icon-link" id="icons"></i>
         </div><?php
               $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
               $sql = "SELECT COUNT(*) as row_count FROM `fornisseur`";
@@ -210,7 +210,7 @@ include '../client/Function2.php'
       <div class="overview">
         <div class="box">
           <div class="icon">
-            <i class="bx bx-cart-alt cart"></i>
+          <i class="bx bx-user icon-link" id="icons"></i>
           </div>
           <?php
           $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
@@ -229,7 +229,7 @@ include '../client/Function2.php'
           } ?>
     <div class="box">
       <div class="icon">
-        <i class="bx bx-cart-alt cart"></i>
+      <i class='bx bx-bell'></i>
       </div>
       <?php
       $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
@@ -260,7 +260,6 @@ include '../client/Function2.php'
               <tr>
                 <th scope="col" style="border:1px solid #ddd;">ID</th>
                 <th scope="col" style="border:1px solid #ddd;">Nom</th>
-                <th scope="col" style="border:1px solid #ddd;">Prénom</th>
                 <th scope="col" style="border:1px solid #ddd;">Téléphone</th>
                 <th colspan="col" style="border:1px solid #ddd;">Adresse</th>
               </tr>
@@ -276,7 +275,6 @@ include '../client/Function2.php'
                   <tr>
                     <th scope="row" style="border:1px solid #ddd;"><?= $value['ID'] ?></th>
                     <td style="border:1px solid #ddd;"><?= $value['Nom'] ?></td> <!-- value from database-->
-                    <td style="border:1px solid #ddd;"><?= $value['Prenom'] ?></td> <!-- value from database-->
                     <td style="border:1px solid #ddd;"><?= $value['Telephone'] ?></td> <!-- value from database-->
                     <td style="border:1px solid #ddd;"><?= $value['Address'] ?></td> <!-- value from database-->
 

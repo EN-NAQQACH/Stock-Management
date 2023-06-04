@@ -47,7 +47,7 @@ include '../Fornisseur/Function.php';
                 <div class="navlist">
                     <div class="nav-items">
                         <a href="../easly/Accueil.php" style="text-decoration: none" class="nav-link">
-                            <i class="bx bxs-dashboard icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Dashboard</span>
+                            <i class="bx bxs-dashboard icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Tableau de bord</span>
                         </a>
                         <a href="../easly/Produits.php" style="text-decoration: none" class="nav-link">
                             <i class="bx bx-package icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Produit</span>
@@ -77,7 +77,7 @@ include '../Fornisseur/Function.php';
                             <div class="nav-dropdown-collapse">
                                 <div class="dropdown-content">
                                 <a href="../easly/Facture.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Clients</a>
-                                <a href="../easly/FactureFornisseur.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Fornisseurs</a>
+                                <a href="../easly/FactureFornisseur.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Fournisseurs</a>
                                 </div>
                             </div>
                         </div>
@@ -100,7 +100,7 @@ include '../Fornisseur/Function.php';
                     </label>
                 </div>
                 <div>
-                    <h4 style="letter-spacing:1px;">Fornisseur</h4>
+                    <h4 style="letter-spacing:1px;">Fournisseur</h4>
                 </div>
             </div>
             <div class="header-action"></div>
@@ -158,7 +158,7 @@ include '../Fornisseur/Function.php';
       ?>
 
             <section class="home-table">
-                <h4>Liste de clients</h4>
+                <h4>liste des fournisseurs</h4>
                 <form action="../Fornisseur/export-fornisseur-list-pdf.php" method="post" style="margin-top: 12px;">
                     <a href="../Fornisseur/FormulaireFournisseur.php"><button type="button" class="btn btn-primary" data-toggle="modal" id="btnedit" data-target="#fullcontent">Ajouter</button></a>
                     <button type="submit" name="submit" class="btn btn-primary" data-toggle="modal" id="btnpdf" data-target="#fullcontent"><i class='bx bxs-file-pdf'></i> PDF</button>

@@ -8,7 +8,7 @@ use Dompdf\Options;
 extract($_POST);
 if (isset($_POST["submit"])) {
     $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
-    $sql = "SELECT c.ID, c.Nom, c.Prenom, cmd.date, cmd.statu FROM commandes AS cmd JOIN client AS c ON cmd.ID_Client = c.ID;";
+    $sql = "SELECT c.ID, c.Nom, cmd.date, cmd.statu FROM commandes AS cmd JOIN client AS c ON cmd.ID_Client = c.ID;";
     $result = mysqli_query($connection, $sql);
     $html = '';
     $html .= '
@@ -25,7 +25,6 @@ if (isset($_POST["submit"])) {
       <tr style="background-color:#3da4f0;">
         <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;color:white;">N°commande</th>
         <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;color:white;">Nom</th>
-        <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;color:white;">Prénom</th>
         <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;color:white;">Date</th>
         <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;color:white;">Etat</th>
       </tr>
@@ -36,7 +35,6 @@ if (isset($_POST["submit"])) {
                 <tr>
                     <th scope="row" style="border:1px solid #ddd;padding:9px;text-align:center;">' . $data['ID'] . '</th>
                     <td style="border:1px solid #ddd;padding:9px;text-align:left;">' . $data['Nom'] . '</td>
-                    <td style="border:1px solid #ddd;padding:9px;text-align:left;">' . $data['Prenom'] . '</td>
                     <td style="border:1px solid #ddd;padding:15px;text-align:left;width:120px">' . $data['date'] . '</td>
                     <td style="border:1px solid #ddd;padding:9px;text-align:left;">';
         

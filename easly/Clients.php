@@ -1,7 +1,7 @@
 <?php
 session_start();
 include '../easly/connexion.php';
-include '../client/Function2.php'
+include '../client/Function2.php';
 
 ?>
 <!DOCTYPE html>
@@ -77,7 +77,7 @@ include '../client/Function2.php'
                             <div class="nav-dropdown-collapse">
                                 <div class="dropdown-content">
                                 <a href="../easly/Facture.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Clients</a>
-                                <a href="../easly/FactureFornisseur.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Fornisseurs</a>
+                                <a href="../easly/FactureFornisseur.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Fournisseurs</a>
                                 </div>
                             </div>
                         </div>
@@ -149,7 +149,7 @@ include '../client/Function2.php'
             $result = mysqli_query($connection, $sql);
             if (isset($_POST['recherchebtn'])) {
                 $searchkey = $_POST['filter_value'];
-                $sql = "SELECT * FROM client WHERE CONCAT (Nom, Prenom, Telephone, Address) LIKE '%$searchkey%'";
+                $sql = "SELECT * FROM client WHERE CONCAT (Nom, Telephone, Address) LIKE '%$searchkey%'";
             } else {
                 $sql = "SELECT * FROM client";
                 $searchkey = "";
@@ -175,7 +175,6 @@ include '../client/Function2.php'
                             <tr>
                                 <th scope="col" style="border:1px solid #ddd;">ID</th>
                                 <th scope="col" style="border:1px solid #ddd;">Nom</th>
-                                <th scope="col" style="border:1px solid #ddd;">Prénom</th>
                                 <th scope="col" style="border:1px solid #ddd;">Téléphone</th>
                                 <th colspan="col" style="border:1px solid #ddd;">Adresse</th>
                                 <th colspan="col" style="border:1px solid #ddd;">Action</th>
@@ -191,7 +190,6 @@ include '../client/Function2.php'
                                     <tr>
                                         <th scope="row" style="border:1px solid #ddd;"><?php echo $row->ID ?></th>
                                         <td style="border:1px solid #ddd;"><?php echo $row->Nom ?></td>
-                                        <td style="border:1px solid #ddd;"><?php echo $row->Prenom ?></td>
                                         <td style="border:1px solid #ddd;"><?php echo $row->Telephone ?></td>
                                         <td style="border:1px solid #ddd;"><?php echo $row->Address ?></td>
                                         <td style="text-align: center;">
@@ -207,12 +205,8 @@ include '../client/Function2.php'
                                 $resetQuery = "ALTER TABLE client AUTO_INCREMENT = 1";
                                 mysqli_query($connection, $resetQuery);
                                 ?>
-                                <tr>
-                                    <td style="font-size:20px; background-color: #EB1D36;color: white;" colspan="6">"Client non trouvé"</td>
-                                </tr>
-                            <?php
-                            }
-                            ?>
+                                    <td style="text-align: center;border:1px solid #ddd;" colspan="4">Liste Vide</td> 
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>

@@ -42,7 +42,7 @@ include '../produits/Function2.php';
                 <div class="navlist">
                     <div class="nav-items">
                         <a href="../easly/Accueil.php" style="text-decoration: none" class="nav-link">
-                            <i class="bx bxs-dashboard icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Dashboard</span>
+                            <i class="bx bxs-dashboard icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Tableau de bord</span>
                         </a>
                         <a href="../easly/Produits.php" style="text-decoration: none" class="nav-link">
                             <i class="bx bx-package icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Produit</span>
@@ -142,7 +142,7 @@ include '../produits/Function2.php';
                     <div class="col-md-7">
                         <div class="form-group" style="margin-top: 20px;">
                             <label for="formGroupExampleInput4" style="margin-bottom:5px;">Prix_unitaire</label>
-                            <input type="number" class="form-control" id="formGroupExampleInput4" placeholder="ex: 1500DH" name="prix" autocomplete="off" value="<?php echo $produit ['PrixUnitaire']; ?>">
+                            <input type="text" class="form-control" id="formGroupExampleInput4" placeholder="ex: 1500DH" name="prix" autocomplete="off" value="<?php echo $produit ['PrixUnitaire']; ?>">
                         </div>
                     </div>
                     <div class="col-md-7">

@@ -26,7 +26,7 @@ if(isset($_GET['id'])) {
     $req->execute(array($id));
 
     if ($req->rowCount() > 0) {
-        $_SESSION['status'] = "le Client a été supprimée avec succès";
+        $_SESSION['status'] = "le Produit a été supprimée avec succès";
         $_SESSION['status_code'] = "success";
     }
 }

@@ -80,7 +80,7 @@ include '../easly/connexion.php';
             <?php
             $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
             $id = $_GET['id'];
-            $sql = "SELECT f.no, f.date, c.Nom, c.Prenom FROM facture AS f JOIN commandes AS cmd ON f.id_commandes = cmd.ID JOIN client AS c ON cmd.ID_Client = c.ID JOIN `article de commande` AS ac ON cmd.ID = ac.id_commandes JOIN article AS p ON ac.id_article = p.ID WHERE f.no = $id GROUP BY c.Nom;";
+            $sql = "SELECT f.no, f.date, c.Nom FROM facture AS f JOIN commandes AS cmd ON f.id_commandes = cmd.ID JOIN client AS c ON cmd.ID_Client = c.ID JOIN `article de commande` AS ac ON cmd.ID = ac.id_commandes JOIN article AS p ON ac.id_article = p.ID WHERE f.no = $id GROUP BY c.Nom;";
             $result = mysqli_query($connection, $sql);
             ?>
             <div style="margin-top: 20px;">
@@ -99,7 +99,7 @@ include '../easly/connexion.php';
     </main>
     <main class="facture-home">
 
-        <h5 style="text-align:center;border:1px solid #ddd;margin-bottom:20px;padding:9px;text-transform: uppercase;"><span style="margin-right:10px;">client:</span> <?php echo $row->Nom ?> <?php echo $row->Prenom ?></h5>
+        <h5 style="text-align:center;border:1px solid #ddd;margin-bottom:20px;padding:9px;text-transform: uppercase;"><span style="margin-right:10px;">client:</span> <?php echo $row->Nom ?></h5>
         </div>
 
         <h6>FACTURE N°: <span style="text-decoration: underline;"><?php echo $row->no ?></span> </h6>
@@ -108,7 +108,7 @@ include '../easly/connexion.php';
 <div class="tables">
     <?php
     $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
-    $sql = "SELECT f.id_commandes, c.Nom , p.Nom_Article ,p.ID, ac.Quantite, ac.Price, ac.Total FROM facture AS f JOIN commandes AS cmd ON f.id_commandes = cmd.ID JOIN client AS c ON cmd.ID_Client = c.ID JOIN `article de commande` AS ac ON cmd.ID = ac.id_commandes JOIN article AS p ON ac.id_article = p.ID WHERE f.no = $id;";
+    $sql = "SELECT f.id_commandes, c.Nom , p.Nom_Article , p.ID, ac.Quantite, ac.Price, ac.Total FROM facture AS f JOIN commandes AS cmd ON f.id_commandes = cmd.ID JOIN client AS c ON cmd.ID_Client = c.ID JOIN `article de commande` AS ac ON cmd.ID = ac.id_commandes JOIN article AS p ON ac.id_article = p.ID WHERE f.no = $id;";
     $result = mysqli_query($connection, $sql);
     ?>
     <table class="table table-hover" id="tabledatta">
@@ -141,7 +141,7 @@ include '../easly/connexion.php';
             } ?>
             <?php
             $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
-            $sql = "SELECT ac.Total,SUM(ac.total) AS total_sum FROM facture AS f JOIN commandes AS cmd ON f.id_commandes = cmd.ID JOIN client AS c ON cmd.ID_Client = c.ID JOIN `article de commande` AS ac ON cmd.ID = ac.id_commandes JOIN article AS p ON ac.id_article = p.ID WHERE f.no = $id;";
+            $sql = "SELECT SUM(ac.total) AS total_sum FROM facture AS f JOIN commandes AS cmd ON f.id_commandes = cmd.ID JOIN client AS c ON cmd.ID_Client = c.ID JOIN `article de commande` AS ac ON cmd.ID = ac.id_commandes JOIN article AS p ON ac.id_article = p.ID WHERE f.no = $id;";
             $result = mysqli_query($connection, $sql);
             ?>
             <?php

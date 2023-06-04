@@ -45,7 +45,7 @@ include '../easly/connexion.php';
                 <div class="navlist">
                     <div class="nav-items">
                         <a href="../easly/Accueil.php" style="text-decoration: none" class="nav-link">
-                            <i class="bx bxs-dashboard icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Dashboard</span>
+                            <i class="bx bxs-dashboard icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Tableau de bord</span>
                         </a>
                         <a href="../easly/Produits.php" style="text-decoration: none" class="nav-link">
                             <i class="bx bx-package icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Produit</span>
@@ -75,7 +75,7 @@ include '../easly/connexion.php';
                             <div class="nav-dropdown-collapse">
                                 <div class="dropdown-content">
                                 <a href="../easly/Facture.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Clients</a>
-                                <a href="../easly/FactureFornisseur.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Fornisseurs</a>
+                                <a href="../easly/FactureFornisseur.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Fournisseurs</a>
                                 </div>
                             </div>
                         </div>
@@ -116,7 +116,7 @@ include '../easly/connexion.php';
             ?>
 
             <section class="home-table">
-                <h4>Liste de Commandes</h4>
+                <h4>Liste de factures</h4>
                 <form action="../Facture/export-facture.php" method="post" style="margin-top: 12px;">
                     <a href="../Facture/FormulaireFacture.php"><button type="button" class="btn btn-primary" data-toggle="modal" id="btnedit" data-target="#fullcontent">Ajouter</button></a>
                     <button type="submit" name="submit" class="btn btn-primary" data-toggle="modal" id="btnpdf" data-target="#fullcontent"><i class='bx bxs-file-pdf'></i> PDF</button>
@@ -151,7 +151,7 @@ include '../easly/connexion.php';
                                             <div style="display: flex;justify-content: space-around;align-items: center;">
                                                 <a href="../Facture/FormulaireFacture.php?id=<?php echo $row->no; ?>" style="text-decoration: none;color: green;font-size: 1.2rem;"><i class='bx bxs-show'></i></a>
                                                 <a href="../Facture/DeleteData.php?id=<?php echo $row->no; ?>" style="text-decoration: none;color: red;font-size: 1.2rem;"><i class='bx bx-x-circle'></i></a>
-                                                <a href="../Facture/export-facture.php?id=<?php echo $row->no; ?>" style="text-decoration: none;color:black;font-size: 1.2rem;"><i class='bx bxs-printer'></i></a>
+                                                <a href="../Facture/export-list-facture.php?id=<?php echo $row->no; ?>" style="text-decoration: none;color:black;font-size: 1.2rem;"><i class='bx bxs-printer'></i></a>
                                             </div>
                                         </td>
                                     </tr>

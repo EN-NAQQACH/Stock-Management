@@ -1,7 +1,7 @@
 var je = jQuery.noConflict();
 function deleterow(id) {
   je.ajax({
-    url: '../CommandeFornisseur/function.php',
+    url: '../CommandeFornisseur/functionn.php',
     method: 'POST',
     data: {
       id: id,
