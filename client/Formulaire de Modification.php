@@ -118,7 +118,8 @@ include '../client/Function.php';
                     <div class="row" style="flex-direction: column;align-items: center;">
                         <div class="col-md-7">
                             <div class="form-group" style="margin-top: 20px;">
-                                <input type="hidden" class="form-control" id="formGroupExampleInput" name="id" value="<?php echo $_GET['id']; ?>">
+                            <label for="formGroupExampleInput" style="margin-bottom:5px;">N° Client</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput" name="id" value="<?php echo $_GET['id']; ?>">
                             </div>
                         </div>
                         <div class="col-md-7">
@@ -130,7 +131,7 @@ include '../client/Function.php';
                         <div class="col-md-7">
                             <div class="form-group" style="margin-top: 20px;">
                                 <label for="formGroupExampleInput3" style="margin-bottom:5px;">Téléphone</label>
-                                <input type="number" class="form-control" id="formGroupExampleInput3" placeholder="ex: 0630254859" name="Telephone" autocomplete="off" value="<?php echo $client['Telephone']; ?>">
+                                <input type="text" class="form-control" id="formGroupExampleInput3" placeholder="ex: 0630254859" name="Telephone" autocomplete="off" value="<?php echo $client['Telephone']; ?>">
                             </div>
                         </div>
                         <div class="col-md-7">
