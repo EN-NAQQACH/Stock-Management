@@ -55,12 +55,12 @@ if (empty($_POST['ID_clinet']) || empty($_POST['date']) || empty($_POST['optionv
                         $insertCommandeStmt->execute([$date, $idclient, $optionvalue]);
                         $commandeId = $connexion->lastInsertId();
 
-                        $insertFactureSql = "INSERT INTO $database.facture (`no_client`, `date`, `id_commandes`) VALUES (:idclient, :date, :commandeId)";
+                       /* $insertFactureSql = "INSERT INTO $database.facture (`no_client`, `date`, `id_commandes`) VALUES (:idclient, :date, :commandeId)";
                         $insertFactureStmt = $connexion->prepare($insertFactureSql);
                         $insertFactureStmt->bindParam(':idclient', $idclient);
                         $insertFactureStmt->bindParam(':date', $date);
                         $insertFactureStmt->bindParam(':commandeId', $commandeId);
-                        $insertFactureStmt->execute();
+                        $insertFactureStmt->execute();*/
 
                     }
 

@@ -1,5 +1,5 @@
 <?php 
-include '../Fornisseur/Function.php';
+include '../Fornisseur/Function2.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -114,19 +114,14 @@ include '../Fornisseur/Function.php';
                     <div class="row" style="flex-direction: column;align-items: center;">
                         <div class="col-md-7">
                             <div class="form-group" style="margin-top: 20px;">
-                                <input type="hidden" class="form-control" id="formGroupExampleInput" name="id" value="<?php echo $_GET['id']; ?>">
+                            <label for="formGroupExampleInput" style="margin-bottom:5px;">N° Fournisseur</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput" name="id" value="<?php echo $_GET['id']; ?>">
                             </div>
                         </div>
                         <div class="col-md-7">
                             <div class="form-group" style="margin-top: 20px;">
                                 <label for="formGroupExampleInput" style="margin-bottom:5px;">Nom</label>
                                 <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nom" name="Nom" autocomplete="off" value="<?php echo $fornisseur['Nom']; ?>">
-                            </div>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="form-group" style="margin-top: 20px;">
-                                <label for="formGroupExampleInput2" style="margin-bottom:5px;">Prénom</label>
-                                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Prénom" name="Prenom" autocomplete="off" value="<?php echo $fornisseur['Prenom']; ?>">
                             </div>
                         </div>
                         <div class="col-md-7">

@@ -5,19 +5,20 @@ session_start();
 var_dump($_POST);
 
 // Check if the textfields are not empty
-if (empty($_POST['Nom']) || empty($_POST['categorie']) || empty($_POST['quantite']) || empty($_POST['prix']) || empty($_POST['date'])) {
+if (empty($_POST['Nom']) || empty($_POST['categorie']) || empty($_POST['quantite']) || empty($_POST['prix']) || empty($_POST['No'])) {
     $_SESSION['status'] = " Veuillez saisir les données";
     $_SESSION['status_code'] = "info";
 
 } elseif(isset($_POST['BTNAJOUTER'])) {
 
     // Get data from textfield
+    $no = $_POST['No'];
     $nom = $_POST['Nom'];
     $categorie = $_POST['categorie'];
     $quantite = $_POST['quantite'];
     $prix = $_POST['prix'];
     $image = $_FILES["imageupload"]['name'];
-    $date = $_POST['date'];
+    /*$date = $_POST['date'];*/
     $img_name= $_FILES['imageupload'] ['name'];
     $tmp_img_name= $_FILES['imageupload'] ['tmp_name'];
     $folder = '../upload/';
@@ -25,9 +26,9 @@ if (empty($_POST['Nom']) || empty($_POST['categorie']) || empty($_POST['quantite
 
 
     // Check if the data already exists in the database
-    $sql = "SELECT * FROM $database.article WHERE Nom_Article=? AND Categorie=? AND Quantite=? AND PrixUnitaire=? AND DateFabrication=? or Nom_Article=? ";
+    $sql = "SELECT * FROM $database.article WHERE ID=? AND Nom_Article=? AND Categorie=? AND Quantite=? AND PrixUnitaire=?  or Nom_Article=? or ID=? ";
     $req = $connexion->prepare($sql);
-    $req->execute(array($nom, $categorie, $quantite, $prix, $date, $nom));
+    $req->execute(array($no, $nom, $categorie, $quantite, $prix, $nom, $no));
 
     if ($req->rowCount() > 0) {
         $_SESSION['status'] = "Les données existent déjà dans la base de données";
@@ -36,9 +37,9 @@ if (empty($_POST['Nom']) || empty($_POST['categorie']) || empty($_POST['quantite
     } else {
 
         // Insert data to table Client
-        $sql = "INSERT INTO $database.article (Nom_Article, Categorie, Quantite, PrixUnitaire, image, DateFabrication) VALUES(?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO $database.article (ID, Nom_Article, Categorie, Quantite, PrixUnitaire, image) VALUES(?, ?, ?, ?, ?, ?)";
         $req = $connexion->prepare($sql);
-        $req->execute(array($nom, $categorie, $quantite, $prix, $image, $date));
+        $req->execute(array($no, $nom, $categorie, $quantite, $prix, $image));
 
         if ($req->rowCount() != 0) {
             move_uploaded_file($_FILES['imageupload'] ['tmp_name'],"../upload/".$img_name= $_FILES['imageupload'] ['name']); 

@@ -62,7 +62,7 @@ include '../easly/connexion.php';
                         <table class="table table-hover" id="tabledatta">
                             <thead style=" background-color: #e9eefd;border-radius: 50px;position: sticky;top: 0;">
                                 <tr>
-                                    <th scope="col" style="border:1px solid #ddd;">ID</th>
+                                    <th scope="col" style="border:1px solid #ddd;">N° Article</th>
                                     <th scope="col" style="border:1px solid #ddd;">article</th>
                                     <th scope="col" style="border:1px solid #ddd;">Catégorie</th>
                                     <th scope="col" style="border:1px solid #ddd;">Quantité</th>
@@ -130,56 +130,56 @@ include '../easly/connexion.php';
         </label>
     </div>
     <div class="sidebar">
-    <div class="sidebar-container">
-      <div class="sidebar-menu">
-        <div class="logo">
-          <span>
-            <p>Easly</p>
-          </span>
-        </div>
-        <div class="navlist">
-          <div class="nav-items">
+        <div class="sidebar-container">
+            <div class="sidebar-menu">
+                <div class="logo">
+                    <span>
+                        <p>Easly</p>
+                    </span>
+                </div>
+                <div class="navlist">
+                    <div class="nav-items">
 
-            <a href="../easly/Accueil.php" style="text-decoration: none" class="nav-link">
-              <i class="bx bxs-dashboard icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Tableau de bord</span>
-            </a>
-            <a href="../easly/Produits.php" style="text-decoration: none" class="nav-link">
-              <i class="bx bx-package icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Produit</span>
-            </a>
-            <!---<a href="../easly/Clients.php" style="text-decoration: none" class="nav-link">
+                        <a href="../easly/Accueil.php" style="text-decoration: none" class="nav-link">
+                            <i class="bx bxs-dashboard icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Tableau de bord</span>
+                        </a>
+                        <a href="../easly/Produits.php" style="text-decoration: none" class="nav-link">
+                            <i class="bx bx-package icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Produit</span>
+                        </a>
+                        <!---<a href="../easly/Clients.php" style="text-decoration: none" class="nav-link">
               <i class="bx bx-user icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Clients</span>
             </a>-->
-            <div class="nav-dropdown">
-              <a href="../easly/Clients.php" style="text-decoration: none" class="nav-link">
-              <i class="bx bx-user icon-link" id="icons"></i>
-                <span style="font-weight: 500;letter-spacing: 1px;">Clients</span>
-                <i class='bx bx-down-arrow-alt arrow-down'></i>
-              </a>
-              <div class="nav-dropdown-collapse">
-                <div class="dropdown-content">
-                  <a href="../easly/Commandes.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Commandes Clients</a>
-                  <a href="../easly/Facture.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Clients</a>
-                </div>
-              </div>
-            </div>
-            <!----<a href="../easly/fornisseur.php" style="text-decoration: none" class="nav-link">
+                        <div class="nav-dropdown">
+                            <a href="../easly/Clients.php" style="text-decoration: none" class="nav-link">
+                                <i class="bx bx-user icon-link" id="icons"></i>
+                                <span style="font-weight: 500;letter-spacing: 1px;">Clients</span>
+                                <i class='bx bx-down-arrow-alt arrow-down'></i>
+                            </a>
+                            <div class="nav-dropdown-collapse">
+                                <div class="dropdown-content">
+                                    <a href="../easly/Commandes.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Commandes Clients</a>
+                                    <a href="../easly/Facture.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Clients</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!----<a href="../easly/fornisseur.php" style="text-decoration: none" class="nav-link">
               <i class="bx bxs-store icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Fournisseur</span>
             </a>--->
-            <div class="nav-dropdown">
-              <a href="../easly/Fornisseur.php" style="text-decoration: none" class="nav-link">
-              <i class="bx bxs-store icon-link" id="icons"></i>
-                <span style="font-weight: 500;letter-spacing: 1px;">Fournisseur</span>
-                <i class='bx bx-down-arrow-alt arrow-down'></i>
-              </a>
-              <div class="nav-dropdown-collapse">
-                <div class="dropdown-content">
-                <a href="../easly/CommandeFornisseur.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Commandes Fornisseurs</a>
-                <a href="../easly/FactureFornisseur.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Fournisseurs</a>
-                </div>
-              </div>
-            </div>
+                        <div class="nav-dropdown">
+                            <a href="../easly/Fornisseur.php" style="text-decoration: none" class="nav-link">
+                                <i class="bx bxs-store icon-link" id="icons"></i>
+                                <span style="font-weight: 500;letter-spacing: 1px;">Fournisseur</span>
+                                <i class='bx bx-down-arrow-alt arrow-down'></i>
+                            </a>
+                            <div class="nav-dropdown-collapse">
+                                <div class="dropdown-content">
+                                    <a href="../easly/CommandeFornisseur.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Commandes Fornisseurs</a>
+                                    <a href="../easly/FactureFornisseur.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Fournisseurs</a>
+                                </div>
+                            </div>
+                        </div>
 
-            <!---<div class="nav-dropdown">
+                        <!---<div class="nav-dropdown">
               <a href="#" style="text-decoration: none" class="nav-link">
                 <i class="bx bx-receipt icon-link" id="icons"></i>
                 <span style="font-weight: 500;letter-spacing: 1px;">Commandes</span>
@@ -205,12 +205,12 @@ include '../easly/connexion.php';
                 </div>
               </div>
             </div>--->
-          </div>
-          </li>
+                    </div>
+                    </li>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
     <div class="main-content">
         <header>
             <div class="header-title">
@@ -229,10 +229,10 @@ include '../easly/connexion.php';
             <?php
             $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
             $id = $_GET['id'];
-            $sql = "SELECT DISTINCT c.ID , c.Nom, cmd.Date, cmd.statu
-            FROM commandes AS cmd
-            JOIN client AS c ON cmd.ID_Client = c.ID
-           WHERE cmd.ID = $id
+            $sql = "SELECT DISTINCT c.ID , c.Nom, f.date
+            FROM facture AS f
+            JOIN client AS c ON f.no_client = c.ID
+           WHERE f.no = $id
             GROUP BY c.ID;
             ";
             $result = mysqli_query($connection, $sql);
@@ -242,7 +242,7 @@ include '../easly/connexion.php';
                     <button type="submit" class="btn btn-primary" name="ajoutercmd">edit</button>
                     <div class="tables">
                         <input type="hidden" class="form-control" name="id" value="<?php echo $_GET['id']; ?>">
-                        <h4>Commande</h4>
+                        <h4>Facture</h4>
                         <table class="table table-bordred" id="frmClient">
                             <thead style="
                   background-color: #e9eefd;
@@ -251,10 +251,9 @@ include '../easly/connexion.php';
                                 if (mysqli_num_rows($result) > 0) {
                                     while ($row = mysqli_fetch_object($result)) { ?>
                                         <tr>
-                                            <th style="border:1px solid #ddd;">ID Client</th>
+                                            <th style="border:1px solid #ddd;">N° Client</th>
                                             <th style="border:1px solid #ddd;">Nom</th>
                                             <th style="border:1px solid #ddd;">Date</th>
-                                            <th style="border:1px solid #ddd;">Status</th>
                                         </tr>
                             </thead>
                             <tbody>
@@ -266,13 +265,7 @@ include '../easly/connexion.php';
                                         <input type="text" id="prenomField" name="Nom" class="form-control" disabled value="<?php echo $row->Nom ?>">
                                     </td>
                                     <td style="border:1px solid #ddd;">
-                                        <input type="date" id="prenomField" name="date" class="form-control" value="<?php echo $row->Date ?>">
-                                    </td>
-                                    <td style="border:1px solid #ddd;">
-                                        <select class="form-select" aria-label="Default select example" name="optionvalue">
-                                            <option value="1" <?php if ($row->statu == 1) echo 'selected'; ?>>Terminée</option>
-                                            <option value="2" <?php if ($row->statu == 2) echo 'selected'; ?>>En attente</option>
-                                        </select>
+                                        <input type="date" id="prenomField" name="date" class="form-control" value="<?php echo $row->date ?>">
                                     </td>
                                 </tr>
                         <?php }
@@ -283,12 +276,12 @@ include '../easly/connexion.php';
                         <?php
                         $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
                         $id = $_GET['id'];
-                        $sql = "SELECT p.ID , p.Nom_Article , ac.Quantite, ac.Price, ac.Total
-            FROM commandes AS cmd
-            JOIN client AS c ON cmd.ID_Client = c.ID
-            JOIN `article de commande` AS ac ON cmd.ID = ac.id_commandes
-            JOIN article AS p ON ac.id_article = p.ID
-            WHERE cmd.ID = $id;
+                        $sql = "SELECT p.ID , p.Nom_Article , af.Quantite, af.Price, af.Total
+            FROM facture AS f
+            JOIN client AS c ON f.no_client = c.ID
+            JOIN `article de facture` AS af ON f.No = af.id_facture
+            JOIN article AS p ON af.id_article = p.ID
+            WHERE f.No = $id;
             ";
                         $result = mysqli_query($connection, $sql);
                         ?>
@@ -298,7 +291,7 @@ include '../easly/connexion.php';
 
 
                                 <tr>
-                                    <th style="border:1px solid #ddd;">ID Produit</th>
+                                    <th style="border:1px solid #ddd;">N° Article</th>
                                     <th style="border:1px solid #ddd;">Nom</th>
                                     <th style="border:1px solid #ddd;">Prix</th>
                                     <th style="border:1px solid #ddd;">Quantite</th>
@@ -435,7 +428,7 @@ include '../easly/connexion.php';
     <!-- script for add rows with properties-->
     <script src="../js/getinfo.js"></script>
     <!-- script for remove rows from database-->
-    <script src="../js/DeleteRow.js"></script>
+    <script src="../js/Delete.js"></script>
 
     <script>
         $(document).ready(function() {

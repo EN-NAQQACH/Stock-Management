@@ -26,7 +26,6 @@ if(isset($_POST["submit"])){
         <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;color:white;">Categorie</th>
         <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;color:white;">Quantite</th>
         <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;color:white;">Prix_dh</th>
-        <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;color:white;">DateFabrication</th>
       </tr>
     ';
 if(mysqli_num_rows($result)>0){
@@ -39,7 +38,6 @@ if(mysqli_num_rows($result)>0){
         <td style="border:1px solid #ddd;padding:9px;text-align:left;">'.$data["Categorie"].'</td>
         <td style="border:1px solid #ddd;padding:9px;text-align:left;">'.$data["Quantite"].'</td>
         <td style="border:1px solid #ddd;padding:9px;text-align:left;">'.$data["PrixUnitaire"].'</td>
-        <td style="border:1px solid #ddd;padding:9px;text-align:left;">'.$data["DateFabrication"].'</td>
       </tr>
       ';
     }

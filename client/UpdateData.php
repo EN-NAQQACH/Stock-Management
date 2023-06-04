@@ -4,7 +4,7 @@ session_start();
 
 var_dump($_POST);
 
-if (empty($_POST['Nom']) || empty($_POST['Prenom']) || empty($_POST['Telephone']) || empty($_POST['Adress'])) {
+if (empty($_POST['Nom']) || empty($_POST['Telephone']) || empty($_POST['Adress'])) {
     $_SESSION['status'] = " Veuillez saisir les données";
     $_SESSION['status_code'] = "info";
 

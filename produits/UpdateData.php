@@ -59,7 +59,7 @@ session_start();
 var_dump($_POST);
 
 // Check if the textfields are not empty
-if (empty($_POST['Nom']) || empty($_POST['categorie']) || empty($_POST['quantite']) || empty($_POST['prix']) || empty($_POST['date'])) {
+if (empty($_POST['Nom']) || empty($_POST['categorie']) || empty($_POST['quantite']) || empty($_POST['prix'])) {
     $_SESSION['status'] = "Veuillez saisir les données";
     $_SESSION['status_code'] = "info";
 } elseif (isset($_POST['btn'])) {
@@ -70,7 +70,7 @@ if (empty($_POST['Nom']) || empty($_POST['categorie']) || empty($_POST['quantite
     $categorie = $_POST['categorie'];
     $quantite = $_POST['quantite'];
     $prix = $_POST['prix'];
-    $date = $_POST['date'];
+   /* $date = $_POST['date'];*/
     $old_image = $_POST['imageupload'];
 
     $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
@@ -96,7 +96,7 @@ if (empty($_POST['Nom']) || empty($_POST['categorie']) || empty($_POST['quantite
     // Only update image column if the user selected a new image
     $update_image = isset($_FILES['imageupload']) && $_FILES['imageupload']['error'] === UPLOAD_ERR_OK ? ", image ='$update_file'" : "";
 
-    $sql = "UPDATE $database.article SET Nom_Article ='$nom', Categorie ='$categorie', Quantite ='$quantite', PrixUnitaire ='$prix' $update_image, DateFabrication ='$date' WHERE id ='$id'";
+    $sql = "UPDATE $database.article SET Nom_Article ='$nom', Categorie ='$categorie', Quantite ='$quantite', PrixUnitaire ='$prix' $update_image WHERE id ='$id'";
     $run = mysqli_query($connection, $sql);
 
     if ($run) {

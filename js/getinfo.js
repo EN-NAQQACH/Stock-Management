@@ -1,10 +1,8 @@
 var jq = jQuery.noConflict();
-
 function selectid() {
   var x = document.getElementById("Client").value;
   if (x === "") {
     document.getElementById("nomField").value = "";
-    document.getElementById("prenomField").value = "";
   } else {
     jq.ajax({
       url: "../easly/fetch_data.php",
@@ -18,16 +16,13 @@ function selectid() {
           document.getElementById("nomField").value = data.Nom;
         } else {
           document.getElementById("nomField").value = "";
-          document.getElementById("prenomField").value = "";
         }
       },
     });
   }
 }
 document.getElementById("Client").addEventListener("input", selectid);
-
 //Display data from modal to input field
-
 function displayRowValues(row) {
   var cells = row.getElementsByTagName("td"); // Get all cells in the clicked row
   var id = cells[0].innerText;
@@ -41,34 +36,8 @@ function displayRowValues(row) {
   closeButton.click();
 }
 
-function selectfr() {
-  var x = document.getElementById("fr").value;
-  if (x === "") {
-    document.getElementById("nomField").value = "";
-    document.getElementById("prenomField").value = "";
-  } else {
-    jq.ajax({
-      url: "../easly/fetch-data-fr.php",
-      method: "POST",
-      data: {
-        id: x,
-      },
-      dataType: "JSON",
-      success: function (data) {
-        if (data.Nom && data.Prenom) {
-          document.getElementById("nomField").value = data.Nom;
-          document.getElementById("prenomField").value = data.Prenom;
-        } else {
-          document.getElementById("nomField").value = "";
-          document.getElementById("prenomField").value = "";
-        }
-      },
-    });
-  }
-}
 
 var jqq = jQuery.noConflict();
-
 function selectidproduct() {
   var xx = document.getElementById("Product").value;
   if (xx === "") {
@@ -111,6 +80,9 @@ function displayProductValues(row) {
     var closeButton = document.querySelector("#productdata .close");
     closeButton.click();
   }
+
+
+
 
 function calculateTotal() {
   var price = parseFloat(document.getElementById("PrixField").value);

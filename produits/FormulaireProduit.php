@@ -105,6 +105,12 @@
             </div>
             <form enctype="multipart/form-data" method="post" action="../produits/insertDataProduit.php" >
                 <div class="row" style="flex-direction: column;align-items: center;">
+                <div class="col-md-7">
+                        <div class="form-group" style="margin-top: 20px;">
+                            <label for="formGroupExampleInput" style="margin-bottom:5px;">N° Article</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="N°" name="No" autocomplete="off">
+                        </div>
+                    </div>
                     <div class="col-md-7">
                         <div class="form-group" style="margin-top: 20px;">
                             <label for="formGroupExampleInput" style="margin-bottom:5px;">nom_article</label>
@@ -125,7 +131,7 @@
                     </div>
                     <div class="col-md-7">
                         <div class="form-group" style="margin-top: 20px;">
-                            <label for="formGroupExampleInput4" style="margin-bottom:5px;">Prix_unitaire</label>
+                            <label for="formGroupExampleInput4" style="margin-bottom:5px;">Prix HT</label>
                             <input type="text" class="form-control" id="formGroupExampleInput4" placeholder="ex: 1500DH" name="prix" autocomplete="off">
                         </div>
                     </div>
@@ -138,8 +144,7 @@
 
                     <div class="col-md-7">
                         <div class="form-group" style="margin-top: 20px;">
-                            <label for="formGroupExampleInput4" style="margin-bottom:5px;">Date_fabrication</label>
-                            <input type="date" class="form-control" id="formGroupExampleInput4" placeholder="Adresse" name="date" autocomplete="off">
+                            <input type="hidden" class="form-control" id="formGroupExampleInput4" placeholder="Adresse" name="date" autocomplete="off">
                         </div>
                     </div>
                     <div class="col-md-7">

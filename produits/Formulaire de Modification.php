@@ -118,7 +118,8 @@ include '../produits/Function2.php';
                 <div class="row" style="flex-direction: column;align-items: center;">
                         <div class="col-md-7">
                             <div class="form-group" style="margin-top: 20px;">
-                                <input type="hidden" class="form-control" id="formGroupExampleInput" name="id" value="<?php echo $_GET['id']; ?>">
+                            <label for="formGroupExampleInput" style="margin-bottom:5px;">N° Article</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput" name="id" value="<?php echo $_GET['id']; ?>">
                             </div>
                         </div>
                     <div class="col-md-7">
@@ -141,7 +142,7 @@ include '../produits/Function2.php';
                     </div>
                     <div class="col-md-7">
                         <div class="form-group" style="margin-top: 20px;">
-                            <label for="formGroupExampleInput4" style="margin-bottom:5px;">Prix_unitaire</label>
+                            <label for="formGroupExampleInput4" style="margin-bottom:5px;">Prix HT</label>
                             <input type="text" class="form-control" id="formGroupExampleInput4" placeholder="ex: 1500DH" name="prix" autocomplete="off" value="<?php echo $produit ['PrixUnitaire']; ?>">
                         </div>
                     </div>
@@ -156,8 +157,8 @@ include '../produits/Function2.php';
 
                     <div class="col-md-7">
                         <div class="form-group" style="margin-top: 20px;">
-                            <label for="formGroupExampleInput4" style="margin-bottom:5px;">Date_fabrication</label>
-                            <input type="date" class="form-control" id="formGroupExampleInput4"  name="date" autocomplete="off" value="<?php echo $produit ['DateFabrication']; ?>">
+                        
+                            <input type="hidden" class="form-control" id="formGroupExampleInput4"  name="date" autocomplete="off" value="<?php echo $produit ['DateFabrication']; ?>">
                         </div>
                     </div>
                     <div class="col-md-7">

@@ -101,16 +101,16 @@
                 </div>
                 <form style="margin-top: -30px;overflow: hidden;padding:0 15px 0 0;" method="post" action="../Fornisseur/InsertDataFornisseur.php">
                     <div class="row" style="flex-direction: column;align-items: center;">
-                        <div class="col-md-7">
+                    <div class="col-md-7">
                             <div class="form-group" style="margin-top: 20px;">
-                                <label for="formGroupExampleInput" style="margin-bottom:5px;">Nom</label>
-                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nom" name="Nom" autocomplete="off">
+                                <label for="formGroupExampleInput" style="margin-bottom:5px;">N° Fournisseur</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="N°" name="No" autocomplete="off">
                             </div>
                         </div>
                         <div class="col-md-7">
                             <div class="form-group" style="margin-top: 20px;">
-                                <label for="formGroupExampleInput2" style="margin-bottom:5px;">Prénom</label>
-                                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Prénom" name="Prenom" autocomplete="off">
+                                <label for="formGroupExampleInput" style="margin-bottom:5px;">Nom</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nom" name="Nom" autocomplete="off">
                             </div>
                         </div>
                         <div class="col-md-7">

@@ -194,62 +194,87 @@ include '../easly/connexion.php';
             </label>
         </div>
         <div class="sidebar">
-            <div class="sidebar-container">
-                <div class="sidebar-menu">
-                    <div class="logo">
-
-                        <span>
-                            <p>Easly<!--<span style="font-size: 20px;color: white;border: 1px #396aff solid;background-color: #396aff;border-radius: 5px;padding: 2px 5px;margin-left: 5px;letter-spacing: 1px;">Stock</span></p>-->
-                        </span>
-
-                    </div>
-                    <div class="navlist">
-                        <div class="nav-items">
-                            <a href="../easly/Accueil.php" style="text-decoration: none" class="nav-link">
-                                <i class="bx bxs-dashboard icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Tableau de bord</span>
-                            </a>
-                            <a href="../easly/Produits.php" style="text-decoration: none" class="nav-link">
-                                <i class="bx bx-package icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Produit</span>
-                            </a>
-                            <a href="../easly/Clients.php" style="text-decoration: none" class="nav-link">
-                                <i class="bx bx-user icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Clients</span>
-                            </a>
-                            <div class="nav-dropdown">
-                                <a href="../easly/Commandes.php" style="text-decoration: none" class="nav-link">
-                                    <i class="bx bx-receipt icon-link" id="icons"></i>
-                                    <span style="font-weight: 500;letter-spacing: 1px;">Commandes</span>
-                                    <i class='bx bx-down-arrow-alt arrow-down'></i>
-                                </a>
-                                <div class="nav-dropdown-collapse">
-                                    <div class="dropdown-content">
-                                        <a href="../easly/Commandes.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Commandes Clients</a>
-                                        <a href="../easly/CommandeFornisseur.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Commandes Fornisseurs</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="nav-dropdown">
-                                <a href="../easly/Facture.php" style="text-decoration: none" class="nav-link">
-                                    <i class="bx bx-cart-add icon-link" id="icons"></i>
-                                    <span style="font-weight: 500;letter-spacing: 1px;">Facture</span>
-                                    <i class='bx bx-down-arrow-alt arrow-down'></i>
-                                </a>
-                                <div class="nav-dropdown-collapse">
-                                    <div class="dropdown-content">
-                                        <a href="../easly/Facture.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Clients</a>
-                                        <a href="../easly/FactureFornisseur.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Fornisseurs</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <a href="../easly/fornisseur.php" style="text-decoration: none" class="nav-link">
-                                <i class="bx bxs-store icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Fournisseur</span>
-                            </a>
-                        </div>
-                        </li>
-                    </div>
-                </div>
-            </div>
+    <div class="sidebar-container">
+      <div class="sidebar-menu">
+        <div class="logo">
+          <span>
+            <p>Easly</p>
+          </span>
         </div>
+        <div class="navlist">
+          <div class="nav-items">
+
+            <a href="../easly/Accueil.php" style="text-decoration: none" class="nav-link">
+              <i class="bx bxs-dashboard icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Tableau de bord</span>
+            </a>
+            <a href="../easly/Produits.php" style="text-decoration: none" class="nav-link">
+              <i class="bx bx-package icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Produit</span>
+            </a>
+            <!---<a href="../easly/Clients.php" style="text-decoration: none" class="nav-link">
+              <i class="bx bx-user icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Clients</span>
+            </a>-->
+            <div class="nav-dropdown">
+              <a href="../easly/Clients.php" style="text-decoration: none" class="nav-link">
+              <i class="bx bx-user icon-link" id="icons"></i>
+                <span style="font-weight: 500;letter-spacing: 1px;">Clients</span>
+                <i class='bx bx-down-arrow-alt arrow-down'></i>
+              </a>
+              <div class="nav-dropdown-collapse">
+                <div class="dropdown-content">
+                  <a href="../easly/Commandes.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Commandes Clients</a>
+                  <a href="../easly/Facture.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Clients</a>
+                </div>
+              </div>
+            </div>
+            <!----<a href="../easly/fornisseur.php" style="text-decoration: none" class="nav-link">
+              <i class="bx bxs-store icon-link" id="icons"></i><span style="font-weight: 500;letter-spacing: 1px;">Fournisseur</span>
+            </a>--->
+            <div class="nav-dropdown">
+              <a href="../easly/Fornisseur.php" style="text-decoration: none" class="nav-link">
+              <i class="bx bxs-store icon-link" id="icons"></i>
+                <span style="font-weight: 500;letter-spacing: 1px;">Fournisseur</span>
+                <i class='bx bx-down-arrow-alt arrow-down'></i>
+              </a>
+              <div class="nav-dropdown-collapse">
+                <div class="dropdown-content">
+                <a href="../easly/CommandeFornisseur.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Commandes Fornisseurs</a>
+                <a href="../easly/FactureFornisseur.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Fournisseurs</a>
+                </div>
+              </div>
+            </div>
+
+            <!---<div class="nav-dropdown">
+              <a href="#" style="text-decoration: none" class="nav-link">
+                <i class="bx bx-receipt icon-link" id="icons"></i>
+                <span style="font-weight: 500;letter-spacing: 1px;">Commandes</span>
+                <i class='bx bx-down-arrow-alt arrow-down'></i>
+              </a>
+              <div class="nav-dropdown-collapse">
+                <div class="dropdown-content">
+                  <a href="../easly/Commandes.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Commandes Clients</a>
+                  <a href="../easly/CommandeFornisseur.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Commandes Fornisseurs</a>
+                </div>
+              </div>
+            </div>
+            <div class="nav-dropdown">
+              <a href="../php/Facture.php" style="text-decoration: none" class="nav-link">
+                <i class="bx bx-cart-add icon-link" id="icons"></i>
+                <span style="font-weight: 500;letter-spacing: 1px;">Facture</span>
+                <i class='bx bx-down-arrow-alt arrow-down'></i>
+              </a>
+              <div class="nav-dropdown-collapse">
+                <div class="dropdown-content">
+                  <a href="../easly/Facture.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Clients</a>
+                  <a href="../easly/FactureFornisseur.php" style="text-decoration: none;letter-spacing: 1px;color: #58555E;">Facture Fournisseurs</a>
+                </div>
+              </div>
+            </div>--->
+          </div>
+          </li>
+        </div>
+      </div>
+    </div>
+  </div>
         <div class="main-content">
             <header>
                 <div class="header-title">

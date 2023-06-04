@@ -107,6 +107,12 @@
             
             <form style="margin-top: -30px;overflow: hidden;padding:0 15px 0 0;" method="post" action="../client/insertData.php">
                 <div class="row" style="flex-direction: column;align-items: center;">
+                <div class="col-md-7">
+                        <div class="form-group" style="margin-top: 20px;">
+                            <label for="formGroupExampleInput" style="margin-bottom:5px;">N° Client</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="No" name="No" autocomplete="off">
+                        </div>
+                    </div>
                     <div class="col-md-7">
                         <div class="form-group" style="margin-top: 20px;">
                             <label for="formGroupExampleInput" style="margin-bottom:5px;">Nom</label>
@@ -116,7 +122,7 @@
                     <div class="col-md-7">
                         <div class="form-group" style="margin-top: 20px;">
                             <label for="formGroupExampleInput3" style="margin-bottom:5px;">Téléphone</label>
-                            <input type="number" class="form-control" id="formGroupExampleInput3" placeholder="ex: 0630254859" name="Telephone" autocomplete="off">
+                            <input type="text" class="form-control" id="formGroupExampleInput3" placeholder="ex: 0630254859" name="Telephone" autocomplete="off">
                         </div>
                     </div>
                     <div class="col-md-7">
