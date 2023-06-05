@@ -9,7 +9,7 @@ include '../easly/connexion.php';
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/facture.css" />
+    <link rel="stylesheet" href="../css/orders.css" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
 
@@ -29,8 +29,8 @@ include '../easly/connexion.php';
 <body>
     <input type="checkbox" name="" id="menutoggle">
     <div class="overlay">
-      <label for="menutoggle">
-      </label>
+        <label for="menutoggle">
+        </label>
     </div>
     <div class="sidebar">
     <div class="sidebar-container">
@@ -134,15 +134,14 @@ include '../easly/connexion.php';
 
             <?php
             $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
-            $sql = "SELECT f.no, fr.Nom, f.date
-            FROM facturefornisseur f
-            JOIN fornisseur fr ON fr.ID = f.ID_Fornisseur;";
+            $sql = "SELECT ff.no, f.Nom, ff.date FROM facturefornisseur AS ff JOIN fornisseur AS f ON ff.ID_Fornisseur  = f.ID;";
             $result = mysqli_query($connection, $sql);
             ?>
 
             <section class="home-table">
-                <h4>Liste de factures</h4>
-                <form action="../factureFornisseur/export-facture.php" method="post" style="margin-top: 12px;">
+                <h4>Liste des Factures</h4>
+                <form action="../FactureFournisseur/export-facture.php" method="post" style="margin-top: 12px;">
+                    <a href="../FactureFournisseur/FormulaireFacture.php"><button type="button" class="btn btn-primary" data-toggle="modal" id="btnedit" data-target="#fullcontent">Ajouter</button></a>
                     <button type="submit" name="submit" class="btn btn-primary" data-toggle="modal" id="btnpdf" data-target="#fullcontent"><i class='bx bxs-file-pdf'></i> PDF</button>
                     <!--<input type="submit" name="submit" value="EXPORT PDF">-->
                 </form>
@@ -155,10 +154,10 @@ include '../easly/connexion.php';
                   top: 0;
                 ">
                             <tr>
-                                <th scope="col" style="border:1px solid #ddd;">No</th>
-                                <th scope="col" style="border:1px solid #ddd;">Fornisseur</th>
+                                <th scope="col" style="border:1px solid #ddd;">N° Facture</th>
+                                <th scope="col" style="border:1px solid #ddd;">Nom</th>
                                 <th scope="col" style="border:1px solid #ddd;">Date</th>
-                                <th colspan="col" style="border:1px solid #ddd;width: 180px;">Action</th>
+                                <th colspan="col" style="border:1px solid #ddd;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -171,17 +170,20 @@ include '../easly/connexion.php';
                                         <th scope="row" style="border:1px solid #ddd;"><?php echo $row->no ?></th>
                                         <td style="border:1px solid #ddd;"><?php echo $row->Nom ?></td>
                                         <td style="border:1px solid #ddd;"><?php echo $row->date ?></td>
-                                        <td style="text-align: center;width: 180px;">
+                                        <td style="text-align: center;">
                                             <div style="display: flex;justify-content: space-around;align-items: center;">
-                                                <a href="../factureFornisseur/FormulaireFacture.php?id=<?php echo $row->no ?>" style="text-decoration: none;color: green;font-size: 1.2rem;"><i class='bx bxs-show'></i></a>
-                                                <a href="../factureFornisseur/DeleteData.php?id=<?php echo $row->no ?>" style="text-decoration: none;color: red;font-size: 1.2rem;"><i class='bx bx-x-circle'></i></a>
-                                                <a href="../factureFornisseur/export-list-facture.php?id=<?php echo $row->no ?>" style="text-decoration: none;color:black;font-size: 1.2rem;"><i class='bx bxs-printer'></i></a>
+                                                <a href="../FactureFournisseur/Formulaire de Modification.php?id=<?php echo $row->no; ?>" style="text-decoration: none;color: black;font-size: 1.2rem;" title="edit"><i class='bx bx-pencil'></i></a>
+                                                <form action="../FactureFournisseur/Facture.php" method="post">
+                                                    <a href="../FactureFournisseur/Facture.php?id=<?php echo $row->no; ?>" style="text-decoration: none;color:green;font-size: 1.2rem;"><i class='bx bxs-show'></i></a>
+                                                </form>
+                                                <a href="../FactureFournisseur/DeleteData.php?id=<?php echo $row->no; ?>" style="text-decoration: none;color: red;font-size: 1.2rem;"><i class='bx bx-x-circle'></i></a>
+                                                <a href="../FactureFournisseur/export-list-facture.php?id=<?php echo $row->no; ?>" style="text-decoration: none;color:black;font-size: 1.2rem;"><i class='bx bxs-printer'></i></a>
                                             </div>
                                         </td>
                                     </tr>
                                 <?php }
                             } else {
-                                $resetQuery = "ALTER TABLE facture AUTO_INCREMENT = 1";
+                                $resetQuery = "ALTER TABLE Facturefornisseur AUTO_INCREMENT = 1";
                                 mysqli_query($connection, $resetQuery); ?>
                             <?php } ?>
                         </tbody>

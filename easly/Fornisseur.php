@@ -226,7 +226,8 @@ include '../Fornisseur/Function.php';
                                     </tr>
                                 <?php }
                             } else {
-                                // No results found
+                              $resetQuery = "ALTER TABLE fornisseur AUTO_INCREMENT = 1";
+                              mysqli_query($connection, $resetQuery); 
                                 ?>
                                 <tr>
                                     <td style="font-size:20px; background-color: #EB1D36;color: white;" colspan="6">"Fornisseur non trouvé"</td>

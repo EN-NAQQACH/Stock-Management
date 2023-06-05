@@ -154,10 +154,9 @@ include '../easly/connexion.php';
                   top: 0;
                 ">
                             <tr>
-                                <th scope="col" style="border:1px solid #ddd;">No</th>
+                                <th scope="col" style="border:1px solid #ddd;">N° Commande</th>
                                 <th scope="col" style="border:1px solid #ddd;">Nom</th>
                                 <th scope="col" style="border:1px solid #ddd;">Date_commandes</th>
-                                <th colspan="col" style="border:1px solid #ddd;">Status</th>
                                 <th colspan="col" style="border:1px solid #ddd;">Action</th>
                             </tr>
                         </thead>
@@ -171,19 +170,6 @@ include '../easly/connexion.php';
                                         <th scope="row" style="border:1px solid #ddd;"><?php echo $row->No ?></th>
                                         <td style="border:1px solid #ddd;"><?php echo $row->Nom ?></td>
                                         <td style="border:1px solid #ddd;"><?php echo $row->date ?></td>
-                                        <td style="border:1px solid #ddd;">
-                                            <?php
-                                            if ($row->etat == 1) {
-                                            ?> <span style="display: flex;justify-content: center;">
-                                                    <h6 style="color: white;text-align:center;background-color: #A4D0A4;padding:5px;width: 90px;border-radius: 50px;font-size: 14px;">Terminée</h6>
-                                                </span> <?php
-                                                    } elseif ($row->etat == 2) {
-                                                        ?> <span style="display: flex;justify-content: center;">
-                                                    <h6 style="color: white;text-align:center;background-color: #FFD95A;padding:5px;width: 90px;border-radius: 50px;font-size: 14px;">En attente</h6>
-                                                </span> <?php
-                                                    }
-                                                        ?>
-                                        </td>
                                         <td style="text-align: center;">
                                             <div style="display: flex;justify-content: space-around;align-items: center;">
                                                 <a href="../CommandeFornisseur/Formulaire de Modification.php?id=<?php echo $row->No; ?>" style="text-decoration: none;color: black;font-size: 1.2rem;" title="edit"><i class='bx bx-pencil'></i></a>

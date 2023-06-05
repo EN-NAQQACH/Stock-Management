@@ -3,7 +3,7 @@ $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
 
 
 $searchkey = $_POST['name'];
-$sql = "SELECT * FROM fornisseur WHERE CONCAT(Nom) LIKE '%$searchkey%'";
+$sql = "SELECT * FROM fornisseur WHERE CONCAT(Nom,ID) LIKE '%$searchkey%'";
 $result = mysqli_query($connection, $sql);
 $data = array(); // Initialize an empty array
 if (mysqli_num_rows($result) > 0) {
@@ -20,7 +20,7 @@ if (mysqli_num_rows($result) > 0) {
     }
 }else {
     ?>
-    <td style="text-align: center;border:1px solid #ddd;" colspan="4">Liste Vide</td>
+    <td style="text-align: center;border:1px solid #ddd;" colspan="6">Liste Vide</td>
 <?php }
 echo json_encode($data);
 ?>

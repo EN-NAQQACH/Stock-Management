@@ -139,7 +139,7 @@ include '../easly/connexion.php';
             ?>
 
             <section class="home-table">
-                <h4>Liste des commandes</h4>
+                <h4>Liste des Factures</h4>
                 <form action="../Commandes/export-list-commandes.php" method="post" style="margin-top: 12px;">
                     <a href="../Facture/FormulaireFacture.php"><button type="button" class="btn btn-primary" data-toggle="modal" id="btnedit" data-target="#fullcontent">Ajouter</button></a>
                     <button type="submit" name="submit" class="btn btn-primary" data-toggle="modal" id="btnpdf" data-target="#fullcontent"><i class='bx bxs-file-pdf'></i> PDF</button>
@@ -173,11 +173,11 @@ include '../easly/connexion.php';
                                         <td style="text-align: center;">
                                             <div style="display: flex;justify-content: space-around;align-items: center;">
                                                 <a href="../Facture/Formulaire de Modification.php?id=<?php echo $row->no; ?>" style="text-decoration: none;color: black;font-size: 1.2rem;" title="edit"><i class='bx bx-pencil'></i></a>
-                                                <form action="../Commandes/Display_commandes.php" method="post">
-                                                    <a href="../Commandes/Display_commandes.php?id=<?php echo $row->ID; ?>" style="text-decoration: none;color:green;font-size: 1.2rem;"><i class='bx bxs-show'></i></a>
+                                                <form action="../Facture/Facture.php" method="post">
+                                                    <a href="../Facture/Facture.php?id=<?php echo $row->no; ?>" style="text-decoration: none;color:green;font-size: 1.2rem;"><i class='bx bxs-show'></i></a>
                                                 </form>
                                                 <a href="../Facture/DeleteData.php?id=<?php echo $row->no; ?>" style="text-decoration: none;color: red;font-size: 1.2rem;"><i class='bx bx-x-circle'></i></a>
-                                                <a href="../Commandes/export-commandes.php?id=<?php echo $row->ID; ?>" style="text-decoration: none;color:black;font-size: 1.2rem;"><i class='bx bxs-printer'></i></a>
+                                                <a href="../Facture/export-list-facture.php?id=<?php  echo $row->no; ?>" style="text-decoration: none;color:black;font-size: 1.2rem;"><i class='bx bxs-printer'></i></a>
                                             </div>
                                         </td>
                                     </tr>

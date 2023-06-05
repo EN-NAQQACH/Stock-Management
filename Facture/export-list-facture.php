@@ -7,7 +7,11 @@ extract($_POST);
 var_dump($_POST);
 $idfr = $_GET['id'] ;
 $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
-$sql = "SELECT f.no, f.date, c.Nom FROM facture AS f JOIN commandes AS cmd ON f.id_commandes = cmd.ID JOIN client AS c ON cmd.ID_Client = c.ID JOIN `article de commande` AS ac ON cmd.ID = ac.id_commandes JOIN article AS p ON ac.id_article = p.ID WHERE f.no = $idfr GROUP BY c.Nom;";
+$sql = "SELECT DISTINCT c.ID , c.Nom, f.date, f.no
+FROM facture AS f
+JOIN client AS c ON f.no_client = c.ID
+WHERE f.no = $idfr
+GROUP BY c.ID;";
 $result = mysqli_query($connection, $sql);
     $html = '';
     if (mysqli_num_rows($result) > 0) {
@@ -40,7 +44,12 @@ $result = mysqli_query($connection, $sql);
       }}
     $idfr = $_GET['id'] ;
     $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
-    $sql = "SELECT f.no, f.date, f.id_commandes, c.Nom , p.Nom_Article ,p.ID, ac.Quantite, ac.Price, ac.Total FROM facture AS f JOIN commandes AS cmd ON f.id_commandes = cmd.ID JOIN client AS c ON cmd.ID_Client = c.ID JOIN `article de commande` AS ac ON cmd.ID = ac.id_commandes JOIN article AS p ON ac.id_article = p.ID WHERE f.no = $idfr ;";
+    $sql = "SELECT p.Nom_Article , af.Quantite, af.Price, af.Total
+    FROM facture AS f
+    JOIN client AS c ON f.no_client = c.ID
+    JOIN `article de facture` AS af ON f.No = af.id_facture
+    JOIN article AS p ON af.id_article = p.ID
+    WHERE f.No = $idfr;";
     $result = mysqli_query($connection, $sql);
 if (mysqli_num_rows($result) > 0) {
   foreach ($result as $data) {
@@ -55,13 +64,18 @@ if (mysqli_num_rows($result) > 0) {
 }else{
     $html .='
     <tr>
-       <td colspan="5" style="border:1px solid #ddd;padding:9px;text-align:left;">No Data</td>
+       <td colspan="5" style="border:1px solid #ddd;padding:9px;text-align:left;">liste vide</td>
     </tr>
     ';
 }
 $idfr = $_GET['id'] ;
     $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
-    $sql = "SELECT SUM(ac.Total) AS total_sum, SUM(ac.Total)*0.2 as tva, SUM(ac.Total)*1.2 as ttc FROM facture AS f JOIN commandes AS cmd ON f.id_commandes = cmd.ID JOIN client AS c ON cmd.ID_Client = c.ID JOIN `article de commande` AS ac ON cmd.ID = ac.id_commandes JOIN article AS p ON ac.id_article = p.ID WHERE f.no = $idfr;";
+    $sql = "SELECT SUM(af.Total) AS total_sum, SUM(af.Total)*0.2 as tva, SUM(af.Total)*1.2 as ttc
+    FROM facture AS f
+    JOIN client AS c ON f.no_client = c.ID
+    JOIN `article de facture` AS af ON f.No = af.id_facture
+    JOIN article AS p ON af.id_article = p.ID
+    WHERE f.No = $idfr;";
     $result = mysqli_query($connection, $sql);
 if (mysqli_num_rows($result) > 0) {
   foreach ($result as $data) {
