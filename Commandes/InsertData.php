@@ -5,14 +5,13 @@ include '../easly/connexion.php';
 session_start();
 var_dump($_POST);
 // Check if the textfields are not empty
-if (empty($_POST['ID_clinet']) || empty($_POST['date']) || empty($_POST['optionvalue'])) {
+if (empty($_POST['ID_clinet']) || empty($_POST['date'])) {
     $_SESSION['status'] = "Veuillez saisir les données: N° client, Date";
     $_SESSION['status_code'] = "info";
 } elseif (isset($_POST['addorder'])) {
     // Get data from textfields
     $idclient = trim($_POST['ID_clinet']);
     $date = trim($_POST['date']);
-    $optionvalue = trim($_POST['optionvalue']);
 
     // Check if the data already exists in the database
     $sql = "SELECT * FROM $database.commandes WHERE ID_Client=?";
@@ -20,7 +19,7 @@ if (empty($_POST['ID_clinet']) || empty($_POST['date']) || empty($_POST['optionv
     $req->execute(array($idclient));
 
     if ($req->rowCount() > 0) {
-        $_SESSION['status'] = "Les données existent déjà dans la base de données";
+        $_SESSION['status'] = "la commande ou le N° commande existe déjà";
         $_SESSION['status_code'] = "warning";
     } else {
         $commandeId = null; // Initialize the variable to hold the command ID
@@ -50,9 +49,9 @@ if (empty($_POST['ID_clinet']) || empty($_POST['date']) || empty($_POST['optionv
 
                     // Insert data into commandes table (if not already inserted)
                     if (!$commandeId) {
-                        $insertCommandeSql = "INSERT INTO $database.commandes (`date`, ID_Client, statu) VALUES (?, ?, ?)";
+                        $insertCommandeSql = "INSERT INTO $database.commandes (`date`, ID_Client) VALUES (?, ?)";
                         $insertCommandeStmt = $connexion->prepare($insertCommandeSql);
-                        $insertCommandeStmt->execute([$date, $idclient, $optionvalue]);
+                        $insertCommandeStmt->execute([$date, $idclient]);
                         $commandeId = $connexion->lastInsertId();
 
                        /* $insertFactureSql = "INSERT INTO $database.facture (`no_client`, `date`, `id_commandes`) VALUES (:idclient, :date, :commandeId)";

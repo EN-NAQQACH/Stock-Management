@@ -5,14 +5,13 @@ include '../easly/connexion.php';
 session_start();
 var_dump($_POST);
 // Check if the textfields are not empty
-if (empty($_POST['ID_Fr']) || empty($_POST['date']) || empty($_POST['optionvalue'])) {
-    $_SESSION['status'] = "Veuillez saisir les données: N° client, Date";
+if (empty($_POST['ID_fr']) || empty($_POST['date'])) {
+    $_SESSION['status'] = "Veuillez saisir les données: N° Fornisseur, Date";
     $_SESSION['status_code'] = "info";
 } elseif (isset($_POST['addorder'])) {
     // Get data from textfields
-    $idfr = trim($_POST['ID_Fr']);
+    $idfr = trim($_POST['ID_fr']);
     $date = trim($_POST['date']);
-    $optionvalue = trim($_POST['optionvalue']);
 
     // Check if the data already exists in the database
     $sql = "SELECT * FROM $database.commandesfornissuer WHERE ID_Fornisseur=?";
@@ -20,7 +19,7 @@ if (empty($_POST['ID_Fr']) || empty($_POST['date']) || empty($_POST['optionvalue
     $req->execute(array($idfr));
 
     if ($req->rowCount() > 0) {
-        $_SESSION['status'] = "Les données existent déjà dans la base de données";
+        $_SESSION['status'] = "la commande ou le N° commande existe déjà";
         $_SESSION['status_code'] = "warning";
     } else {
         $commandeId = null; // Initialize the variable to hold the command ID
@@ -50,24 +49,24 @@ if (empty($_POST['ID_Fr']) || empty($_POST['date']) || empty($_POST['optionvalue
 
                     // Insert data into commandes table (if not already inserted)
                     if (!$commandeId) {
-                        $insertCommandeSql = "INSERT INTO $database.commandesfornissuer (ID_Fornisseur, `date`, etat) VALUES (?, ?, ?)";
+                        $insertCommandeSql = "INSERT INTO $database.commandesfornissuer (`date`, ID_Fornisseur) VALUES (?, ?)";
                         $insertCommandeStmt = $connexion->prepare($insertCommandeSql);
-                        $insertCommandeStmt->execute([ $idfr, $date, $optionvalue]);
+                        $insertCommandeStmt->execute([$date, $idfr]);
                         $commandeId = $connexion->lastInsertId();
 
-                        /*$insertFactureSql = "INSERT INTO $database.facturefornisseur (`ID_Fornisseur`, `id_commandes`, `date`) VALUES (:idfr, :commandeId, :date)";
+                       /* $insertFactureSql = "INSERT INTO $database.facture (`no_client`, `date`, `id_commandes`) VALUES (:idclient, :date, :commandeId)";
                         $insertFactureStmt = $connexion->prepare($insertFactureSql);
-                        $insertFactureStmt->bindParam(':idfr', $idfr);
-                        $insertFactureStmt->bindParam(':commandeId', $commandeId);
+                        $insertFactureStmt->bindParam(':idclient', $idclient);
                         $insertFactureStmt->bindParam(':date', $date);
+                        $insertFactureStmt->bindParam(':commandeId', $commandeId);
                         $insertFactureStmt->execute();*/
 
                     }
 
                     // Insert data into article de commande table
-                    $insertArticleSql = "INSERT INTO `$database`.`article de commande fornisseur` (id_article, id_commandes, price, Quantite, Total) VALUES (?, ?, ?, ?, ?)";
+                    $insertArticleSql = "INSERT INTO `$database`.`article de commande fornisseur` (id_commandes, id_article, Quantite, Price, Total) VALUES (?, ?, ?, ?, ?)";
                     $insertArticleStmt = $connexion->prepare($insertArticleSql);
-                    $insertArticleStmt->execute([$id, $commandeId, $pr, $qte, $tot]);
+                    $insertArticleStmt->execute([$commandeId, $id, $qte, $pr, $tot]);
                 } else {
                     // Quantity is not available
                     $_SESSION['status'] = "La quantité demandée n'est pas disponible pour l'article avec N°: $id";
@@ -77,7 +76,7 @@ if (empty($_POST['ID_Fr']) || empty($_POST['date']) || empty($_POST['optionvalue
                     // exit;
                     $error = true;
                     break;
-                    header('Location: ../easly/CommandeFornisseur.php');
+                    header('Location: ../CommandeFornisseur/FormulaireCommandes.php');
                     
                 }
             } else {
@@ -96,15 +95,15 @@ if (empty($_POST['ID_Fr']) || empty($_POST['date']) || empty($_POST['optionvalue
             $_SESSION['status_code'] = "success";
             $_POST = array(); // Clear the form fields
         } elseif ($error) {
-            header('Location: ../easly/CommandeFornisseur.php');
+            header('Location: ../CommandeFornisseur/FormulaireCommandes.php');
             exit;
         } else {
             $_SESSION['status'] = "La quantité demandée n'est pas disponible pour l'article avec le N°: $id";
             $_SESSION['status_code'] = "error";
-            header('Location: ../easly/CommandeFornisseur.php');
+            header('Location: ../CommandeFornisseur/FormulaireCommandes.php');
             exit;
         }
     }
 }
 
-header('Location: ../easly/CommandeFornisseur.php');
+header('Location: ../CommandeFornisseur/FormulaireCommandes.php');

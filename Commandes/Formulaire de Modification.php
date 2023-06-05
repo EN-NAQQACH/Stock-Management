@@ -254,7 +254,6 @@ include '../easly/connexion.php';
                                             <th style="border:1px solid #ddd;">ID Client</th>
                                             <th style="border:1px solid #ddd;">Nom</th>
                                             <th style="border:1px solid #ddd;">Date</th>
-                                            <th style="border:1px solid #ddd;">Status</th>
                                         </tr>
                             </thead>
                             <tbody>
@@ -267,12 +266,6 @@ include '../easly/connexion.php';
                                     </td>
                                     <td style="border:1px solid #ddd;">
                                         <input type="date" id="prenomField" name="date" class="form-control" value="<?php echo $row->Date ?>">
-                                    </td>
-                                    <td style="border:1px solid #ddd;">
-                                        <select class="form-select" aria-label="Default select example" name="optionvalue">
-                                            <option value="1" <?php if ($row->statu == 1) echo 'selected'; ?>>Terminée</option>
-                                            <option value="2" <?php if ($row->statu == 2) echo 'selected'; ?>>En attente</option>
-                                        </select>
                                     </td>
                                 </tr>
                         <?php }

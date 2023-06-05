@@ -7,34 +7,22 @@ if (isset($_POST['ajoutercmd'])) {
     // Get data from textfields
     $id_comd = $_POST['id']; // Handle the case when 'id' is not set in $_GET
     $date = trim($_POST['date']);
-    $optionvalue = trim($_POST['optionvalue']);
 
     // Update data in the commandes table
-    $sql = "UPDATE $database.commandesfornissuer SET date = :date, etat = :optionvalue WHERE No = :id_comd";
+    $sql = "UPDATE $database.commandesfornissuer SET date = :date WHERE No = :id_comd";
     $req = $connexion->prepare($sql);
     $req->execute(array(
         'date' => $date,
-        'optionvalue' => $optionvalue,
         'id_comd' => $id_comd
     ));
 
     if ($req->rowCount() != 0) {
-        // Update data in the facture table
-        $updateFactureSql = "UPDATE $database.facturefornisseur SET date = :date WHERE id_commandes = :id_comd";
-        $updateFactureStmt = $connexion->prepare($updateFactureSql);
-        $updateFactureStmt->execute(array(
-            'date' => $date,
-            'id_comd' => $id_comd
-        ));
-
-        if ($updateFactureStmt->rowCount() != 0) {
             $_SESSION['status'] = "Les données ont été mises à jour avec succès";
             $_SESSION['status_code'] = "success";
         } else {
             $_SESSION['status'] = "Erreur lors de la mise à jour de la facture";
             $_SESSION['status_code'] = "error";
         }
-    }
 
     // Insert data into the 'article de commande' table
     if (!empty($_POST["idar"]) && !empty($_POST["Qty"])) {
@@ -88,4 +76,4 @@ if (isset($_POST['ajoutercmd'])) {
     }
 }
 
-header('Location: ../easly/Commandes.php');
+header('Location: ../easly/CommandeFornisseur.php');

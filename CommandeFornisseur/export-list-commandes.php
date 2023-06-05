@@ -8,7 +8,7 @@ use Dompdf\Options;
 extract($_POST);
 if (isset($_POST["submit"])) {
     $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
-    $sql = "SELECT c.ID, c.Nom, c.Prenom, cmd.date, cmd.etat FROM commandesfornissuer AS cmd JOIN fornisseur AS c ON cmd.ID_Fornisseur = c.ID;";
+    $sql = "SELECT c.ID, c.Nom, cmd.date FROM commandesfornissuer AS cmd JOIN fornisseur AS c ON cmd.ID_Fornisseur = c.ID;";
     $result = mysqli_query($connection, $sql);
     $html = '';
     $html .= '
@@ -20,14 +20,12 @@ if (isset($_POST["submit"])) {
     <p style="font-size:14px;">Email:easly@easlyinfo.com</p>
     <p style="font-size:14px;">Adresse: IMMEUBLE TIGHMERT N°:3 Boulevard Mohammed Cheikh Saadi Agadir 80000 Maroc</p>
     </div>
-    <h2 style="text-align:center;border:1px solid #ddd;margin-bottom:20px;padding:9px;">Liste des Commandes</h2>
+    <h3 style="text-align:center;border:1px solid #ddd;margin-bottom:20px;padding:9px;">Liste des Commandes</h3>
     <table style="width:100%;border-collapse:collapse">
       <tr style="background-color:#3da4f0;">
         <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;color:white;">N°commande</th>
         <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;color:white;">Nom</th>
-        <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;color:white;">Prénom</th>
         <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;color:white;">Date</th>
-        <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;color:white;">Etat</th>
       </tr>
     ';
     if (mysqli_num_rows($result) > 0) {
@@ -36,16 +34,7 @@ if (isset($_POST["submit"])) {
                 <tr>
                     <th scope="row" style="border:1px solid #ddd;padding:9px;text-align:center;">' . $data['ID'] . '</th>
                     <td style="border:1px solid #ddd;padding:9px;text-align:left;">' . $data['Nom'] . '</td>
-                    <td style="border:1px solid #ddd;padding:9px;text-align:left;">' . $data['Prenom'] . '</td>
-                    <td style="border:1px solid #ddd;padding:15px;text-align:left;width:120px">' . $data['date'] . '</td>
-                    <td style="border:1px solid #ddd;padding:9px;text-align:left;">';
-        
-            if ($data['etat'] == 1) {
-                $html .= 'Terminée';
-            } elseif ($data['etat'] == 2) {
-                $html .= 'En attente';
-            }
-        
+                    <td style="border:1px solid #ddd;padding:15px;text-align:left;width:120px">' . $data['date'] . '</td>';
             $html .= '
                     </td>
                 </tr>
