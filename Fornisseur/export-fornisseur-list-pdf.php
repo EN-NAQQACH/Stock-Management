@@ -1,6 +1,6 @@
 <?php
 require_once ("../easly/connexion.php");
-require_once ("../vendor/autoload.php");
+require_once("../dompdf/autoload.inc.php");
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
@@ -11,16 +11,24 @@ if(isset($_POST["submit"])){
     $result = mysqli_query($connection, $sql);
     $html = '';
     $html .= '
-    <h1 style="margin-bottom:17px;margin-top:-20px;text-align:left;color:#5f9bce;">EASLY INFORMATIQUE</h1>
-    <div style="border:1px solid #ddd;margin-bottom:15px;padding:0 9px;">
-    <p style="font-size:14px;">Tél: (+212) 0528820175</p>
-    <p style="font-size:14px;">Tél: (+212) 0666-068756</p>
-    <p style="font-size:14px;">Email:easly@easlyinfo.com</p>
-    <p style="font-size:14px;">Adresse: IMMEUBLE TIGHMERT N°:3 Boulevard Mohammed Cheikh Saadi Agadir 80000 Maroc</p>
+    <head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+      
+    
+    <img src="../easly/easlylogo.png" style="margin-left:-37px;margin-top:-10px;" width="150" height="60">
+    <div style="margin-left:110px;margin-top:-100px;margin-right:-37px;font-family: Poppins, sans-serif;">
+    <ul> <span style="margin-left:-25px;font-weight:bold;">Vente, Réparation, Fourniture des Matériels & Consommables :</span>
+    <li style="font-size:13.5px";>Informatique, Logiciel, Sécurité & Sauvegarde.</li>
+    <li style="font-size:13.5px";>Bureautique, Papeterie, Imprimerie & Mobilier de Bureau.</li>
+    <li style="font-size:13.5px";>Réseau Informatique, Téléphonie Sonorisation.</li>
+    <li style="font-size:13.5px";>Vidéo Surveillance, Contrôle d accès, Alarme & Incendie.</li>
+    </ul>
     </div>
-    <h2 style="text-align:center;border:1px solid #ddd;margin-bottom:20px;padding:9px;">Liste des fournisseurs</h2>
-    <table style="width:100%;border-collapse:collapse">
-      <tr>
+    <h3 style="text-align:center;border:1px solid #ddd;margin-bottom:20px;padding:9px;margin-left:-37px;margin-right:-37px;">Liste des fournisseurs</h3>
+    <table style="width:100%;border-collapse:collapse;margin-left:-37px;margin-right:-37px;">
+      <tr style="background-color:#3da4f0;">
         <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;">ID</th>
         <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;">Nom</th>
         <th scope="col" style="border:1px solid #ddd;padding:9px;text-align:left;">Téléphone</th>
@@ -46,13 +54,18 @@ if(mysqli_num_rows($result)>0){
     </tr>
     ';
 }
+$html.='
+<footer style="min-width:100%;margin-left:-37px;font-family: Poppins, sans-serif;margin-right:-37px;font-size:12px;font-weight:600;position:absolute;top:97%;line-height:1.3px;">
+<p style="text-align:center;">SARL au capital de 1 200.000 Dhs - Patente N° 48355035-IF 06927043 RC N° 8669-CNSS Nº 6439766-ICE N°:001543892000084</p>
+<p style="text-align:center;">CB N°007 01 0000 1845 00000 1911 91 /Attijariwafabank Centre d affaire Agadir Hassan -Tél: 0528 820175-0528843303 Fax: 0528 827857-E-mail:</p>
+<p style="text-align:center;">easly@easlyinfo.com,SIEGE m. TIGHMERT, N° 3, Av. CHEIKH SAADI Talborjt - Agadir,</p>
+</footer></body>'; 
 $options = new Options();
 $options->set('defaultFont', 'Courier');
 $dompdf = new Dompdf($options);
-  $html .= '</table>';
   $dompdf = new Dompdf();
   $dompdf->loadHtml($html);
   $dompdf->setPaper("A4", "portrait");
   $dompdf->render();
-  $dompdf->stream("List de Client");
+  $dompdf->stream("List des Fournissuers", ["Attachment" => false]);
 }

@@ -24,7 +24,7 @@ if (empty($_POST['Nom']) || empty($_POST['Telephone']) || empty($_POST['Adress']
     $req->execute(array($no, $nom, $telephone, $adresse, $no));
 
     if ($req->rowCount() > 0) {
-        $_SESSION['status'] = "Les données existent déjà dans la base de données";
+        $_SESSION['status'] = "la Fournisseur ou le N° Fournisseur existe déjà";
         $_SESSION['status_code'] = "warning";
     
     } else {
