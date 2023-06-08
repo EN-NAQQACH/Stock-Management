@@ -73,7 +73,7 @@ include '../client/Function2.php';
             <div class="nav-dropdown">
               <a href="../easly/Fornisseur.php" style="text-decoration: none" class="nav-link">
                 <i class="bx bxs-store icon-link" id="icons"></i>
-                <span style="font-weight: 500;letter-spacing: 1px;">Fournisseur</span>
+                <span style="font-weight: 500;letter-spacing: 1px;">Fournisseurs</span>
                 <i class='bx bx-down-arrow-alt arrow-down'></i>
               </a>
               <div class="nav-dropdown-collapse">
@@ -133,20 +133,13 @@ include '../client/Function2.php';
     <main>
 
 
-      <div id="filterdiv" style="display: flex;justify-content: center;margin-right: 93px;margin-top: -10px;">
-        <form method="post" action="../easly/Clients.php">
-          <div class="row">
-            <div class="col-md-9" style="margin:5px 0;">
-              <input type="text" class="form-control" placeholder="Nom or Id, Prenom ..." name="filter_value">
-            </div>
-            <div class="col-md-3" style="margin:5px 0;">
-              <button type="submit" class="btn btn-primary" style="background-color: #92B4EC;border: #92B4EC;" name="recherchebtn" required> recherche </button>
-            </div>
-          </div>
-        </form>
+      <div class="row" style="margin: -10px 5px 0px 5px;">
+        <div class="col-md-5" style="margin:auto;">
+          <input type="text" class="form-control" placeholder="Rechcerche" name="filter" id="getname" autocomplete="off" >
+        </div>
       </div>
 
-      <div id="filterdiv2">
+      <!-----------   <div id="filterdiv2">
         <p>
           <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="background-color: green;border: #394867;">
             Filter
@@ -166,7 +159,7 @@ include '../client/Function2.php';
             </form>
           </div>
         </div>
-      </div>
+      </div>-------->
 
       <?php
       $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
@@ -205,7 +198,7 @@ include '../client/Function2.php';
                 <th colspan="col" style="border:1px solid #ddd;">Action</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="showdata">
               <!-- Add more customer rows as needed -->
               <!-- gat data from database-->
               <?php
@@ -238,6 +231,27 @@ include '../client/Function2.php';
       </section>
     </main>
   </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script>
+        var jq = jQuery.noConflict();
+        jq(document).ready(function() {
+            $('#getname').keyup(function() {
+                var getname = $(this).val();
+                jq.ajax({
+                    method: 'post',
+                    url: '../easly/clientsearch.php',
+                    data: {
+                        name: getname
+                    },
+                    success: function(response) {
+                        $("#showdata").html(response);
+                    }
+                })
+            });
+
+
+        });
+    </script>
   <script>
     var links = document.getElementsByTagName("li");
 

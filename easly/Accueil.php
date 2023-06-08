@@ -82,7 +82,7 @@ include '../client/Function2.php'
             <div class="nav-dropdown">
               <a href="../easly/Fornisseur.php" style="text-decoration: none" class="nav-link">
               <i class="bx bxs-store icon-link" id="icons"></i>
-                <span style="font-weight: 500;letter-spacing: 1px;">Fournisseur</span>
+                <span style="font-weight: 500;letter-spacing: 1px;">Fournisseurs</span>
                 <i class='bx bx-down-arrow-alt arrow-down'></i>
               </a>
               <div class="nav-dropdown-collapse">
@@ -160,38 +160,12 @@ include '../client/Function2.php'
             $totalRowCount = $row1->row_count + $row2->row_count;
           ?>
             <div class="details">
-              <div class="box-topic" style="font-weight: 600;">Total Order</div>
+              <div class="box-topic" style="font-weight: 600;">Total Orders</div>
               <div class="number" style="font-size:20px;font-weight: 600;"><?php echo  $totalRowCount ?></div>
             </div>
         </div>
       <?php }
       ?>
-      <div class="box">
-        <div class="icon">
-        <i class="bx bx-receipt icon-link" id="icons"></i>
-        </div>
-        <?php
-        $connection = mysqli_connect('localhost', 'root', '', 'ggestion_stock');
-
-        $sql1 = "SELECT COUNT(*) as row_count FROM `commandesfornissuer` WHERE etat = 2;";
-        $result1 = mysqli_query($connection, $sql1);
-
-        $sql2 = "SELECT COUNT(*) as row_count FROM `commandes` WHERE statu = 2;";
-        $result2 = mysqli_query($connection, $sql2);
-
-        if (mysqli_num_rows($result1) > 0 || mysqli_num_rows($result2) > 0) {
-          $row1 = mysqli_fetch_object($result1);
-          $row2 = mysqli_fetch_object($result2);
-          $totalRowCount = $row1->row_count + $row2->row_count;
-        ?>
-          <div class="details">
-            <div class="box-topic" style="font-weight: 600;">order en attente</div>
-            <div class="number" style="font-size:20px;font-weight: 600;"><?php echo $totalRowCount; ?></div>
-          </div>
-        <?php
-        }
-        ?>
-      </div>
       <div class="box">
         <div class="icon">
         <i class="bx bx-package icon-link" id="icons"></i>
@@ -224,7 +198,7 @@ include '../client/Function2.php'
         if (mysqli_num_rows($result) > 0) {
           while ($row = mysqli_fetch_object($result)) { ?>
             <div class="details">
-              <div class="box-topic" style="font-weight: 600;">Fornisseur</div>
+              <div class="box-topic" style="font-weight: 600;">Fournisseurs</div>
               <div class="number" style="font-size:20px;font-weight: 600;"><?php echo $row->row_count ?></div>
             </div>
       </div>

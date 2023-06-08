@@ -71,7 +71,7 @@ include '../easly/connexion.php';
             <div class="nav-dropdown">
               <a href="../easly/Fornisseur.php" style="text-decoration: none" class="nav-link">
               <i class="bx bxs-store icon-link" id="icons"></i>
-                <span style="font-weight: 500;letter-spacing: 1px;">Fournisseur</span>
+                <span style="font-weight: 500;letter-spacing: 1px;">Fournisseurs</span>
                 <i class='bx bx-down-arrow-alt arrow-down'></i>
               </a>
               <div class="nav-dropdown-collapse">
@@ -129,7 +129,11 @@ include '../easly/connexion.php';
             <div class="header-action"></div>
         </header>
         <main>
-
+        <div class="row" style="margin: -10px 5px 0px 5px;">
+        <div class="col-md-5" style="margin:auto;">
+          <input type="text" class="form-control" placeholder="Rechcerche" name="filter" id="getname" autocomplete="off">
+        </div>
+      </div>
 
 
             <?php
@@ -160,7 +164,7 @@ include '../easly/connexion.php';
                                 <th colspan="col" style="border:1px solid #ddd;">Action</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="showdata">
                             <!-- Add more customer rows as needed -->
                             <!-- gat data from database-->
                             <?php
@@ -192,6 +196,27 @@ include '../easly/connexion.php';
             </section>
         </main>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script>
+        var jq = jQuery.noConflict();
+        jq(document).ready(function() {
+            $('#getname').keyup(function() {
+                var getname = $(this).val();
+                jq.ajax({
+                    method: 'post',
+                    url: '../easly/commandesearch.php',
+                    data: {
+                        name: getname
+                    },
+                    success: function(response) {
+                        $("#showdata").html(response);
+                    }
+                })
+            });
+
+
+        });
+    </script>
     <script>
         var links = document.getElementsByTagName("li");
 

@@ -26,14 +26,25 @@ function delete() {
     return;
   }
   
+  // Get the quantity of the article before deletion
+  $selectSql = "SELECT Quantite FROM `commandes` AS cmd JOIN `article de commande` AS ac ON cmd.`ID` = ac.`id_commandes` WHERE ac.id_article = $id;";
+  $selectStmt = mysqli_query($connection, $selectSql);
+  $row = mysqli_fetch_assoc($selectStmt);
+  $originalQuantity = $row['Quantite'];
+  
   // Delete the records from the main table based on the temporary table
   $deleteQuery = "DELETE FROM `article de commande`
   WHERE `id_commandes` IN (SELECT `ID` FROM temp_id)
   AND `id_article` = $id";
-  
   $result = mysqli_query($connection, $deleteQuery);
   
   if ($result) {
+    // Update the quantity of the article by adding the original quantity
+    $updateSql = "UPDATE `article` SET Quantite = Quantite + $originalQuantity WHERE ID = $id";
+    $updateStmt = mysqli_query($connection, $updateSql);
+  }
+  
+  if ($result && $updateStmt) {
     echo json_encode(1);
   } else {
     echo json_encode(0);
