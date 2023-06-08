@@ -232,7 +232,7 @@ include '../easly/connexion.php';
             <div class="nav-dropdown">
               <a href="../easly/Fornisseur.php" style="text-decoration: none" class="nav-link">
               <i class="bx bxs-store icon-link" id="icons"></i>
-                <span style="font-weight: 500;letter-spacing: 1px;">Fournisseur</span>
+                <span style="font-weight: 500;letter-spacing: 1px;">Fournisseurs</span>
                 <i class='bx bx-down-arrow-alt arrow-down'></i>
               </a>
               <div class="nav-dropdown-collapse">
